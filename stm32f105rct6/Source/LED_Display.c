@@ -32,14 +32,18 @@ static void LED_Display (void const *arg) {
 		while(1){
 			
 			for(i=0;i<row;i++){
-				row_no=i+1;
-				A( row_no & 0x01 );B( row_no & 0x02 );C( row_no & 0x04 );D( row_no & 0x08 );   //ÐÐÉ¨Ãè
-
+				//row_no=i+1;
+				A( OFF );B( OFF );C( OFF );D( OFF );   //¹Ø±ÕÐÐ
+				pStr=data;
 				while(* pStr != '\0'){
+					
 					if( *pStr<=126){	//Ó¢ÎÄ×Ö·û
-					charDot[0] = (unsigned char)ascii_Dot[ *pStr - ' '][i];
+						printf("disp:%c  \n\n",*pStr);
+						charDot[0] = (unsigned char)ascii_Dot[ *pStr - ' '][i];
+						printf("DOt:%02x,  \n",charDot[0]);
 						scan=0x01;
 						for(j=0;j<8;j++){
+							printf("j=%d, 08_12_R=%d   \n\n",j,charDot[0] & scan);
 							CLK(OFF);     
 							PORT_08_1_R1(charDot[0] & scan);
 							PORT_08_2_R1(charDot[0] & scan);
@@ -72,8 +76,11 @@ static void LED_Display (void const *arg) {
 				}
 			}
 			STB(OFF);
-			osDelay(1);  //ÑÓÊ±
+			osDelay(1000);  //ÑÓÊ±
 			STB(ON);     //Ëø´æ
+			row_no=i+1;
+			A( row_no & 0x01 );B( row_no & 0x02 );C( row_no & 0x04 );D( row_no & 0x08 );   //ÐÐÉ¨Ãè
+			osDelay(10);
 		}
 		osDelay(50);
 	}
