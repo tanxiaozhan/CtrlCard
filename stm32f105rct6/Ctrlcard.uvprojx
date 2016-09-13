@@ -455,7 +455,7 @@
             <File>
               <FileName>Flash_SPI.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Flash_SPI.c</FilePath>
+              <FilePath>.\Source\Flash_SPI.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -486,6 +486,11 @@
               <FileName>misc.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Lib\src\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Lib\src\stm32f10x_spi.c</FilePath>
             </File>
           </Files>
         </Group>

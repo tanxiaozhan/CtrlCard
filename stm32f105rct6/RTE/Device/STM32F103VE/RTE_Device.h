@@ -806,7 +806,7 @@
 //     <o2> Bit <0-15>
 //     <i>  Selects Port Bit
 //   </e>
-#define RTE_SPI1_NSS_PIN                1
+#define RTE_SPI1_NSS_PIN                0
 #define RTE_SPI1_NSS_PORT               GPIO_PORT(0)
 #define RTE_SPI1_NSS_BIT                4
 

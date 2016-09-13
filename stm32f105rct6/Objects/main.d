@@ -33,3 +33,5 @@
 .\objects\main.o: Source\Port_08_12.h
 .\objects\main.o: Source\esp8266.h
 .\objects\main.o: Source\LED_Display.h
+.\objects\main.o: Source\flash_SPI.h
+.\objects\main.o: .\Lib\inc\stm32f10x_spi.h
