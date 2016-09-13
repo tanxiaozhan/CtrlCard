@@ -448,9 +448,9 @@
               <FilePath>.\Source\Usart1.c</FilePath>
             </File>
             <File>
-              <FileName>LED_Diaplay.c</FileName>
+              <FileName>LED_Display.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Source\LED_Diaplay.c</FilePath>
+              <FilePath>.\Source\LED_Display.c</FilePath>
             </File>
           </Files>
         </Group>

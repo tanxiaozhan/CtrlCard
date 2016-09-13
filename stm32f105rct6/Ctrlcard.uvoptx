@@ -283,8 +283,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\LED_Diaplay.c</PathWithFileName>
-      <FilenameWithoutPath>LED_Diaplay.c</FilenameWithoutPath>
+      <PathWithFileName>.\Source\LED_Display.c</PathWithFileName>
+      <FilenameWithoutPath>LED_Display.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

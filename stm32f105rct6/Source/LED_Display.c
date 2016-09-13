@@ -26,6 +26,8 @@ static void LED_Display (void const *arg) {
 			A( i & 0x01 );B( i & 0x02 );C( i & 0x04 );D( i & 0x08 );
 			CLK(OFF);
 			//PORT_08_1_R1();
+			CLK(ON);
+			
 			
 			
 		}

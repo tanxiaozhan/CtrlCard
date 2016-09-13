@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\debugTest.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\debugTest.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Tue Sep 13 09:28:00 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050169: Last Updated: Tue Sep 13 10:13:25 2016
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -62,7 +62,7 @@ Function Pointers
  <LI><a href="#[2b]">I2C2_EV_IRQHandler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
  <LI><a href="#[94]">Initialize</a> from modem_null.o(i.Initialize) referenced from modem_null.o(.constdata)
  <LI><a href="#[99]">IsOnline</a> from modem_null.o(i.IsOnline) referenced from modem_null.o(.constdata)
- <LI><a href="#[6a]">LED_Display</a> from led_diaplay.o(i.LED_Display) referenced from led_diaplay.o(.constdata)
+ <LI><a href="#[6a]">LED_Display</a> from led_display.o(i.LED_Display) referenced from led_display.o(.constdata)
  <LI><a href="#[96]">Listen</a> from modem_null.o(i.Listen) referenced from modem_null.o(.constdata)
  <LI><a href="#[3]">MemManage_Handler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
  <LI><a href="#[1]">NMI_Handler</a> from startup_stm32f10x_hd.o(.text) referenced from startup_stm32f10x_hd.o(RESET)
@@ -939,7 +939,7 @@ Global Symbols
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ESP8266_init
 </UL>
 
-<P><STRONG><a name="[e9]"></a>LED_Display_Start</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, led_diaplay.o(i.LED_Display_Start))
+<P><STRONG><a name="[e9]"></a>LED_Display_Start</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, led_display.o(i.LED_Display_Start))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = LED_Display_Start &rArr; osThreadCreate &rArr; svcThreadCreate &rArr; rt_tsk_create &rArr; rt_init_context &rArr; rt_init_stack
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadCreate
@@ -2862,13 +2862,13 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.constdata)
 </UL>
-<P><STRONG><a name="[6a]"></a>LED_Display</STRONG> (Thumb, 142 bytes, Stack size 24 bytes, led_diaplay.o(i.LED_Display))
+<P><STRONG><a name="[6a]"></a>LED_Display</STRONG> (Thumb, 152 bytes, Stack size 24 bytes, led_display.o(i.LED_Display))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = LED_Display
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetBits
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_ResetBits
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> led_diaplay.o(.constdata)
+<BR>[Address Reference Count : 1]<UL><LI> led_display.o(.constdata)
 </UL>
 <P><STRONG><a name="[76]"></a>USART1_Control</STRONG> (Thumb, 18 bytes, Stack size 16 bytes, usart_stm32f10x.o(i.USART1_Control))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = USART1_Control &rArr; USART_Control &rArr; GPIO_PinConfigure

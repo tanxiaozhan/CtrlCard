@@ -6,7 +6,7 @@
 ".\objects\main.o"
 ".\objects\port_08_12.o"
 ".\objects\usart1.o"
-".\objects\led_diaplay.o"
+".\objects\led_display.o"
 ".\objects\stm32f10x_fsmc.o"
 ".\objects\stm32f10x_gpio.o"
 ".\objects\stm32f10x_rcc.o"
