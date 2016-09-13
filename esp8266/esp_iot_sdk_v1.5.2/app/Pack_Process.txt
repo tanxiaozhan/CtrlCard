@@ -1,0 +1,14 @@
+发送数据流程：
+应用层数据-->espconn_send(别名espconn_sent)[espconn.c]-->espconn_tcp_write(pnode)[espconn_tcp.c]--
+
+->espconn_tcp_sent(void *arg, uint8 *psent, uint16 length)[espconn_tcp.c]->tcp_output(struct tcp_pcb *pcb)[tcp_out.c]--
+
+->tcp_output_segment(struct tcp_seg *seg, struct tcp_pcb *pcb)[tcp_out.c]--
+
+->ip_output(struct pbuf *p, ip_addr_t *src, ip_addr_t *dest, u8_t ttl, u8_t tos, u8_t proto)[ip.c]--
+
+->ip_output_if_opt(struct pbuf *p, ip_addr_t *src, ip_addr_t *dest,
+       u8_t ttl, u8_t tos, u8_t proto, struct netif *netif, void *ip_options,
+       u16_t optlen)[ip.c]--
+       
+->netif->output(netif, p, dest)
