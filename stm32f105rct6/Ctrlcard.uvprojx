@@ -452,6 +452,11 @@
               <FileType>1</FileType>
               <FilePath>.\Source\LED_Display.c</FilePath>
             </File>
+            <File>
+              <FileName>Flash_SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Flash_SPI.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

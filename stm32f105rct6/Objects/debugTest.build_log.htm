@@ -55,14 +55,22 @@ FCARM FILE CONVERTER V2.54
 Completed 19 File(s), Ratio 87%
 compiling Web.c...
 compiling LED_Display.c...
-Source\LED_Display.c(22): warning:  #177-D: variable "col" was declared but never referenced
+Source\LED_Display.c(33): warning:  #223-D: function "ascii_Dot" declared implicitly
+                                        charDot=ascii_Dot(
+Source\LED_Display.c(34): error:  #18: expected a ")"
+                                pdata ++;
+Source\LED_Display.c(23): warning:  #177-D: variable "col" was declared but never referenced
                 uint8_t col=64;
-Source\LED_Display.c(23): warning:  #177-D: variable "j" was declared but never referenced
+Source\LED_Display.c(26): warning:  #550-D: variable "charDot" was set but never used
+                uint8_t charDot;
+Source\LED_Display.c(27): warning:  #177-D: variable "j" was declared but never referenced
                 uint8_t i,j;
-Source\LED_Display.c: 2 warnings, 0 errors
-linking...
-Program Size: Code=39260 RO-data=28120 RW-data=172 ZI-data=25660  
-".\Objects\debugTest.axf" - 0 Error(s), 2 Warning(s).
+Source\LED_Display.c: 4 warnings, 1 error
+compiling Flash_SPI.c...
+Flash_SPI.c(18): error:  #5: cannot open source input file "fatfs_flash_spi.h": No such file or directory
+  #include "fatfs_flash_spi.h"
+Flash_SPI.c: 0 warnings, 1 error
+".\Objects\debugTest.axf" - 2 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -164,6 +172,7 @@ Package Vendor: Keil
 
    * Component: Keil::CMSIS Driver:USART:2.0
       Source file:   RTE_Driver\USART_STM32F10x.c
+Target not created.
 </pre>
 </body>
 </html>

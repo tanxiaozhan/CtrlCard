@@ -17,3 +17,4 @@
 .\objects\led_display.o: C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include\stm32f10x.h
 .\objects\led_display.o: .\Lib\inc\stm32f10x_usart.h
 .\objects\led_display.o: .\Lib\inc\misc.h
+.\objects\led_display.o: Source\Ascii.h
