@@ -22,25 +22,23 @@ osThreadDef(LED_Display, osPriorityNormal, 1, 0);
   线程'LED_Dispaly': 驱动LED显示屏显示信息
  *---------------------------------------------------------------------------*/
 static void LED_Display (void const *arg) {
-		uint8_t row=16;  
+		uint8_t row=4;   // 1/4扫描  
 		uint8_t row_no;  //当前行号
 		char * pStr=data;
 		uint8_t charDot[2];    //保存当前显示字符的点阵信息，英文宽8位，汉字宽16位
-		uint8_t i,j;
+		uint8_t i,j,k;
 		uint16_t scan;    //列扫描
 		EN(ON);
 		while(1){
-			
 			for(i=0;i<row;i++){
-				//row_no=i+1;
-				A( OFF );B( OFF );C( OFF );D( OFF );   //关闭行
+				A( i & 0x01 );B( i & 0x02 );C( i & 0x04 );D( i & 0x08 );   //行扫描
+
 				pStr=data;
 				while(* pStr != '\0'){
+					for(k=0;k<4;k++){
 					
 					if( *pStr<=126){	//英文字符
-						printf("disp:%c  \n\n",*pStr);
-						charDot[0] = (unsigned char)ascii_Dot[ *pStr - ' '][i];
-						printf("DOt:%02x,  \n",charDot[0]);
+						charDot[0] = (unsigned char)ascii_Dot[ *pStr - ' '][12-k*4+i];
 						scan=0x01;
 						for(j=0;j<8;j++){
 							printf("j=%d, 08_12_R=%d   \n\n",j,charDot[0] & scan);
@@ -75,11 +73,10 @@ static void LED_Display (void const *arg) {
 					pStr += 2;      //一个汉字占二个字节
 				}
 			}
+		}
 			STB(OFF);
 			osDelay(1000);  //延时
 			STB(ON);     //锁存
-			row_no=i+1;
-			A( row_no & 0x01 );B( row_no & 0x02 );C( row_no & 0x04 );D( row_no & 0x08 );   //行扫描
 			osDelay(10);
 		}
 		osDelay(50);
