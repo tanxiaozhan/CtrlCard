@@ -101,6 +101,6 @@ u16 SPI_FLASH_SendHalfWord(u16 HalfWord);
 void SPI_FLASH_WriteEnable(void);
 void SPI_FLASH_WaitForWriteEnd(void);
 //int GetGBKCode_from_EXFlash(unsigned char* pBuffer,const unsigned char * c);
-int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c);
+int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c, uint8_t rowNo);
 #endif /* __SPI_FLASH_H */
 

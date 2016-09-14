@@ -21,4 +21,3 @@
 .\objects\usart_stm32f10x.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Driver\Include\Driver_Common.h
 .\objects\usart_stm32f10x.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\usart_stm32f10x.o: .\RTE\Device\STM32F103VE\RTE_Device.h
-.\objects\usart_stm32f10x.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

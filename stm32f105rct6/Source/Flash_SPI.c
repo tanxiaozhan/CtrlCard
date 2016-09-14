@@ -592,21 +592,12 @@ static  uint16_t SPI_TIMEOUT_UserCallback(void)
 /*********************************************END OF FILE**********************/
 /*******************************************************************************
 * Function Name  : GetGBKCode_from_FLASH
+*
+* rwoNo 读取汉字点阵中（共16行）的第几行，共读取2个字节
+*
 *******************************************************************************/ 
-//int GetGBKCode_from_EXFlash(unsigned char* pBuffer,const unsigned char * c)
-//{ 
-//    unsigned char High8bit,Low8bit;
-//    unsigned int pos;
-//    High8bit=*c;     
-//    Low8bit=*(c+1);  
-//	  
-//    pos = ((High8bit-0xa0-16)*94+Low8bit-0xa0-1)*2*16;
-//		SPI_FLASH_BufferRead(pBuffer,4096+pos,32);
 
-//		return 0;  
-//     
-//}
-int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c)
+int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c, uint8_t rowNo)
 { 
     unsigned char High8bit,Low8bit;
     unsigned int pos;
@@ -618,7 +609,7 @@ int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c)
 	  
     pos = ((High8bit-0xa0-16)*94+Low8bit-0xa0-1)*2*16;
 		//SPI_FLASH_BufferRead(pBuffer,4096+pos,32);
-		SPI_FLASH_BufferRead(pBuffer,4096+pos,2);
+		SPI_FLASH_BufferRead(pBuffer,4096+pos+rowNo*2,2);
 
 	  //printf ( "%02x %02x %02x %02x\n", pBuffer[0],pBuffer[1],pBuffer[2],pBuffer[3]);
 	
