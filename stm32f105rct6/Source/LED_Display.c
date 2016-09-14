@@ -13,43 +13,47 @@
 #include "Port_08_12.h"
 #include "Ascii.h"
 
-char data[DISPLAY_STRING_LENGTH]="LED屏";     //LED屏显示的文字信息，通过浏览器设置修改
+char data[DISPLAY_STRING_LENGTH]="LED";     //LED屏显示的文字信息，通过浏览器设置修改
 
 static void LED_Display(void const *arg);
-osThreadDef(LED_Display, osPriorityNormal, 1, 0);
+osThreadDef(LED_Display, osPriorityAboveNormal, 1, 0);
 
 /*----------------------------------------------------------------------------
   线程'LED_Dispaly': 驱动LED显示屏显示信息
  *---------------------------------------------------------------------------*/
 static void LED_Display (void const *arg) {
 		uint8_t row=4;   // 1/4扫描  
-		uint8_t row_no;  //当前行号
 		char * pStr=data;
 		uint8_t charDot[2];    //保存当前显示字符的点阵信息，英文宽8位，汉字宽16位
 		uint8_t i,j,k;
 		uint16_t scan;    //列扫描
+		uint8_t dot;
 		EN(ON);
 		while(1){
+
+			
 			for(i=0;i<row;i++){
+				EN(OFF);
 				A( i & 0x01 );B( i & 0x02 );C( i & 0x04 );D( i & 0x08 );   //行扫描
 
 				pStr=data;
 				while(* pStr != '\0'){
-					for(k=0;k<4;k++){
 					
 					if( *pStr<=126){	//英文字符
-						charDot[0] = (unsigned char)ascii_Dot[ *pStr - ' '][12-k*4+i];
+						for(k=0;k<4;k++){
+						charDot[0] = ~(unsigned char)ascii_Dot[ *pStr - ' '][12-k*4+i];
 						scan=0x01;
 						for(j=0;j<8;j++){
-							printf("j=%d, 08_12_R=%d   \n\n",j,charDot[0] & scan);
 							CLK(OFF);     
-							PORT_08_1_R1(charDot[0] & scan);
-							PORT_08_2_R1(charDot[0] & scan);
-							PORT_12_1_R(charDot[0] & scan);
-							PORT_12_2_R(charDot[0] & scan);
+							dot = charDot[0] & scan;
+							PORT_08_1_R1(dot);
+							PORT_08_2_R1(dot);
+							PORT_12_1_R(dot);
+							PORT_12_2_R(dot);
 							scan <<= 1;
 							CLK(ON);       //594移位信号
 						}
+					}
 					pStr ++;
 				}
 				else{   //汉字字符
@@ -73,13 +77,11 @@ static void LED_Display (void const *arg) {
 					pStr += 2;      //一个汉字占二个字节
 				}
 			}
-		}
 			STB(OFF);
-			osDelay(1000);  //延时
 			STB(ON);     //锁存
-			osDelay(10);
+			EN(ON);
+			osDelay(5);
 		}
-		osDelay(50);
 	}
 }
 
