@@ -3,5 +3,6 @@ llblue.jpg,
 authen.png,
 content.png,
 info.png,
-time.png 
+time.png,
+content.html 
 TO Web.c RTE NOPRINT ROOT(Web)

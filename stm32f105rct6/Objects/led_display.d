@@ -18,5 +18,6 @@
 .\objects\led_display.o: .\Lib\inc\misc.h
 .\objects\led_display.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\led_display.o: .\Lib\inc\stm32f10x_spi.h
+.\objects\led_display.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\led_display.o: Source\Port_08_12.h
 .\objects\led_display.o: Source\Ascii.h
