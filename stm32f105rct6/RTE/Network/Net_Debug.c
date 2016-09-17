@@ -90,7 +90,7 @@
 
 // <e>Socket Debug
 // <i>Enable printing socket debug messages
-#define DBG_SOCKET_EN           0
+#define DBG_SOCKET_EN           1
 
 //   <o>UDP Socket  <0=>Off <1=>Errors only <2=>Full debug
 //   <i>Configure native UDP Socket debugging
@@ -98,7 +98,7 @@
 
 //   <o>TCP Socket  <0=>Off <1=>Errors only <2=>Full debug
 //   <i>Configure native TCP Socket debugging
-#define DBG_TCP_SOCKET          2
+#define DBG_TCP_SOCKET          1
 
 //   <o>BSD Socket  <0=>Off <1=>Errors only <2=>Full debug
 //   <i>Configure BSD Socket Interface debugging
@@ -107,11 +107,11 @@
 
 // <e>Service Debug
 // <i>Enable printing service debug messages
-#define DBG_SERVICE_EN          0
+#define DBG_SERVICE_EN          1
 
 //   <o>HTTP Server  <0=>Off <1=>Errors only <2=>Full debug
 //   <i>Configure Web Server debugging
-#define DBG_HTTP_SERVER         2
+#define DBG_HTTP_SERVER         1
 
 //   <o>FTP Server  <0=>Off <1=>Errors only <2=>Full debug
 //   <i>Configure FTP Server debugging

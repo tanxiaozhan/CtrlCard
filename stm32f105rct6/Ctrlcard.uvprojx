@@ -498,54 +498,9 @@
           <GroupName>Web</GroupName>
           <Files>
             <File>
-              <FileName>ad.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\ad.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>ad.cgx</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\ad.cgx</FilePath>
-            </File>
-            <File>
-              <FileName>buttons.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\buttons.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>buttons.cgx</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\buttons.cgx</FilePath>
-            </File>
-            <File>
-              <FileName>home.png</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\home.png</FilePath>
-            </File>
-            <File>
               <FileName>index.htm</FileName>
               <FileType>9</FileType>
               <FilePath>.\Web\index.htm</FilePath>
-            </File>
-            <File>
-              <FileName>keil.gif</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\keil.gif</FilePath>
-            </File>
-            <File>
-              <FileName>language.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\language.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>lcd.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\lcd.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>leds.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\leds.cgi</FilePath>
             </File>
             <File>
               <FileName>llblue.jpg</FileName>
@@ -553,44 +508,29 @@
               <FilePath>.\Web\llblue.jpg</FilePath>
             </File>
             <File>
-              <FileName>logo.gif</FileName>
+              <FileName>authen.png</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\logo.gif</FilePath>
+              <FilePath>.\Web\authen.png</FilePath>
             </File>
             <File>
-              <FileName>network.cgi</FileName>
+              <FileName>content.png</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\network.cgi</FilePath>
+              <FilePath>.\Web\content.png</FilePath>
             </File>
             <File>
-              <FileName>pabb.gif</FileName>
+              <FileName>info.png</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\pabb.gif</FilePath>
+              <FilePath>.\Web\info.png</FilePath>
             </File>
             <File>
-              <FileName>pg_footer.inc</FileName>
+              <FileName>time.png</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\pg_footer.inc</FilePath>
+              <FilePath>.\Web\time.png</FilePath>
             </File>
             <File>
-              <FileName>pg_header.inc</FileName>
+              <FileName>content.html</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\pg_header.inc</FilePath>
-            </File>
-            <File>
-              <FileName>system.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\system.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>tcp.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\tcp.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>xml_http.js</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\xml_http.js</FilePath>
+              <FilePath>.\Web\content.html</FilePath>
             </File>
           </Files>
         </Group>
@@ -663,7 +603,7 @@
           <targetInfo name="ControlCard"/>
         </targetInfos>
       </component>
-      <component Cbundle="MDK-Plus" Cclass="Network" Cgroup="CORE" Cvariant="IPv4 Release" Cvendor="Keil" Cversion="7.1.0" condition="CMSIS Core with RTOS">
+      <component Cbundle="MDK-Plus" Cclass="Network" Cgroup="CORE" Cvariant="IPv4 Debug" Cvendor="Keil" Cversion="7.1.0" condition="CMSIS Core with RTOS">
         <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="7.1.0"/>
         <targetInfos>
           <targetInfo name="ControlCard"/>
@@ -796,10 +736,12 @@
         </targetInfos>
       </file>
       <file attr="config" category="source" name="Network\Config\Net_Debug.c" version="7.0.0">
-        <instance index="0" removed="1">RTE\Network\Net_Debug.c</instance>
+        <instance index="0">RTE\Network\Net_Debug.c</instance>
         <component Cbundle="MDK-Plus" Cclass="Network" Cgroup="CORE" Cvariant="IPv4 Debug" Cvendor="Keil" Cversion="7.1.0" condition="CMSIS Core with RTOS"/>
         <package name="MDK-Middleware" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="Keil" version="7.1.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="ControlCard"/>
+        </targetInfos>
       </file>
     </files>
   </RTE>

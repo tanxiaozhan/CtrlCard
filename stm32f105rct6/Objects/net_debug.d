@@ -13,4 +13,4 @@
 .\objects\net_debug.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Driver\Include\Driver_ETH_PHY.h
 .\objects\net_debug.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Include\net_modem.h
 .\objects\net_debug.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Include\rl_net_ds.h
-.\objects\net_debug.o: ..\debugTest\RTE_Components.h
+.\objects\net_debug.o: .\Source\RTE_Components.h
