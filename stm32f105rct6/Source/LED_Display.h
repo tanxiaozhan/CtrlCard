@@ -9,7 +9,7 @@
 
 typedef struct{
 	uint8_t LED_area_numbers;              //LED显示屏分区数，整块显示屏最多可分为3个显示区域
-	unsigned char str_data[DISPLAY_STRING_LENGTH][MAX_AREA_NUMBER];   //指向各显示区显示字符串的指针数组，数组下标为显示区号
+	char str_data[MAX_AREA_NUMBER][DISPLAY_STRING_LENGTH];   //指向各显示区显示字符串的指针数组，数组下标为显示区号
 	uint8_t color[MAX_AREA_NUMBER];        //显示的颜色
 }LED_data;
 
