@@ -29,22 +29,22 @@
 #define PORT_08_12_A_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
 #define PORT_08_12_A_GPIO_PORT    	  GPIOC			           
 #define PORT_08_12_A_GPIO_CLK 	      RCC_APB2Periph_GPIOC
-#define PORT_08_12_A_GPIO_PIN		 		GPIO_Pin_0			        
+#define PORT_08_12_A_GPIO_PIN		 		GPIO_Pin_1			        
 
 #define PORT_08_12_B_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_12_B_GPIO_PORT    	  GPIOC			           
 #define PORT_08_12_B_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
-#define PORT_08_12_B_GPIO_PIN		 		GPIO_Pin_1			        
+#define PORT_08_12_B_GPIO_PIN		 		GPIO_Pin_2			        
 
 #define PORT_08_12_C_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_12_C_GPIO_PORT    	  GPIOC			           
 #define PORT_08_12_C_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
-#define PORT_08_12_C_GPIO_PIN		 		GPIO_Pin_2			        
+#define PORT_08_12_C_GPIO_PIN		 		GPIO_Pin_3			        
 
 #define PORT_08_12_D_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_12_D_GPIO_PORT    	  GPIOC			           
 #define PORT_08_12_D_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
-#define PORT_08_12_D_GPIO_PIN		 		GPIO_Pin_3			        
+#define PORT_08_12_D_GPIO_PIN		 		GPIO_Pin_4			        
 
 
 //控制卡08-1接口管脚定义
