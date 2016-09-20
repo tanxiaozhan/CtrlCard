@@ -42,7 +42,7 @@
       
       
       <tr>
-        <td height="30" align="center" valign="middle"><input type="checkbox" name="checkbox" id="checkbox" /></td>
+        <td height="109" align="center" valign="middle"><input type="checkbox" name="checkbox" id="checkbox" /></td>
         <td align="center" valign="middle">&nbsp;</td>
         <td align="center" valign="middle">&nbsp;</td>
         <td align="center" valign="middle">&nbsp;</td>
@@ -51,15 +51,15 @@
         <td align="center" valign="middle">&nbsp;</td>
         <td align="center" valign="middle" class="link_bk"><table width="55%" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>
-            <td height="15" align="center" bgcolor="#00CCFF"  class="top_font">编辑分区</td>
+            <td height="20" align="center" bgcolor="#00CCFF"  class="top_font">编辑分区</td>
             </tr>
           </table>
           <p>&nbsp;</p>
           <table width="55%" border="0" align="center" cellpadding="0" cellspacing="0">
             <tr>
-              <td height="15" align="center" bgcolor="#00CCFF"  class="top_font">编辑内容</td>
+              <td height="20" align="center" bgcolor="#00CCFF"  class="top_font">编辑内容</td>
               </tr>
-        </table></td>
+          </table></td>
       </tr>
       
   </form>    
