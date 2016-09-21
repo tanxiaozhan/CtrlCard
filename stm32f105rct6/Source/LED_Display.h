@@ -58,7 +58,7 @@ typedef struct{
 	uint8_t width;      //分区宽度
 	uint8_t height;
 	area_content_type content_type;    //分区显示内容的类型，文本或时钟
-	char display_data[DISPLAY_STRING_LENGTH];    //分区显示的内容数据
+	uint8_t display_data[DISPLAY_STRING_LENGTH];    //分区显示的内容数据
 }area_para;
 
 
