@@ -58,13 +58,13 @@ static void BlinkLed (void const *arg) {
 int main (void) {
 
 		FLASH_SPI_initialize();
-		Port_08_12_GPIO_Config();    //初始化控制卡08、12输出接口用到的GPIO引脚
 		USARTx_Config();	
 
 		//LED指示灯
 		LED_Initialize ();
 		osThreadCreate (osThread(BlinkLed), NULL);
 	
+		LED_Display_Init();      //显示屏初始化
 		LED_Display_Start();     //控制卡输出启动，LED显示屏开始显示
 	
 		netInitialize ();    		//网络核心初始化
