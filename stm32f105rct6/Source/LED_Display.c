@@ -243,7 +243,7 @@ void LED_Display_Init(void){
 		area[i].width=64;
 		area[i].height=32;
 		area[i].content_type=TEXT;
-		sprintf(area[i].display_data,"area%d",i);
+		sprintf((char *)area[i].display_data,"area%d",i);
 	}
 	
 }
