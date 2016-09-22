@@ -18,6 +18,7 @@ screen_para screen;        //显示屏参数
 area_para area[MAX_AREA_NUMBER];           //显示区参数
 
 uint8_t max_len=0;    // 各显示中显示字符最长的长度
+uint8_t screen_dot[32][8];    //保存当前显示的一屏点阵数据
 
 //uint8_t * screen_dot;   //指向一个二维数组，该数组保存了当前显示的一屏点阵数据
 
@@ -30,9 +31,8 @@ osThreadDef(LED_Display, osPriorityAboveNormal, 1, 0);
 static void LED_Display (void const *arg) {
 
 	//uint8_t screen_dot[screen.height][screen_width_bytes];    //保存当前显示的一屏点阵数据
-	uint8_t screen_dot[32][8];    //保存当前显示的一屏点阵数据
 	//uint8_t * pStr[screen.area_number];
-	uint8_t * pStr[2];
+	uint8_t * pStr[3];
 
 	unsigned int col;
 	uint8_t area_no,scan,row;
@@ -118,7 +118,7 @@ while(1){
 		case SCAN_4_DOWN_TO_UP_1FOR8ROW:   //1/4下蛇行，一路数据带8行
 			break;
 	}
-osDelay(1);
+//osDelay(1);
 }
 		
 /*	
@@ -230,6 +230,7 @@ osDelay(1);
 */
 void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, bool point){
 	pbuff += screen_width*y + x/8;
+	point = !point;
 	if( point ){
 		*pbuff |= 0x80 >> x%8 ;
 	}
@@ -260,6 +261,8 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 	for(row=0;row<scan_rows;row++){
 		for(col=0;col<screen_width_bytes;col++){
 			for(i=0;i<4;i++){
+				//printf("row=%d, dot=%2x   \n",12-4*i+row, *(pdot_buff+ (12-4*i+row)*screen_width_bytes + col));
+				
 				scan=0x01;
 				for(j=0;j<8;j++){
 					CLK(OFF);     
@@ -267,13 +270,16 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 					PORT_12_2_R( *(pdot_buff + (12-4*i+row+16)*screen_width_bytes + col) & scan );
 					PORT_12_3_R( *(pdot_buff + (12-4*i+row+32)*screen_width_bytes + col) & scan );
 					PORT_12_4_R( *(pdot_buff + (12-4*i+row+48)*screen_width_bytes + col) & scan );
-					scan <<= 1;
 					CLK(ON);       //594移位信号
+					scan <<= 1;
 				}
 			}
-			A( i & 0x01 );B( i & 0x02 );C( i & 0x04 );D( i & 0x08 );   //行扫描
-			osDelay(3);
 		}
+		A( row & 0x01 );B( row & 0x02 );   //行扫描
+		STB(0);
+		EN(ON);  //延时
+		STB(1);  //锁存
+		osDelay(1);
 	}
 }
 
@@ -302,7 +308,7 @@ void LED_Display_Init(void){
 	Port_08_12_GPIO_Config();    //初始化控制卡08、12输出接口用到的GPIO引脚
 	
 	//显示屏参数初始化
-	screen.area_number =2;    //分区数为1
+	screen.area_number =1;    //分区数为1
 	screen.width =64;
 	screen.height=32;
 	screen.color=SINGLE;
@@ -313,9 +319,16 @@ void LED_Display_Init(void){
 	for(i=0;i<screen.area_number;i++){
 		area[i].id=i;
 		area[i].width=64;
-		area[i].height=32;
+		area[i].height=16;
 		area[i].content_type=TEXT;
 		sprintf((char *)area[i].display_data,"area%d",i);
 	}
+	area[0].x=0;
+	area[0].y=0;
+	area[1].x=0;
+	area[1].y=16;
+	printf("area 0:%s\n",area[0].display_data);
+	printf("area 1:%s\n",area[1].display_data);
+	
 	
 }
