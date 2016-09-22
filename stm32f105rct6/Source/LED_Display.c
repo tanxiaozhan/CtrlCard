@@ -30,71 +30,63 @@ osThreadDef(LED_Display, osPriorityAboveNormal, 1, 0);
 static void LED_Display (void const *arg) {
 
 	uint8_t screen_width_bytes;     //屏宽、屏高（按字节为单位）
-	screen_width_bytes=((screen.height % 8)==0)?(screen.height/8):(screen.height/8+1) ;
 	uint8_t screen_dot[screen.height][screen_width_bytes];    //保存当前显示的一屏点阵数据
 	uint8_t * pStr[screen.area_number];
-	int i,j,current_area,area_no,row,col;
-	for(i=0;i<screen.area_number;i++){
-		pStr[i] = area[i].display_data;
-		if(max_len < strlen((char *)area[i].display_data) )    //获取各显示区中字符数最多的
-			max_len = strlen((char *)area[i].display_data);         
-	}
-
-	//按显示区获取点阵数据
-	for(area_no=0;area_no<screen.area_number;area_no++){
-		for(row=0;row<area[area_no].width;row++){
-			for(col=0;col<area[area_no].height;col++){
+	unsigned int col;
+	uint8_t area_no,scan,row;
+	
+while(1){
+	
+	//按显示区获取点阵数据，往显存写入点阵数据
+	for( area_no=0;area_no<screen.area_number;area_no++ ){
+		for( row=area[area_no].y;row<area[area_no].height;row++){
+			pStr[area_no] = area[area_no].display_data;
+			col = area[area_no].x;
+			while( (col<area[area_no].width) && ( *pStr[area_no] != 0 ) ){
 				if( *pStr[area_no]<= 126){       //英文字符
-					screen_dot[ area[area_no].x+row ][ area[area_no].y+col ] = ascii_Dot[ *pStr[area_no] - ' ' ][ row%16 ] ;
+					uint8_t char_dot;
+					char_dot = ascii_Dot[ *pStr[area_no] - ' ' ][ (row-area[area_no].y)%16 ] ;
+					scan = 0x80;
+					while( col < area[area_no].width && scan > 0x00 ){
+						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, char_dot & scan );
+						scan >>= 1;
+						col ++;
+					}
+					pStr[area_no] ++ ;      //下一个字符
+
 				}   //英文处理完毕
+				
 				else{         //汉字字符
+					uint16_t char_GBK_Code;                            //汉字的国标码
+					uint8_t GBK_dot[2];                                  //汉字的点阵数据
+					char_GBK_Code = * (uint16_t *)pStr[area_no];             //取一个汉字的国标码，二字节
+					char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
+					get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
 					
-				}    //汉字处理完毕
+					//处理汉字前8位点阵
+					scan = 0x80;
+					while( col < area[area_no].width && scan > 0x00 ){
+						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[0]&scan );
+						scan >>= 1;
+						col ++ ;
+					}
+					//处理汉字后8位点阵
+					scan = 0x80;
+					while( col < area[area_no].width && scan >0x00 ){
+						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[1]&scan );
+						scan >>= 1;
+						col ++;
+					}
+						pStr[area_no] += 2;                                      //一个汉字占二个字节
+					
+				} //汉字处理完毕
 			}
 		}
 	}
-
-	
-
-	//填充一屏点阵数据，即给screen_dot数组赋值
-	i=0;
-	for( i=0; i<screen.height; i++ ){              
-		for( j=0; j<screen.width ; j+=8 ){
-			for( current_area=0;current_area<screen.area_number; current_area++){
-				if( i<area[current_area].height && j<area[current_area].width ){           //边界检测，当前位于哪个显示区
-					break;
-				}
-			}	
-				if( ( *pStr[current_area] != '\0')){  
-					if( *pStr[current_area] <= 126 ){                             //英文字母
-						screen_dot[i][j/8] = ascii_Dot[ *pStr[current_area] - ' '][ i%16 ] ;
-						if( (area[current_area].width-j)%8 != 0 ){                  //显示区宽度不是8的整数倍，其最几个点阵不够一字节，与其他显示区共用一个点阵字节
-							screen_dot[i][j/8] &= 0xFF << ((area[current_area].width-j) % 8);
-						}
-						else if((area[current_area].x % 8) != 0){               //显示区起始X坐标不是8的整数倍，其起始的点阵与别的显示区共用点阵字节
-							screen_dot[i][j/8] &= 0xFF >> (area[current_area].x %8);
-						}
-						
-						pStr[current_area] ++;
-						
-					}  //英文字母处理完毕
-					else{                                              //汉字字符
-					uint16_t char_GBK_Code;                            //汉字的国标码
-					uint8_t GBK_dot[2];                                  //汉字的点阵数据
-					char_GBK_Code = * (uint16_t *)pStr[current_area];             //取一个汉字的国标码，二字节
-					char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
-					get_GBK_Code( GBK_dot, char_GBK_Code,12-current_area*4+i );   //读取汉字字模一行点阵数据2字节
-					screen_dot[i][j/8]=GBK_dot[0];    
-					j += 8  ;                                               
-					screen_dot[i][j/8]=GBK_dot[1];
-					pStr[current_area] += 2;                                      //一个汉字占二个字节
-					}  //汉字处理完毕
-				}
-		}
-	}
-	//一屏点阵数据填充完成
+//到此，显存点阵数据写入完成
 	
 	
+	//确定扫描类型	
 	switch(screen.scan_type){
 		case SCAN_16:                   //1/16扫描
 			break;
@@ -112,11 +104,11 @@ static void LED_Display (void const *arg) {
 			break;
 
 		case 	SCAN_4_UP_TO_DOWN_1FOR16ROW:   //1/4上蛇行，一路数据带16行，8行折列
-			scan_4_up_to_down_1for16row((char *)screen_dot);
+			dispay_scan_4_up_to_down_1for16row((uint8_t *)screen_dot, screen.width, screen.height );
 			break;
 		
 		case SCAN_4_DOWN_TO_UP_1FOR16ROW:   //1/4下蛇行，一路数据带16行
-		break;
+			break;
 		
 		case SCAN_4_UP_TO_DOWN_1FOR8ROW:    //1/4上蛇行，一路数据带8行
 			break;
@@ -124,87 +116,166 @@ static void LED_Display (void const *arg) {
 		case SCAN_4_DOWN_TO_UP_1FOR8ROW:   //1/4下蛇行，一路数据带8行
 			break;
 	}
+osDelay(1);
 }
-	
-void scan_4_up_to_down_1for16row(char * string_dot){	
-	uint8_t row=4;   // 1/4扫描  
-	//char charDot[2];    //保存当前显示字符的点阵信息，英文宽8位，汉字宽16位
-	uint8_t i,j,k,len;
-	uint16_t scan;    //列扫描
-	uint8_t LED_width;   //屏宽
-	char dot;
-	
-	EN(ON);
-	while(1){
-				//EN(OFF);
-	while(i<screen.width){
-		for(j=0;j<screen.height;j++){
-			for(k=0;k<screen.area_number;k++){
-			if( area[k].display_data[len]<=126 ){  //英文字符
-				string_dot[len]= ;
-				}
-			}
-			}
-		}
-		for(i=0;i<row;i++){
-			for(LED_width=0;LED_width<screen.width;LED_width++){
-					pStr[0]=area[0].display_data;
-					if( *pStr[0]<=126){	//英文字符
-						for(k=0;k<4;k++){
-						charDot[0] = ~ascii_Dot[ *pStr[area] - ' '][12-k*4+i];
-						scan=0x01;
-						for(j=0;j<8;j++){
-							CLK(OFF);     
-							dot = charDot[0] & scan;
-							if(area==0){
-								//PORT_08_1_R1(dot);
-								PORT_12_1_R(dot);
-							}
-							else{
-								//PORT_08_2_R1(dot);
-								PORT_12_2_R(dot);
-							}
-							
-							scan <<= 1;
-							CLK(ON);       //594移位信号
+		
+/*	
+	//按显示区获取点阵数据
+	for( area_no=0;area_no<screen.area_number;area_no++ ){
+		if( (area[area_no].x % 8) == 0 ){                 //显示区起点x坐标是8的倍数
+			for( row=area[area_no].y;row<area[area_no].height;row++){
+				pStr[area_no] = area[area_no].display_data;
+				col = area[area_no].x;
+				while( (col<area[area_no].width) && ( *pStr[area_no] != 0 ) ){
+					if( *pStr[area_no]<= 126){       //英文字符
+						if( area[area_no].width-col < 8 ){     //显示区最后一段不够一个字节
+							screen_dot[row][col/8 + 1] &= 0xFF >> (area[area_no].width-col);
+							screen_dot[row][col/8 + 1] |= (0xFF << (8-(area[area_no].width-col))) & ascii_Dot[*pStr[area_no]-' '][(row-area[area_no].y)%16] ;
 						}
-					}
-					pStr[area] ++;
-				}
-				else{   //汉字字符
-					uint16_t char_GBK_Code;    //汉字的国标码
-					uint16_t GBK_Dot;          //汉字的点阵数据
-					char_GBK_Code = * (uint16_t *)pStr[area];       //取一个汉字的国标码，二字节
-					char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
-					for(k=0;k<4;k++){
-						get_GBK_Code( (uint8_t *)charDot, char_GBK_Code,12-k*4+i );   //读取汉字字模一行点阵数据2字节
-						GBK_Dot = ( charDot[0] << 8 ) + charDot[1];
-						scan=0x0001;
-						for(j=0;j<16;j++){
-							CLK(OFF);
-							dot=GBK_Dot & scan;
-							PORT_08_1_R1(dot);
-							if(area==0)
-								PORT_12_1_R(dot);
-							else
-								PORT_12_2_R(dot);
-							
-							scan <<= 1;
-							CLK(ON);       //594移位信号
-					}
-				}
-					pStr[area] += 2;      //一个汉字占二个字节
+						else{
+							screen_dot[row][col/8] = ascii_Dot[ *pStr[area_no] - ' ' ][ (row-area[area_no].y)%16 ] ;
+						}
+						pStr[area_no] ++ ;      //下一个字符
+						col += 8 ;               //下一个显存字节
+					}   //英文处理完毕
+					else{         //汉字字符
+						uint16_t char_GBK_Code;                            //汉字的国标码
+						uint8_t GBK_dot[2];                                  //汉字的点阵数据
+						char_GBK_Code = * (uint16_t *)pStr[area_no];             //取一个汉字的国标码，二字节
+						char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
+						get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
+						if(area[area_no].width-col<8){
+							screen_dot[row][col/8+1] &= 0xFF >> (area[area_no].width - col );
+							screen_dot[row][col/8+1] |= (0xFF << (8-(area[area_no].width-col))) & GBK_dot[0];
+						}
+						else{
+							screen_dot[row][col/8]=GBK_dot[0];    
+						}
+						col += 8 ;
+						if( col > area[area_no].width ){ break;  }    //超出显示区宽度
+						if(area[area_no].width-col<8){
+							screen_dot[row][col/8+1] &= 0xFF >> (area[area_no].width - col );
+							screen_dot[row][col/8+1] |= (0xFF << (8-(area[area_no].width-col))) & GBK_dot[1];
+						}
+						else{
+							screen_dot[row][col/8]=GBK_dot[1];    
+						}
+						col += 8 ;
+						pStr[area_no] += 2;                                      //一个汉字占二个字节
+					} 	   //汉字处理完毕
 				}
 			}
-			STB(OFF);
-			STB(ON);     //锁存
-
-			A( i & 0x01 );B( i & 0x02 );C( i & 0x04 );D( i & 0x08 );   //行扫描
-			osDelay(5);
 		}
+		else{      //显示区起点x坐标不是8的倍数
+			for( row=area[area_no].y;row<area[area_no].height;row++){
+				pStr[area_no] = area[area_no].display_data;
+				col = area[area_no].x;
+				while( (col<area[area_no].width) && ( *pStr[area_no] != 0 ) ){
+					if( *pStr[area_no]<= 126){       //英文字符
+						int char_dot;
+						char_dot = ascii_Dot[*pStr[area_no]-' '][(row-area[area_no].y)%16];
+						scan = 0x80;
+						while(col<area[area_no].width && scan>0x00 ){
+							fill_point((uint8_t *)screen_dot, screen.width/8, col, row, char_dot & scan );
+							col ++;
+							scan >>= 1;
+						}
+						pStr[area_no] ++ ;      //下一个字符
+					}   //英文处理完毕
+					else{         //汉字字符
+						uint16_t char_GBK_Code;                            //汉字的国标码
+						uint8_t GBK_dot[2];                                  //汉字的点阵数据
+						char_GBK_Code = * (uint16_t *)pStr[area_no];             //取一个汉字的国标码，二字节
+						char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
+						get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
+						
+						//处理汉字前8个点阵
+						scan = 0x80;
+						while(col<area[area_no].width && scan>0x00){
+							fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[0] & scan );
+							col ++ ;
+							scan >>= 1;
+						}
+						//处理汉字后8个点阵
+						scan = 0x80;
+						while(col<area[area_no].width && scan>0x00){
+							fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[1] & scan );
+							col ++ ;
+							scan >>= 1;
+						}
+						pStr[area_no] += 2;                                      //一个汉字占二个字节
+					} 	   //汉字处理完毕
+				}
+			}
+		}
+	}
+*/
+}
+
+
+
+/*
+ *------------------------------------------------------------------------------------
+ *
+ *	 在(x,y)处显示一个点，实际上在显存中(x,y)处设置一个比特位的值，0-显示，1-不显示
+ * 参数：pbuff
+ *       screen_width   屏宽，字节为单位，即屏宽像素占多少字节
+ *       screen_height  屏高
+ *       x,y            显示屏上的坐标，左上角坐标(0,0)
+ *       point          像素点的值，0--显示，1--不显示
+ *
+ *------------------------------------------------------------------------------------
+*/
+void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, bool point){
+	uint8_t buff_byte;
+	pbuff += screen_width*y + x/8;
+	buff_byte = *pbuff;
+	if( point ){
+		*pbuff |= 0x80 >> x%8 ;
+	}
+	else{
+		*pbuff &= ~( 0x80 >> x%8);
 	}
 }
 
+
+/*
+ *------------------------------------------------------------------------------------
+ *
+ * 将显存（即screen_dot数组） 的数据显示到显示屏
+ * 参数：pbuff          显存指针，指向保存了一屏点阵数据的数组
+ *       screen_width   屏宽多少像素
+ *       screen_height  屏高多少像素
+ *
+ *------------------------------------------------------------------------------------
+*/
+void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_width, uint8_t screen_height){	
+	uint8_t scan_rows=4;   // 1/4扫描  
+	uint8_t scan, i, j;
+	uint8_t row, col;   //当前行、列
+	unsigned int screen_width_bytes;
+	
+	screen_width_bytes = screen_width /8;
+	EN(ON);
+	for(row=0;row<scan_rows;row++){
+		for(col=0;col<screen_width_bytes;col++){
+			for(i=0;i<4;i++){
+				scan=0x01;
+				for(j=0;j<8;j++){
+					CLK(OFF);     
+					PORT_12_1_R( *(pdot_buff + (12-4*i+row)*screen_width_bytes + col) & scan );
+					PORT_12_2_R( *(pdot_buff + (12-4*i+row+16)*screen_width_bytes + col) & scan );
+					PORT_12_3_R( *(pdot_buff + (12-4*i+row+32)*screen_width_bytes + col) & scan );
+					PORT_12_4_R( *(pdot_buff + (12-4*i+row+48)*screen_width_bytes + col) & scan );
+					scan <<= 1;
+					CLK(ON);       //594移位信号
+				}
+			}
+			A( i & 0x01 );B( i & 0x02 );C( i & 0x04 );D( i & 0x08 );   //行扫描
+			osDelay(3);
+		}
+	}
+}
 
 /*
 	********************************************************
@@ -243,7 +314,7 @@ void LED_Display_Init(void){
 		area[i].width=64;
 		area[i].height=32;
 		area[i].content_type=TEXT;
-		sprintf(area[i].display_data,"area%d",i);
+		sprintf((char *)area[i].display_data,"area%d",i);
 	}
 	
 }

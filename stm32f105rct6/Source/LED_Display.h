@@ -1,6 +1,6 @@
 #include "cmsis_os.h"
 #include "flash_SPI.h"
-//#include "stdbool.h"
+#include "stdbool.h"
 
 #define MAX_AREA_NUMBER 3            //显示屏划分最大不超过3个显示区
 #define DISPLAY_STRING_LENGTH   100  //LED屏显示的最大字符长度
@@ -16,7 +16,7 @@ typedef struct{
 
 //扫描方式，详见DOC中scan_type.jpg
 typedef enum{
-	SCAN_16 = 0,                   //1/16扫描
+	SCAN_16 = 0,                       //1/16扫描
 	SCAN_8_LINE_1FOR8ROW,          //1/8直线走线，一路数据带8行
 	SCAN_8_UP_TO_DOWN_1FOR16ROW,   //1/8上蛇行，一路数据带16行，8行折列
 	SCAN_8_DOWN_TO_UP_1FOR16ROW,   //1/8下蛇行，一路数据带16行，8行折列
@@ -72,5 +72,6 @@ void Port_12_4_GPIO_Config(void);
 void Port_08_12_GPIO_Config(void);
 void LED_Display_Start(void);
 
-void scan_4_up_to_down_1for16row(char * string_dot);
+void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, bool point);
+void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_width, uint8_t screen_height);
 

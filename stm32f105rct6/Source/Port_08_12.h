@@ -247,14 +247,14 @@
 					GPIO_ResetBits(PORT_12_3_G_GPIO_PORT,PORT_12_3_G_GPIO_PIN)
 
 //12-4接口管脚输出电平定义
-#define PORT_12_3_R(x)	if (x)	\
-					GPIO_SetBits(PORT_12_3_R_GPIO_PORT,PORT_12_3_R_GPIO_PIN);\
+#define PORT_12_4_R(x)	if (x)	\
+					GPIO_SetBits(PORT_12_4_R_GPIO_PORT,PORT_12_4_R_GPIO_PIN);\
 					else		\
-					GPIO_ResetBits(PORT_12_3_R_GPIO_PORT,PORT_12_3_R_GPIO_PIN)
-#define PORT_12_3_G(x)	if (x)	\
-					GPIO_SetBits(PORT_12_3_G_GPIO_PORT,PORT_12_3_G_GPIO_PIN);\
+					GPIO_ResetBits(PORT_12_4_R_GPIO_PORT,PORT_12_4_R_GPIO_PIN)
+#define PORT_12_4_G(x)	if (x)	\
+					GPIO_SetBits(PORT_12_4_G_GPIO_PORT,PORT_12_4_G_GPIO_PIN);\
 					else		\
-					GPIO_ResetBits(PORT_12_3_G_GPIO_PORT,PORT_12_3_G_GPIO_PIN)
+					GPIO_ResetBits(PORT_12_4_G_GPIO_PORT,PORT_12_4_G_GPIO_PIN)
 
 
 					
