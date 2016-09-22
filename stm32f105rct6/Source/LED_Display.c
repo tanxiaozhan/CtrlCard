@@ -29,9 +29,11 @@ osThreadDef(LED_Display, osPriorityAboveNormal, 1, 0);
  *---------------------------------------------------------------------------*/
 static void LED_Display (void const *arg) {
 
-	uint8_t screen_width_bytes;     //屏宽、屏高（按字节为单位）
-	uint8_t screen_dot[screen.height][screen_width_bytes];    //保存当前显示的一屏点阵数据
-	uint8_t * pStr[screen.area_number];
+	//uint8_t screen_dot[screen.height][screen_width_bytes];    //保存当前显示的一屏点阵数据
+	uint8_t screen_dot[32][8];    //保存当前显示的一屏点阵数据
+	//uint8_t * pStr[screen.area_number];
+	uint8_t * pStr[2];
+
 	unsigned int col;
 	uint8_t area_no,scan,row;
 	
@@ -300,7 +302,7 @@ void LED_Display_Init(void){
 	Port_08_12_GPIO_Config();    //初始化控制卡08、12输出接口用到的GPIO引脚
 	
 	//显示屏参数初始化
-	screen.area_number =1;    //分区数为1
+	screen.area_number =2;    //分区数为1
 	screen.width =64;
 	screen.height=32;
 	screen.color=SINGLE;
