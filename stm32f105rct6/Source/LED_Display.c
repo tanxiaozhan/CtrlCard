@@ -227,9 +227,7 @@ osDelay(1);
  *------------------------------------------------------------------------------------
 */
 void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, bool point){
-	uint8_t buff_byte;
 	pbuff += screen_width*y + x/8;
-	buff_byte = *pbuff;
 	if( point ){
 		*pbuff |= 0x80 >> x%8 ;
 	}
@@ -297,7 +295,8 @@ void LED_Display_Start(void){
 	********************************************************
 */
 void LED_Display_Init(void){
-
+	
+	uint8_t i;
 	Port_08_12_GPIO_Config();    //初始化控制卡08、12输出接口用到的GPIO引脚
 	
 	//显示屏参数初始化
@@ -309,7 +308,7 @@ void LED_Display_Init(void){
 	screen.scan_type=SCAN_4_UP_TO_DOWN_1FOR16ROW;
 	
 	//设置各显示区参数
-	for(int i=0;i<screen.area_number;i++){
+	for(i=0;i<screen.area_number;i++){
 		area[i].id=i;
 		area[i].width=64;
 		area[i].height=32;

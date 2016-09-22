@@ -4,5 +4,6 @@ authen.png,
 content.png,
 info.png,
 time.png,
-content.html 
+content.html,
+..\Doc\scan_type.jpg 
 TO Web.c RTE NOPRINT ROOT(Web)

@@ -21,3 +21,4 @@
 .\objects\led_display.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\led_display.o: Source\Port_08_12.h
 .\objects\led_display.o: Source\Ascii.h
+.\objects\led_display.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
