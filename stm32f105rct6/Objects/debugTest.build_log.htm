@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.14.5.0
  
 <h2>Project:</h2>
 E:\CtrlCard\stm32f105rct6\Ctrlcard.uvprojx
-Project File Date:  09/22/2016
+Project File Date:  09/23/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -43,18 +43,19 @@ Custom: C:\Keil_v5\ARM\Bin\FCARM.exe @.\Auto_FcArm_Cmd.inp
 FCARM FILE CONVERTER V2.54
 Completed 8 File(s), Ratio 99%
 compiling Web.c...
+compiling LED_Display.c...
 linking...
-Program Size: Code=49760 RO-data=175216 RW-data=192 ZI-data=26448  
+Program Size: Code=49908 RO-data=175272 RW-data=192 ZI-data=26448  
 ".\Objects\debugTest.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
                 http://www.keil.com/pack/ARM.CMSIS.4.3.0.pack
-                ::CMSIS:RTOS:1.0 (API)
+                ::CMSIS Driver:USART:2.01 (API)
                 CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: RTOS Version: 1.0
    * Component: USART Version: 2.01
+   * Component: RTOS Version: 1.0
    * Component: CORE Version: 4.1.0
    * Component: Keil RTX Version: 4.78.0
 
@@ -73,8 +74,8 @@ Package Vendor: Keil
                 STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
    * Component: GPIO Version: 1.2
    * Component: DMA Version: 1.2
-   * Component: USART Version: 2.0
    * Component: Startup Version: 1.0.0
+   * Component: USART Version: 2.0
 
 <h2>Collection of Component include folders:</h2>
   E:\CtrlCard\stm32f105rct6\RTE
@@ -89,66 +90,66 @@ Package Vendor: Keil
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ::CMSIS:RTOS:1.0 (API)
-
    * Component: ::CMSIS Driver:USART:2.01 (API)
       Include file:  CMSIS\Driver\Include\Driver_USART.h
+
+   * Component: ::CMSIS:RTOS:1.0 (API)
 
    * Component: ARM::CMSIS:CORE:4.1.0
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.78.0
       Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
       Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
 
    * Component: Keil.MDK-Plus::Network:CORE:IPv4 Debug:7.1.0
       Include file:  Network\Include\rl_net.h
-      Source file:   Network\Config\Net_Config.c
       Source file:   Network\Config\Net_Debug.c
+      Source file:   Network\Config\Net_Config.c
       Library file:  Network\Lib\ARM\Net4_Dbg_CM3_L.lib
 
    * Component: Keil.MDK-Plus::Network:Socket:TCP:7.1.0
-      Source file:   Network\Template\TCP_Socket_Client.c
       Source file:   Network\Config\Net_Config_TCP.h
+      Source file:   Network\Template\TCP_Socket_Client.c
       Source file:   Network\Template\TCP_Socket_Server.c
 
    * Component: Keil.MDK-Plus::Network:Interface:SLIP:Null Modem:7.1.0
-      Source file:   Network\Driver\Modem_Null.c
       Source file:   Network\Config\Net_Config_SLIP.h
+      Source file:   Network\Driver\Modem_Null.c
 
    * Component: Keil.MDK-Plus::Network:Service:Web Server Compact:HTTP:7.1.0
-      Source file:   Network\Template\HTTP_Server_CGI.c
+      Source file:   Network\Template\HTTP_Server_Error.c
+      Source file:   Network\Template\HTTP_Server_Multiuser.c
       Source file:   Network\Template\HTTP_Server_Access.c
       Source file:   Network\Config\Net_Config_HTTP_Server.h
-      Source file:   Network\Template\HTTP_Server_Multiuser.c
-      Source file:   Network\Template\HTTP_Server_Error.c
+      Source file:   Network\Template\HTTP_Server_CGI.c
 
    * Component: Keil::Device:GPIO:1.2
       Source file:   RTE_Driver\GPIO_STM32F10x.c
       Include file:  RTE_Driver\GPIO_STM32F10x.h
 
    * Component: Keil::Device:DMA:1.2
-      Include file:  RTE_Driver\DMA_STM32F10x.h
       Source file:   RTE_Driver\DMA_STM32F10x.c
+      Include file:  RTE_Driver\DMA_STM32F10x.h
+
+   * Component: Keil::Device:Startup:1.0.0
+      Include file:  RTE_Driver\Config\RTE_Device.h
+      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
+      Source file:   Device\Source\ARM\startup_stm32f10x_hd.s
+      Source file:   Device\Source\system_stm32f10x.c
 
    * Component: Keil::CMSIS Driver:USART:2.0
       Source file:   RTE_Driver\USART_STM32F10x.c
-
-   * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\system_stm32f10x.c
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
-      Include file:  RTE_Driver\Config\RTE_Device.h
-      Source file:   Device\Source\ARM\startup_stm32f10x_hd.s
 </pre>
 </body>
 </html>
