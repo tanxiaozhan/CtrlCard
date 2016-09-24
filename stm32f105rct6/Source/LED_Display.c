@@ -53,10 +53,10 @@ while(1){
 				if( *pStr[area_no]<= 126){       //英文字符
 					uint8_t char_dot;
 					char_dot = ascii_Dot[ *pStr[area_no] - ' ' ][ (row-area[area_no].y)%16 ] ;
-					scan = 0x80;
+					scan = 0x01;
 					while( col < (area[area_no].x + area[area_no].width) && scan > 0x00 ){
 						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, char_dot & scan );
-						scan >>= 1;
+						scan <<= 1;
 						col ++;
 					}
 					pStr[area_no] ++ ;      //下一个字符
@@ -71,17 +71,17 @@ while(1){
 					get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
 					
 					//处理汉字前8位点阵
-					scan = 0x01;
+					scan = 0x80;
 					while( col < (area[area_no].x + area[area_no].width) && scan > 0x00 ){
 						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[0]&scan );
-						scan <<= 1;
+						scan >>= 1;
 						col ++ ;
 					}
 					//处理汉字后8位点阵
-					scan = 0x01;
+					scan = 0x80;
 					while( col < (area[area_no].x + area[area_no].width) && scan >0x00 ){
 						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[1]&scan );
-						scan <<= 1;
+						scan >>= 1;
 						col ++;
 					}
 						pStr[area_no] += 2;                                      //一个汉字占二个字节
@@ -91,7 +91,7 @@ while(1){
 		}
 	}
 //到此，显存点阵数据写入完成
-	
+
 	
 	//确定扫描类型	
 	switch(screen.scan_type){
@@ -179,7 +179,7 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 			for(i=0;i<4;i++){
 				//printf("row=%d, dot=%2x   \n",12-4*i+row, *(pdot_buff+ (12-4*i+row)*screen_width_bytes + col));
 				
-				scan=0x01;
+				scan=0x80;
 				for(j=0;j<8;j++){
 					CLK(OFF);     
 					PORT_12_1_R( *(pdot_buff + (12-4*i+row)*screen_width_bytes + col) & scan );
@@ -187,7 +187,7 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 					PORT_12_3_R( *(pdot_buff + (12-4*i+row+32)*screen_width_bytes + col) & scan );
 					PORT_12_4_R( *(pdot_buff + (12-4*i+row+48)*screen_width_bytes + col) & scan );
 					CLK(ON);       //594移位信号
-					scan <<= 1;
+					scan >>= 1;
 				}
 			}
 		}
@@ -246,7 +246,7 @@ void LED_Display_Init(void){
 	area[1].y=16;	
 	area[2].x=32;
 	area[2].y=16;
-	area[2].width=29;
+	area[2].width=30;
 	
 	sprintf((char *)area[0].display_data,"1234567890");
 	sprintf((char *)area[1].display_data,"evening");
