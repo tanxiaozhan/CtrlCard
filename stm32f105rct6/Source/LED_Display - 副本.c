@@ -126,6 +126,7 @@ while(1){
 	}
 //osDelay(1);
 }
+		
 
 }
 
@@ -172,10 +173,12 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 	unsigned int screen_width_bytes;
 	
 	screen_width_bytes = screen_width /8;
-	//EN(ON);
+	EN(ON);
 	for(row=0;row<scan_rows;row++){
 		for(col=0;col<screen_width_bytes;col++){
 			for(i=0;i<4;i++){
+				//printf("row=%d, dot=%2x   \n",12-4*i+row, *(pdot_buff+ (12-4*i+row)*screen_width_bytes + col));
+				
 				scan=0x80;
 				for(j=0;j<8;j++){
 					CLK(OFF);     
@@ -190,12 +193,9 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 		}
 		A( row & 0x01 );B( row & 0x02 );   //ÐÐÉ¨Ãè
 		STB(0);
+		EN(ON);  //ÑÓÊ±
 		STB(1);  //Ëø´æ
-		EN(ON);
-		osDelay(2);
-		EN(OFF);
-		osDelay(3);
-
+		osDelay(5);
 	}
 }
 
@@ -242,15 +242,15 @@ void LED_Display_Init(void){
 	area[0].x=0;
 	area[0].y=0;
 	area[1].x=0;
-	area[1].width=32;
+	area[1].width=24;
 	area[1].y=16;	
 	area[2].x=32;
 	area[2].y=16;
 	area[2].width=30;
 	
 	sprintf((char *)area[0].display_data,"Ì·Ç¾Óê");
-	sprintf((char *)area[1].display_data,"ËØ»ª");
-	sprintf((char *)area[2].display_data,"LED");
+	sprintf((char *)area[1].display_data,"ÀîËØ»ª");
+	sprintf((char *)area[2].display_data,"¿É°®");
 	
 	
 }
