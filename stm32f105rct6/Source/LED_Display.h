@@ -3,7 +3,7 @@
 #include "stdbool.h"
 
 #define MAX_AREA_NUMBER 3            //显示屏划分最大不超过3个显示区
-#define MAX_STRING_LENGTH   100  //LED屏显示的最大字符长度
+#define MAX_STRING_LENGTH   30  //LED屏显示的最大字符长度
 
 #define get_GBK_Code(pBuff, ch, rowNo) GetGBKCode_from_EXFlash( pBuff, ch, rowNo )	  //定义获取中文字符字模数组的函数名，pBuff为存放字模数组名Ch为中文字符（国标码）
 

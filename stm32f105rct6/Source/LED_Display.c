@@ -33,11 +33,14 @@ static void LED_Display (void const *arg) {
 	uint8_t * pStr;
 	unsigned int col;
 	uint8_t area_no,scan,row,dot;
-	unsigned int startX,i,v_col;
-	uint8_t speed;                //显示特效中点阵的移动速度
-	startX=0;
-	speed=area[area_no].speed ;
+	unsigned int startX[MAX_AREA_NUMBER],i,v_col;
+	uint8_t speed[MAX_AREA_NUMBER];                //显示特效中点阵的移动速度
 	uint8_t temp;
+
+	for(i=0;i<screen.area_number;i++){
+		speed[i]=area[i].speed ;
+		startX[i] = 0;
+	}
 	
 	while(1){
 
@@ -61,7 +64,8 @@ static void LED_Display (void const *arg) {
 					scan = 0x01;
 					current_row_dot[col]=0;
 					for(i=0;i<8;i++){                  //因为点阵数据逆向保存
-						current_row_dot[col] |= (temp & scan) << (7-i) ;
+						//current_row_dot[col] |= (temp & scan) << (7-i) ;
+						current_row_dot[col]=temp;
 						scan <<= 1 ;
 					}
 					col++ ;
@@ -76,7 +80,6 @@ static void LED_Display (void const *arg) {
 					get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
 					current_row_dot[col++] = GBK_dot[0];
 					current_row_dot[col++] = GBK_dot[1];
-					col += 2 ;
 					pStr += 2 ;
 				}
 			}
@@ -86,20 +89,22 @@ static void LED_Display (void const *arg) {
 			col = area[area_no].x;
 			while( col < (area[area_no].x + area[area_no].width) ){
 				v_col = col - area[area_no].x;    //在虚拟显存中的X坐标
-				if( startX+v_col >= area[area_no].width && startX+v_col < area[area_no].width+area[area_no].length ){
-					dot = startX+v_col-area[area_no].width ;
+				if( startX[area_no]+v_col >= area[area_no].width && startX[area_no]+v_col < area[area_no].width+area[area_no].length*8 ){
+					dot = startX[area_no]+v_col-area[area_no].width ;
 					dot = current_row_dot[dot/8] & ( 0x80 >> (dot%8)) ;
 					fill_point( (uint8_t *)screen_dot, screen.width/8, col, row ,dot ) ;
 				}
+				col++;
 			}
 		}
-	}
-		speed--;
-		if( speed < 1 ){
-			speed = area[area_no].speed;
-			startX++;
-			if( startX >= area[area_no].width*2+area[area_no].length )
-				startX = 0;
+		speed[area_no]--;
+		if( speed[area_no] < 1 ){
+			speed[area_no] = area[area_no].speed;
+			startX[area_no]++;
+			if( startX[area_no] >= area[area_no].width+area[area_no].length*8 )
+				startX[area_no] = 0;
+		}
+		
 	}
 //到此，显存点阵数据写入完成
 
@@ -252,10 +257,9 @@ void LED_Display_Init(void){
 		area[i].id=i;
 		area[i].width=64;
 		area[i].height=16;
-		area[i].speed=200;
+		area[i].speed=i*5+1;
 		area[i].content_type=TEXT;
-		//sprintf((char *)area[i].display_data,"area%d",i);
-		area[0].length=strlen((char *)area[0].display_data);
+		area[i].length=strlen((char *)area[0].display_data);
 	}
 	area[0].x=0;
 	area[0].y=0;
