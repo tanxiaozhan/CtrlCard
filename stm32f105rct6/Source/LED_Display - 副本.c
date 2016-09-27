@@ -36,13 +36,21 @@ static void LED_Display (void const *arg) {
 
 	unsigned int col;
 	uint8_t area_no,scan,row;
+	unsigned int startX,i;
+	uint8_t speed;                //显示效果中点阵的移动速度
 	
-while(1){
-	for(row=0;row<32;row++){
-		for(scan=0;scan<8;scan++){
-			screen_dot[row][scan]=0xFF;
+	while(1){
+		//清空显存，cve即用0xFF给显存数组赋值
+		for(row=0;row<32;row++){      
+			for(scan=0;scan<8;scan++){
+				screen_dot[row][scan]=0xFF;
+			}
 		}
-	}
+	
+		startX=0;
+		speed=10;
+
+
 	
 	//按显示区获取点阵数据，往显存写入点阵数据
 	for( area_no=0;area_no<screen.area_number;area_no++ ){
@@ -126,7 +134,6 @@ while(1){
 	}
 //osDelay(1);
 }
-		
 
 }
 
@@ -173,12 +180,10 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 	unsigned int screen_width_bytes;
 	
 	screen_width_bytes = screen_width /8;
-	EN(ON);
+	//EN(ON);
 	for(row=0;row<scan_rows;row++){
 		for(col=0;col<screen_width_bytes;col++){
 			for(i=0;i<4;i++){
-				//printf("row=%d, dot=%2x   \n",12-4*i+row, *(pdot_buff+ (12-4*i+row)*screen_width_bytes + col));
-				
 				scan=0x80;
 				for(j=0;j<8;j++){
 					CLK(OFF);     
@@ -193,9 +198,12 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 		}
 		A( row & 0x01 );B( row & 0x02 );   //行扫描
 		STB(0);
-		EN(ON);  //延时
 		STB(1);  //锁存
-		osDelay(5);
+		EN(ON);
+		osDelay(2);
+		EN(OFF);
+		osDelay(3);
+
 	}
 }
 
@@ -224,7 +232,7 @@ void LED_Display_Init(void){
 	Port_08_12_GPIO_Config();    //初始化控制卡08、12输出接口用到的GPIO引脚
 	
 	//显示屏参数初始化
-	screen.area_number =3;    //分区数为1
+	screen.area_number =3;    //显示分区数
 	screen.width =64;
 	screen.height=32;
 	screen.color=SINGLE;
@@ -242,15 +250,15 @@ void LED_Display_Init(void){
 	area[0].x=0;
 	area[0].y=0;
 	area[1].x=0;
-	area[1].width=24;
+	area[1].width=32;
 	area[1].y=16;	
 	area[2].x=32;
 	area[2].y=16;
 	area[2].width=30;
 	
 	sprintf((char *)area[0].display_data,"谭蔷雨");
-	sprintf((char *)area[1].display_data,"李素华");
-	sprintf((char *)area[2].display_data,"可爱");
+	sprintf((char *)area[1].display_data,"素华");
+	sprintf((char *)area[2].display_data,"LED");
 	
 	
 }
