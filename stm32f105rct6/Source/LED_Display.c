@@ -35,7 +35,6 @@ static void LED_Display (void const *arg) {
 	uint8_t area_no,scan,row,dot;
 	unsigned int startX[MAX_AREA_NUMBER],i,v_col;
 	uint8_t speed[MAX_AREA_NUMBER];                //显示特效中点阵的移动速度
-	uint8_t temp;
 
 	for(i=0;i<screen.area_number;i++){
 		speed[i]=area[i].speed ;
@@ -52,7 +51,7 @@ static void LED_Display (void const *arg) {
 		}
 	
 	
-	//按显示区获取点阵数据，往显存写入点阵数据
+	//按显示区获取一行点阵数据，保存到数组current_row_dot
 	for( area_no=0;area_no<screen.area_number;area_no++ ){
 		for( row=area[area_no].y; row<(area[area_no].y+area[area_no].height);row++){
 			pStr = area[area_no].display_data;
@@ -60,17 +59,8 @@ static void LED_Display (void const *arg) {
 			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
 			while( col<area[area_no].length ){
 				if( *pStr <= 126 ){      //英文字符
-					temp = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y % 16] ;
-					scan = 0x01;
-					current_row_dot[col]=0;
-					for(i=0;i<8;i++){                  //因为点阵数据逆向保存
-						//current_row_dot[col] |= (temp & scan) << (7-i) ;
-						current_row_dot[col]=temp;
-						scan <<= 1 ;
-					}
-					col++ ;
+					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y % 16] ;
 					pStr++ ;
-					
 				}
 				else{    //汉字字符
 					uint16_t char_GBK_Code;                            //汉字的国标码
