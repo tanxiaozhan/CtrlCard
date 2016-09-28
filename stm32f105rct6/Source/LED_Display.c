@@ -59,7 +59,7 @@ static void LED_Display (void const *arg) {
 			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
 			while( col<area[area_no].length ){
 				if( *pStr <= 126 ){      //英文字符
-					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y % 16] ;
+					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' -1 ][row - area[area_no].y % 16] ;
 					pStr++ ;
 				}
 				else{    //汉字字符
@@ -241,7 +241,7 @@ void LED_Display_Init(void){
 
 	sprintf((char *)area[0].display_data,"谭蔷雨");
 	sprintf((char *)area[1].display_data,"素华");
-	sprintf((char *)area[2].display_data,"LED");
+	sprintf((char *)area[2].display_data,"! $123456ABcd");
 	//设置各显示区参数
 	for(i=0;i<screen.area_number;i++){
 		area[i].id=i;
@@ -249,7 +249,7 @@ void LED_Display_Init(void){
 		area[i].height=16;
 		area[i].speed=i*5+1;
 		area[i].content_type=TEXT;
-		area[i].length=strlen((char *)area[0].display_data);
+		area[i].length=strlen((char *)area[i].display_data);
 	}
 	area[0].x=0;
 	area[0].y=0;
@@ -259,5 +259,6 @@ void LED_Display_Init(void){
 	area[2].x=32;
 	area[2].y=16;
 	area[2].width=30;
-	
+	area[0].speed=3;
+	area[2].speed=6;
 }
