@@ -55,6 +55,7 @@ static void LED_Display (void const *arg) {
 	for( area_no=0;area_no<screen.area_number;area_no++ ){
 		for( row=area[area_no].y; row<(area[area_no].y+area[area_no].height);row++){
 			pStr = area[area_no].display_data;
+			
 			col=0;
 			
 			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
