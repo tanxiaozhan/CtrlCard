@@ -56,6 +56,7 @@ static void LED_Display (void const *arg) {
 		for( row=area[area_no].y; row<(area[area_no].y+area[area_no].height);row++){
 			pStr = area[area_no].display_data;
 			col=0;
+			
 			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
 			while( col<area[area_no].length ){
 				if( *pStr <= 126 ){      //英文字符
