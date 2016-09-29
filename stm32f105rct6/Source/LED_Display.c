@@ -59,7 +59,7 @@ static void LED_Display (void const *arg) {
 			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
 			while( col<area[area_no].length ){
 				if( *pStr <= 126 ){      //英文字符
-					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' -1 ][row - area[area_no].y % 16] ;
+					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' -1 ][row - area[area_no].y % 16] ;    //获取点阵
 					pStr++ ;
 				}
 				else{    //汉字字符
