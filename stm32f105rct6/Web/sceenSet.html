@@ -3,43 +3,60 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
+<style type="text/css">
+#form1 table tr td table tr td {
+	color: #FFF;
+}
+</style>
 </head>
 
 <body>
-<table width="100%" border="0" align="center">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="10%" align="center" valign="middle" bgcolor="#0099FF">返回</td>
+    <td width="10%" height="30" align="center" valign="middle" bgcolor="#0099FF">返回</td>
     <td align="center" valign="middle" bgcolor="#0080C0">屏幕参数设置</td>
     <td width="10%" align="center" valign="middle" bgcolor="#0099FF">主页</td>
   </tr>
   <tr>
     <td height="339" colspan="3" align="center" valign="top">
     <form id="form1" name="form1" method="post" action="">
-	<table width="100%" border="0">
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
       <tr>
-        <td width="28%" height="50" align="right">屏　宽：　</td>
-        <td width="24%">
-          <input type="text" name="sceen_width" id="sceen_width" /></td>
-        <td width="48%">&nbsp;</td>
+        <td width="100" height="50" align="right" valign="middle">&nbsp;</td>
+        <td width="280" valign="middle">&nbsp;</td>
+        <td>&nbsp;</td>
       </tr>
       <tr>
-        <td height="50" align="right">屏　高：　</td>
+        <td height="50" align="right" valign="middle">屏　宽：</td>
+        <td width="37%" valign="middle">
+          <input name="sceen_width" type="text" id="sceen_width" size="40" /></td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="50" align="right" valign="middle">屏　高：</td>
         <td>
-          <input type="text" name="screen_height" id="screen_height" /></td>
+          <input name="screen_height" type="text" id="screen_height" size="40" /></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td height="50" align="right">亮　度：　</td>
-        <td><input type="text" name="screen_light" id="screen_light" /></td>
-        <td>1-100之间的整数</td>
+        <td height="50" align="right" valign="middle">亮　度：</td>
+        <td><input name="screen_light" type="text" id="screen_light" size="40" /></td>
+        <td>1-100，整数</td>
       </tr>
       <tr>
-        <td height="21">&nbsp;</td>
-        <td>&nbsp;</td>
+        <td height="85" colspan="2"><table width="90%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="27%" height="30" align="center">&nbsp;</td>
+            <td width="17%" height="30" align="center" bgcolor="#0099FF">刷新</td>
+            <td width="16%" height="30" align="center">&nbsp;</td>
+            <td width="17%" height="30" align="center" bgcolor="#0099FF">提交</td>
+            <td width="23%" height="30" align="center">&nbsp;</td>
+          </tr>
+        </table></td>
         <td>&nbsp;</td>
       </tr>
       <tr>
-        <td height="50" colspan="3">&nbsp;</td>
+        <td height="50" colspan="3" align="center">&nbsp;</td>
         </tr>
     </table>
     </form>
