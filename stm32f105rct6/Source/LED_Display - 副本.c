@@ -20,7 +20,7 @@ area_para area[MAX_AREA_NUMBER];           //显示区参数
 uint8_t max_len=0;    // 各显示中显示字符最长的长度
 uint8_t screen_dot[32][8];    //保存当前显示的一屏点阵数据
 
-uint8_t current_row_dot[MAX_STRING_LENGTH];   //该数组保存了当前显示行的点阵数据
+//uint8_t * screen_dot;   //指向一个二维数组，该数组保存了当前显示的一屏点阵数据
 
 static void LED_Display(void const *arg);
 osThreadDef(LED_Display, osPriorityAboveNormal, 1, 0);
@@ -30,19 +30,16 @@ osThreadDef(LED_Display, osPriorityAboveNormal, 1, 0);
  *---------------------------------------------------------------------------*/
 static void LED_Display (void const *arg) {
 
-	uint8_t * pStr;
-	unsigned int col;
-	uint8_t area_no,scan,row,dot;
-	unsigned int startX[MAX_AREA_NUMBER],i,v_col;
-	uint8_t speed[MAX_AREA_NUMBER];                //显示特效中点阵的移动速度
+	//uint8_t screen_dot[screen.height][screen_width_bytes];    //保存当前显示的一屏点阵数据
+	//uint8_t * pStr[screen.area_number];
+	uint8_t * pStr[3];
 
-	for(i=0;i<screen.area_number;i++){
-		speed[i]=area[i].speed ;
-		startX[i] = 0;
-	}
+	unsigned int col;
+	uint8_t area_no,scan,row;
+	unsigned int startX,i;
+	uint8_t speed;                //显示效果中点阵的移动速度
 	
 	while(1){
-
 		//清空显存，cve即用0xFF给显存数组赋值
 		for(row=0;row<32;row++){      
 			for(scan=0;scan<8;scan++){
@@ -50,53 +47,56 @@ static void LED_Display (void const *arg) {
 			}
 		}
 	
+		startX=0;
+		speed=10;
+
+
 	
-	//按显示区获取一行点阵数据，保存到数组current_row_dot
+	//按显示区获取点阵数据，往显存写入点阵数据
 	for( area_no=0;area_no<screen.area_number;area_no++ ){
 		for( row=area[area_no].y; row<(area[area_no].y+area[area_no].height);row++){
-			pStr = area[area_no].display_data;
-			
-			col=0;
-			
-			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
-			while( col<area[area_no].length ){
-				if( *pStr <= 126 ){      //英文字符
-					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' -1 ][row - area[area_no].y % 16] ;    //获取点阵
-					pStr++ ;
-				}
-				else{    //汉字字符
+			pStr[area_no] = area[area_no].display_data;
+			col = area[area_no].x;
+			while( (col < (area[area_no].x + area[area_no].width)) && ( *pStr[area_no] != 0 ) ){
+				if( *pStr[area_no]<= 126){       //英文字符
+					uint8_t char_dot;
+					char_dot = ascii_Dot[ *pStr[area_no] - ' ' ][ (row-area[area_no].y)%16 ] ;
+					scan = 0x01;
+					while( col < (area[area_no].x + area[area_no].width) && scan > 0x00 ){
+						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, char_dot & scan );
+						scan <<= 1;
+						col ++;
+					}
+					pStr[area_no] ++ ;      //下一个字符
+
+				}   //英文处理完毕
+				
+				else{         //汉字字符
 					uint16_t char_GBK_Code;                            //汉字的国标码
 					uint8_t GBK_dot[2];                                  //汉字的点阵数据
-					char_GBK_Code = * (uint16_t *)pStr;             //取一个汉字的国标码，二字节
+					char_GBK_Code = * (uint16_t *)pStr[area_no];             //取一个汉字的国标码，二字节
 					char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
 					get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
-					current_row_dot[col++] = GBK_dot[0];
-					current_row_dot[col++] = GBK_dot[1];
-					pStr += 2 ;
-				}
-			}
-			
-			
-			//刷新显存，即用点阵数据给显存数组赋值
-			col = area[area_no].x;
-			while( col < (area[area_no].x + area[area_no].width) ){
-				v_col = col - area[area_no].x;    //在虚拟显存中的X坐标
-				if( startX[area_no]+v_col >= area[area_no].width && startX[area_no]+v_col < area[area_no].width+area[area_no].length*8 ){
-					dot = startX[area_no]+v_col-area[area_no].width ;
-					dot = current_row_dot[dot/8] & ( 0x80 >> (dot%8)) ;
-					fill_point( (uint8_t *)screen_dot, screen.width/8, col, row ,dot ) ;
-				}
-				col++;
+					
+					//处理汉字前8位点阵
+					scan = 0x80;
+					while( col < (area[area_no].x + area[area_no].width) && scan > 0x00 ){
+						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[0]&scan );
+						scan >>= 1;
+						col ++ ;
+					}
+					//处理汉字后8位点阵
+					scan = 0x80;
+					while( col < (area[area_no].x + area[area_no].width) && scan >0x00 ){
+						fill_point((uint8_t *)screen_dot, screen.width/8, col, row, GBK_dot[1]&scan );
+						scan >>= 1;
+						col ++;
+					}
+						pStr[area_no] += 2;                                      //一个汉字占二个字节
+					
+				} //汉字处理完毕
 			}
 		}
-		speed[area_no]--;
-		if( speed[area_no] < 1 ){
-			speed[area_no] = area[area_no].speed;
-			startX[area_no]++;
-			if( startX[area_no] >= area[area_no].width+area[area_no].length*8 )
-				startX[area_no] = 0;
-		}
-		
 	}
 //到此，显存点阵数据写入完成
 
@@ -239,19 +239,13 @@ void LED_Display_Init(void){
 	screen.light=100;
 	screen.scan_type=SCAN_4_UP_TO_DOWN_1FOR16ROW;
 	
-
-
-	sprintf((char *)area[0].display_data,"谭蔷雨");
-	sprintf((char *)area[1].display_data,"素华");
-	sprintf((char *)area[2].display_data,"! $123456ABcd");
 	//设置各显示区参数
 	for(i=0;i<screen.area_number;i++){
 		area[i].id=i;
 		area[i].width=64;
 		area[i].height=16;
-		area[i].speed=i*5+1;
 		area[i].content_type=TEXT;
-		area[i].length=strlen((char *)area[i].display_data);
+		sprintf((char *)area[i].display_data,"area%d",i);
 	}
 	area[0].x=0;
 	area[0].y=0;
@@ -261,6 +255,10 @@ void LED_Display_Init(void){
 	area[2].x=32;
 	area[2].y=16;
 	area[2].width=30;
-	area[0].speed=3;
-	area[2].speed=6;
+	
+	sprintf((char *)area[0].display_data,"谭蔷雨");
+	sprintf((char *)area[1].display_data,"素华");
+	sprintf((char *)area[2].display_data,"LED");
+	
+	
 }

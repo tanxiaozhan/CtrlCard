@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1475050046 source:e:\ctrlcard\codeblicks\fontdot\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ascii.h"
+
+1475046168 e:\ctrlcard\codeblicks\fontdot\ascii.h
+

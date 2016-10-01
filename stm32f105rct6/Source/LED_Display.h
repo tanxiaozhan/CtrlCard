@@ -3,15 +3,9 @@
 #include "stdbool.h"
 
 #define MAX_AREA_NUMBER 3            //显示屏划分最大不超过3个显示区
-#define DISPLAY_STRING_LENGTH   100  //LED屏显示的最大字符长度
+#define MAX_STRING_LENGTH   30  //LED屏显示的最大字符长度
 
 #define get_GBK_Code(pBuff, ch, rowNo) GetGBKCode_from_EXFlash( pBuff, ch, rowNo )	  //定义获取中文字符字模数组的函数名，pBuff为存放字模数组名Ch为中文字符（国标码）
-
-typedef struct{
-	uint8_t LED_area_numbers;              //LED显示屏分区数，整块显示屏最多可分为3个显示区域
-	char str_data[MAX_AREA_NUMBER][DISPLAY_STRING_LENGTH];   //指向各显示区显示字符串的指针数组，数组下标为显示区号
-	uint8_t color[MAX_AREA_NUMBER];        //显示的颜色
-}LED_data;
 
 
 //扫描方式，详见DOC中scan_type.jpg
@@ -57,8 +51,12 @@ typedef struct{
 	uint8_t y;          //分区起点的Y坐标
 	uint8_t width;      //分区宽度
 	uint8_t height;
+	uint8_t ani_in;         //显示进入的特效
+	uint8_t ani_out;        //显示退出的特效
+	uint8_t speed;      //显示效果中点阵的移动速度
 	area_content_type content_type;    //分区显示内容的类型，文本或时钟
-	uint8_t display_data[DISPLAY_STRING_LENGTH];    //分区显示的内容数据
+	uint8_t display_data[MAX_STRING_LENGTH];    //分区显示的内容数据
+	uint8_t length;       //显示的内容的长度
 }area_para;
 
 
