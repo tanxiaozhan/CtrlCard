@@ -20,8 +20,8 @@ a:active {
 	color: #FFF;
 }
 
-.textboxStyle {
-	 height:40px;
+.tbs {
+	 height:50px;
 	 font-size:35px;
 }
 
@@ -36,7 +36,7 @@ a:active {
 </style>
 </head>
 
-<body style="font-size:50px">
+<body style="font-size:40px">
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr class="topBK">
     <td width="15%" height="30" align="center" valign="middle">
@@ -44,82 +44,56 @@ a:active {
     <td width="69%" align="center" valign="middle">&nbsp;</td>
     <td width="16%" align="center" valign="middle"><a href="index.htm">主页</a></td>
   </tr>
-  <tr>
-    <td height="339" colspan="3" align="center" valign="top">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td align="center" valign="top">
-    
+  </table>
 
 
-    
-    
-    <form id="form1" name="form1" method="get" action="">
-	<table width="800" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td height="84" colspan="3" align="center" valign="middle"><h3>分　区　设　置</h3></td>
-        </tr>
-      <tr>
-        <td width="269" height="85" align="right" valign="middle">分区号：</td>
-        <td width="270" valign="middle">
-		<input class="textboxStyle" name="areaNo" type="text" id="sceen_width" size="15" /></td>
-        <td width="261">*1-3</td>
-      </tr>
-      <tr>
-        <td height="85" align="right" valign="middle">X坐标：</td>
-        <td>
-          <input class="textboxStyle" name="areaX" type="text" id="screen_height" size="15" /></td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="85" align="right" valign="middle">Y坐标：</td>
-        <td><input class="textboxStyle" name="areaY" type="text" id="screen_light2" size="15" /></td>
-        <td align="left" valign="middle">&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="85" align="right" valign="middle">宽度：</td>
-        <td><input class="textboxStyle" name="areaWidth" type="text" id="screen_light3" size="15" /></td>
-        <td align="left" valign="middle">&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="85" align="right" valign="middle">高度：</td>
-        <td><input class="textboxStyle" name="areaHeight" type="text" id="screen_light" size="15" /></td>
-        <td align="left" valign="middle">&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="100" colspan="2" align="center"><table width="90%" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td width="22%" height="30" align="center">&nbsp;</td>
-            <td width="28%" height="30" align="center"><a href="javascript:location.reload();" class="buttonBK">刷新</a></td>
-            <td width="10%" height="30" align="center">&nbsp;</td>
-            <td width="27%" height="30" align="center"><a href="javascript:form1.submit();" class="buttonBK">提交</a></td>
-            <td width="13%" height="30" align="center">&nbsp;</td>
-          </tr>
-        </table>
-        </td>
-        <td>&nbsp;</td>
-      </tr>
-      <tr>
-        <td height="50" colspan="3" align="center">&nbsp;</td>
-        </tr>
-    </table>
-    </form>
-    
-        
-    </td>
-  </tr>
-</table>
 
-    
-    
-    
-    </td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr><td align="center" valign="top">
+   <form id="form1" name="form1" method="get" action="content.html">
+   <table width="800" border="0" cellpadding="0" cellspacing="0">
+    <tr><td height="84" colspan="3" align="center" valign="middle"><h3>分　区　设　置</h3></td></tr>
+    <tr><td width="269" height="85" align="right" valign="middle"><img src=pabb.gif>分区号：</td>
+     <td width="270" valign="middle"><input class="tbs" name="areaNo" type="text" id="areaNo" size="15" /></td>
+     <td width="261">1-3</td></tr>
+    <tr><td height="85" align="right" valign="middle"><img src=pabb.gif>X 坐标：</td>
+     <td><input class="tbs" name="X" type="text" id="X" size="15" /></td>
+     <td>&nbsp;</td></tr>
+    <tr><td height="85" align="right" valign="middle"><img src=pabb.gif>Y 坐标：</td>
+     <td><input class="tbs" name="Y" type="text" id="Y" size="15" /></td>
+     <td align="left" valign="middle">&nbsp;</td></tr>
+    <tr><td height="85" align="right" valign="middle"><img src=pabb.gif>宽　度：</td>
+     <td><input class="tbs" name="Width" type="text" id="Width" size="15" /></td>
+     <td align="left" valign="middle">&nbsp;</td></tr>
+    <tr><td height="85" align="right" valign="middle"><img src=pabb.gif>高　度：</td>
+     <td><input class="tbs" name="Height" type="text" id="Height" size="15" /></td>
+     <td align="left" valign="middle">&nbsp;</td></tr>
+    <tr><td height="100" colspan="2" align="center">
+      <table width="90%" border="0" cellspacing="0" cellpadding="0">
+        <tr><td width="25%" height="30" align="center">&nbsp;</td>
+         <td width="30%" height="30" align="center">
+    <input type="button" name="button" id="button" value=" 刷 新 " class="tbs" onclick="window.location='areaSet.html'" />
+         </td><td width="5%" height="30" align="center">&nbsp;</td>
+         <td width="27%" height="30" align="center">
+          <input type="button" name="button2" id="button2" value=" 提 交 " class="tbs" onclick="check();" /></td>
+         <td width="13%" height="30" align="center">&nbsp;</td></tr></table></td><td>&nbsp;</td></tr>
+      <tr><td height="50" colspan="3" align="center">&nbsp;</td></tr>
+    </table></form></td></tr></table>
 </body>
 </html>
+<SCRIPT  LANGUAGE="JavaScript">
+function check(){
+	var num;
+	var areaFlag = new Array(); 
+	areaFlag[0]=1;
+	areaFlag[1]=1;
+	areaFlag[2]=1;
+	if(document.getElementById("X").value=="" || document.getElementById("Y").value =="" ||document.getElementById("Width").value=="" || document.getElementById("Height").value==""){alert("输入不完整!");return;}
+	num=parseInt(document.getElementById("areaNo").value); 
+	if((num) >3 || (num) < 1){alert("分区号只能是1-3之间的整数！");document.getElementById("areaNo").focus();return;}
+	if( areaFlag[num-1]==1 ){alert("显示分区" + num + "已存在，不能重复创建！");return;}
+    document.getElementById("form1").submit();
+	
+	}
+</Script>

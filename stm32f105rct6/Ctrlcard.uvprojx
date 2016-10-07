@@ -457,6 +457,11 @@
               <FileType>1</FileType>
               <FilePath>.\Source\Flash_SPI.c</FilePath>
             </File>
+            <File>
+              <FileName>rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Source\rtc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -483,11 +488,6 @@
               <FilePath>.\Lib\src\stm32f10x_usart.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Lib\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f10x_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Lib\src\stm32f10x_spi.c</FilePath>
@@ -508,29 +508,104 @@
               <FilePath>.\Web\llblue.jpg</FilePath>
             </File>
             <File>
-              <FileName>authen.png</FileName>
+              <FileName>content.cgi</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\authen.png</FilePath>
+              <FilePath>.\Web\content.cgi</FilePath>
             </File>
             <File>
-              <FileName>content.png</FileName>
+              <FileName>screenSet.cgi</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\content.png</FilePath>
+              <FilePath>.\Web\screenSet.cgi</FilePath>
             </File>
             <File>
-              <FileName>info.png</FileName>
+              <FileName>areaEdit.cgi</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\info.png</FilePath>
+              <FilePath>.\Web\areaEdit.cgi</FilePath>
             </File>
             <File>
-              <FileName>time.png</FileName>
+              <FileName>areaSet.cgi</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\time.png</FilePath>
+              <FilePath>.\Web\areaSet.cgi</FilePath>
             </File>
             <File>
-              <FileName>content.html</FileName>
+              <FileName>header.inc</FileName>
               <FileType>9</FileType>
-              <FilePath>.\Web\content.html</FilePath>
+              <FilePath>.\Web\header.inc</FilePath>
+            </File>
+            <File>
+              <FileName>auth.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\auth.gif</FilePath>
+            </File>
+            <File>
+              <FileName>content.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\content.gif</FilePath>
+            </File>
+            <File>
+              <FileName>info.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\info.gif</FilePath>
+            </File>
+            <File>
+              <FileName>pabb.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\pabb.gif</FilePath>
+            </File>
+            <File>
+              <FileName>power.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\power.gif</FilePath>
+            </File>
+            <File>
+              <FileName>scan.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\scan.gif</FilePath>
+            </File>
+            <File>
+              <FileName>screenNo.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\screenNo.gif</FilePath>
+            </File>
+            <File>
+              <FileName>screenSet.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\screenSet.gif</FilePath>
+            </File>
+            <File>
+              <FileName>setTime.gif</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\setTime.gif</FilePath>
+            </File>
+            <File>
+              <FileName>password.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\password.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>edit.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\edit.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>chkScreen.jpg</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\chkScreen.jpg</FilePath>
+            </File>
+            <File>
+              <FileName>auth.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\auth.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>setTime.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\setTime.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>power.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\power.cgi</FilePath>
             </File>
           </Files>
         </Group>
@@ -546,6 +621,11 @@
               <FileName>readme.txt</FileName>
               <FileType>5</FileType>
               <FilePath>.\Doc\readme.txt</FilePath>
+            </File>
+            <File>
+              <FileName>http_cgi_par.txt</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Doc\http_cgi_par.txt</FilePath>
             </File>
           </Files>
         </Group>
@@ -666,6 +746,18 @@
           <targetInfo name="ControlCard"/>
         </targetInfos>
       </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework" Cvendor="Keil" Cversion="3.5.1" condition="STM32F1xx STDPERIPH">
+        <package name="STM32F1xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
+        <targetInfos>
+          <targetInfo name="ControlCard"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RTC" Cvendor="Keil" Cversion="3.5.0" condition="STM32F1xx STDPERIPH">
+        <package name="STM32F1xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
+        <targetInfos>
+          <targetInfo name="ControlCard"/>
+        </targetInfos>
+      </component>
     </components>
     <files>
       <file attr="config" category="source" name="CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c" version="4.70.1">
@@ -693,10 +785,12 @@
         </targetInfos>
       </file>
       <file attr="config" category="source" name="Device\StdPeriph_Driver\templates\stm32f10x_conf.h" version="3.5.0">
-        <instance index="0" removed="1">RTE\Device\STM32F103VE\stm32f10x_conf.h</instance>
+        <instance index="0">RTE\Device\STM32F103VE\stm32f10x_conf.h</instance>
         <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework" Cvendor="Keil" Cversion="3.5.1" condition="STM32F1xx STDPERIPH"/>
         <package name="STM32F1xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="2.0.0"/>
-        <targetInfos/>
+        <targetInfos>
+          <targetInfo name="ControlCard"/>
+        </targetInfos>
       </file>
       <file attr="config" category="source" name="Device\Source\system_stm32f10x.c">
         <instance index="0">RTE\Device\STM32F103VE\system_stm32f10x.c</instance>

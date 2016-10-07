@@ -14,7 +14,7 @@
 #include "rl_net_lib.h"
 #include "Board_LED.h"
 #include "LED_Display.h"
-#include "rtc.h"
+
 
 // net_sys.c
 extern  NET_LOCALM net_localm[];
@@ -34,7 +34,6 @@ extern struct net_http_cfg  net_http_config;
 extern screen_para screen;        //显示屏参数
 extern area_para area[MAX_AREA_NUMBER];           //显示区参数
 
-extern bool power_on;
 
 char IP_Addr[20];
 extern bool LEDrun;
@@ -72,10 +71,7 @@ void del_area(uint8_t area_no){
 // Process query string received by GET request.
 void netCGI_ProcessQuery (const char *qstr) {
   char var[40];
-	/*时间结构体*/
-	struct rtc_time real_time;
-	
-	//printf("cgi_process. qstr:%s\n",qstr);
+	printf("cgi_process. qstr:%s\n",qstr);
   do {
     // Loop through all the parameters
     qstr = netCGI_GetEnvVar (qstr, var, sizeof (var));
@@ -92,7 +88,7 @@ void netCGI_ProcessQuery (const char *qstr) {
       }
 			else if (strncmp (var, "areaNo=", 7) == 0) {
         //设置/修改当前显示分区
-				current_area=(char)(var[7]-49);
+				current_area=(char)(var[7]-48);
       }
 			else if (strncmp (var, "X=", 2) == 0) {
         //显示区起始X坐标
@@ -108,7 +104,7 @@ void netCGI_ProcessQuery (const char *qstr) {
       }
       else if (strncmp (var, "Height=", 7) == 0) {
         //显示区高度
-				area[current_area].height=atoi(&var[7]);
+				area[current_area].x=atoi(&var[7]);
       }
       else if (strncmp (var, "ScreenWidth=", 12) == 0) {
         // 显示区起始X坐标
@@ -135,26 +131,20 @@ void netCGI_ProcessQuery (const char *qstr) {
 				del_area(1);
 			}
 			else if (strncmp (var, "delArea2=on", 11) == 0) {
-				//删除显示分区2
+				//删除显示分区1
 				del_area(2);
 			}
-			else if (strncmp (var, "strDate=", 8) == 0) {
-				//系统校时，网页返回日期时间格式：yyyy:mm:dd:hh:mm:ss
-				real_time.tm_year=atoi(strtok( var+8, "-" ));
-				real_time.tm_mon=atoi(strtok( NULL,"-" ));
-				real_time.tm_mday =atoi(strtok( NULL,"-" ));
-				real_time.tm_hour=atoi(strtok( NULL,"-" ));
-				real_time.tm_min=atoi(strtok( NULL,"-" ));
-				real_time.tm_sec=atoi(strtok( NULL,"-" ));
-				Time_Adjust(&real_time);    //校时
+			else if (strncmp (var, "auth=true", 9) == 0) {
+				//删除显示分区1
+				netHTTPs_LoginOnOff (true);
 			}
-			else if (strncmp (var, "power=OFF", 9) == 0) {
-				//关机
-				LED_display_power_off();				
+			else if (strncmp (var, "auth=false", 10) == 0) {
+				//删除显示分区1
+				netHTTPs_LoginOnOff (false);
 			}
-			else if (strncmp (var, "power=ON", 8) == 0) {
-				//开机
-				LED_display_start();
+			else if (strncmp (var, "pw0=", 3) == 0) {
+				//删除显示分区1
+				netHTTPs_SetPassword (&var[3]);
 			}
 			
     }
@@ -170,14 +160,17 @@ void netCGI_ProcessQuery (const char *qstr) {
 //            - 5 = the same as 4, but with more XML data to follow.
 void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
   char var[40],passw[12];
-	//printf("Process data received by Post request.\n Type code:%d\n Post data:%s\n Post len:%d\n",code,data,len);
+	printf("Process data received by Post request.\n Type code:%d\n Post data:%s\n Post len:%d\n",code,data,len);
   if (code != 0) {
     // Ignore all other codes
     return;
   }
 
+  P2 = 0;
+  LEDrun = true;
   if (len == 0) {
     // No data or all items (radio, checkbox) are off
+    LED_SetOut (P2);
     return;
   }
   passw[0] = 1;
@@ -186,34 +179,59 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
     data = netCGI_GetEnvVar (data, var, sizeof (var));
     if (var[0] != 0) {
       // First character is non-null, string exists
-      if (strncmp (var, "txt=",4) == 0) {
-        //更新显示数据
-				strcpy((char *)area[current_area].display_data,var+4);
+      if (strcmp (var, "led0=on") == 0) {
+        P2 |= 0x01;
       }
-			else if (strncmp (var, "auth=true", 9) == 0) {
-				//打开身份认证
-				//http_EnAuth=true;
-				netHTTPs_LoginOnOff (true);
-			}
-			else if (strncmp (var, "auth=false", 10) == 0) {
-				//关闭身份认证
-				netHTTPs_LoginOnOff (false);
-			}
+      else if (strcmp (var, "led1=on") == 0) {
+        P2 |= 0x02;
+      }
+      else if (strcmp (var, "led2=on") == 0) {
+        P2 |= 0x04;
+      }
+      else if (strcmp (var, "led3=on") == 0) {
+        P2 |= 0x08;
+      }
+      else if (strcmp (var, "led4=on") == 0) {
+        P2 |= 0x10;
+      }
+      else if (strcmp (var, "led5=on") == 0) {
+        P2 |= 0x20;
+      }
+      else if (strcmp (var, "led6=on") == 0) {
+        P2 |= 0x40;
+      }
+      else if (strcmp (var, "led7=on") == 0) {
+        P2 |= 0x80;
+      }
+      else if (strcmp (var, "ctrl=Browser") == 0) {
+        LEDrun = false;
+      }
       else if ((strncmp (var, "pw0=", 4) == 0) ||
                (strncmp (var, "pw2=", 4) == 0)) {
-        // 修改密码
+        // Change password, retyped password
         if (http_EnAuth) {
           if (passw[0] == 1) {
             strcpy (passw, var+4);
           }
           else if (strcmp (passw, var+4) == 0) {
-            // 二次输入的密码相同
+            // Both strings are equal, change the password
             strcpy (http_auth_passw, passw);
           }
         }
       }
+      else if (strncmp (var, "lcd1=", 5) == 0) {
+        // LCD Module line 1 text
+        //strcpy (lcd_text[0], var+5);
+        //LCDupdate = true;
+      }
+      else if (strncmp (var, "lcd2=", 5) == 0) {
+        // LCD Module line 2 text
+        //strcpy (lcd_text[1], var+5);
+        //LCDupdate = true;
+      }
     }
   } while (data);
+  LED_SetOut (P2);
 }
 
 // Generate dynamic web data from a script line.
@@ -249,14 +267,6 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
           // 高
           len = sprintf (buf, &env[4], area[current_area].height);
           break;
-				case 'a':
-					//给数组赋值，显示分区已存在=1，不存在=0
-					for(id=0;id<MAX_AREA_NUMBER;id++)
-						if(area[id].width>0)
-							len += sprintf(buf+len,"areaFlag[%d]=1;",id);
-						else
-							len += sprintf(buf+len,"areaFlag[%d]=0;",id);
-					break;
       }
       break;
 
@@ -292,8 +302,8 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 				len += sprintf(buf+len,"<td align=center>%d</td>",area[id].height);
 				len += sprintf(buf+len,"<td align=center>%d</td>",area[id].content_type);
 				len += sprintf(buf+len,"<td align=center>");
-				len += sprintf(buf+len,"<button class=tbs type=button onclick=\"window.location='edit.cgi?areaNo=%d'\">内容编辑</button>",id+1);
-				len += sprintf(buf+len,"<p><button class=tbs type=button onclick=\"window.location='areaEdit.cgi?areaNo=%d'\">分区编辑</button></p></td></tr>",id+1);
+				len += sprintf(buf+len,"<button class=tbs type=button onclick=\"window.location='edit.cgi?areaNo=%d'\">内容编辑</button>",id);
+				len += sprintf(buf+len,"<p><button class=tbs type=button onclick=\"window.location='areaEdit.cgi?areaNo=%d'\">分区编辑</button></p></td></tr>",id);
 				break;
 /*		
       while ((len + 150) < buflen) {
@@ -332,7 +342,7 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 
 
     case 'd':
-      //登录设置、修改密码 'auth.cgi, password.cgi'
+      // System password from 'system.cgi'
       switch (env[2]) {
         case '1':
           len = sprintf (buf, &env[4], http_EnAuth ? "Enabled" : "Disabled");
@@ -372,24 +382,14 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 			}
 			break;
 
-    case 'p':
-      //开机关机 'power.cgi'
+    case 'f':
+      // LCD Module control from 'lcd.cgi'
       switch (env[2]) {
         case '1':
-					if ( power_on ){
-						len = sprintf (buf, &env[4], "OFF"); 
-					}
-					else{
-						len = sprintf (buf, &env[4], "ON"); 
-					}
+          len = sprintf (buf, &env[4], 1); //lcd_text[0]);
           break;
         case '2':
-					if ( power_on ){
-						len = sprintf (buf, &env[4], "　关　机　"); //设置开关机页面提交按钮文字为关机
-					}
-					else{
-						len = sprintf (buf, &env[4], "　开　机　"); //lcd_text[0]);
-					}
+          len = sprintf (buf, &env[4], 1);//lcd_text[1]);
           break;
       }
       break;
@@ -422,7 +422,7 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
 //                     env[1], (get_button () & (1 << (env[1]-'0'))) ? "true" : "false");
       break;
   }
-		//printf("CGI:%s\n",buf);
+		printf("CGI:%s\n",buf);
 
   return (len);
 }

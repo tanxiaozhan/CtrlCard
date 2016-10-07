@@ -21,8 +21,10 @@
 #include "Port_08_12.h"
 #include "esp8266.h"
 #include "LED_Display.h"
+#include "rtc.h"
 
-
+/*时间结构体*/
+struct rtc_time system_time;
 
 bool LEDrun;
 
@@ -44,8 +46,13 @@ static void BlinkLed (void const *arg) {
         cnt = 0;
       }
     }
+
 		
-		osDelay (1050);
+	   /*  把标准时间转换为北京时间*/
+	  to_tm(RTC_GetCounter() + 8*60*60, &system_time);/*把定时器的值转换为北京时间*/	
+		printf("\ndate:%d-%d-%d  %d:%d:%d\n",system_time.tm_year,system_time.tm_mon,system_time.tm_mday,
+		         system_time.tm_hour,system_time.tm_min,system_time.tm_sec );
+		osDelay (2050);
 		
   }
 }
@@ -64,13 +71,15 @@ int main (void) {
 		LED_Initialize ();
 		osThreadCreate (osThread(BlinkLed), NULL);
 	
-		LED_Display_Init();      //显示屏初始化
-		LED_Display_Start();     //控制卡输出启动，LED显示屏开始显示
+		LED_display_init();      //显示屏初始化
+		LED_display_start();     //控制卡输出启动，LED显示屏开始显示
 	
 		netInitialize ();    		//网络核心初始化
 		netSLIP_Listen();      //开始SLIP监听
 		osDelay(500);
 
+netHTTPs_LoginOnOff (false);
+	
 		ESP8266_init();      //初始化控制EPS8266用到的PGIO引脚
 		ESP8266_ENABLE();   //打开WIFI
 

@@ -14,6 +14,10 @@
 #include "Ascii.h"
 #include <string.h>
 
+osThreadId LED_display_thread_id;   //显示线程id，创建/中止此线程控制显示的开关
+
+bool power_on=false;  //显示屏开机/关机
+
 screen_para screen;        //显示屏参数
 area_para area[MAX_AREA_NUMBER];           //显示区参数
 
@@ -212,13 +216,29 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 	*
 	*  创建LED显示屏控制信号线程，控制卡控制信号开始输出
 	*
-	*
 	********************************************************
 */
 
-void LED_Display_Start(void){
-	
-	osThreadCreate (osThread(LED_Display), NULL);
+void LED_display_start(void){
+	if( !power_on ){
+		LED_display_thread_id = osThreadCreate (osThread(LED_Display), NULL);
+		if( LED_display_thread_id !=NULL ){
+			power_on=true;
+		}
+	}
+}
+
+/*
+	********************************************************
+	*
+	*  关闭显示
+	*
+	********************************************************
+*/
+void LED_display_power_off(void){
+	if(osThreadTerminate(LED_display_thread_id) == osOK ){
+		power_on=false;
+	}
 }
 
 /*
@@ -226,7 +246,7 @@ void LED_Display_Start(void){
 	*  LED显示屏初始化
 	********************************************************
 */
-void LED_Display_Init(void){
+void LED_display_init(void){
 	
 	uint8_t i;
 	Port_08_12_GPIO_Config();    //初始化控制卡08、12输出接口用到的GPIO引脚

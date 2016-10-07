@@ -60,7 +60,6 @@ typedef struct{
 }area_para;
 
 
-void LED_Display_Init(void);
 void Port_08_1_GPIO_Config(void);
 void Port_08_2_GPIO_Config(void);
 void Port_12_1_GPIO_Config(void);
@@ -68,7 +67,10 @@ void Port_12_2_GPIO_Config(void);
 void Port_12_3_GPIO_Config(void);
 void Port_12_4_GPIO_Config(void);
 void Port_08_12_GPIO_Config(void);
-void LED_Display_Start(void);
+
+void LED_display_init(void);
+void LED_display_start(void);
+void LED_display_power_off(void);
 
 void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, bool point);
 void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_width, uint8_t screen_height);

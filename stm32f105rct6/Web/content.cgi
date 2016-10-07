@@ -1,75 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>æ— æ ‡é¢˜æ–‡æ¡£</title>
-<style type="text/css">
-.top_font {
-	color: #FFF;
-	font-weight: bold;
-	font-size: 16px;
-}
-.link_bk {
-	color: #000;
-}
-</style>
-</head>
-
-<body>
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td height="20"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr bgcolor="#33CCFF">
-        <td width="5%" align="center" valign="middle" class="top_font">è¿”å›</td>
-        <td width="82%" align="center" valign="middle"  class="top_font">å†…å®¹ç®¡ç†</td>
-        <td width="5%" align="center" valign="middle" class="top_font">ä¸»é¡µ</td>
-      </tr>
-    </table></td>
-  </tr>
-  <tr align="center">
-    <td height="141" valign="top"><table width="100%" border="1" cellspacing="0" cellpadding="0">
-      <tr>
-        <td width="6%" align="center" valign="middle">é€‰æ‹©</td>
-        <td width="6%" align="center" valign="middle">ID</td>
-        <td width="10%" align="center" valign="middle">X</td>
-        <td width="10%" align="center" valign="middle">Y</td>
-        <td width="10%" align="center" valign="middle">å®½åº¦</td>
-        <td width="10%" align="center" valign="middle">é«˜åº¦</td>
-        <td width="22%" align="center" valign="middle">å†…å®¹ç±»å‹</td>
-        <td width="25%" align="center" valign="middle">ç¼–è¾‘</td>
-        </tr>
-      <form id="form1" name="form1" method="post" action="">
-      
-      
-      <tr>
-        <td height="109" align="center" valign="middle"><input type="checkbox" name="checkbox" id="checkbox" /></td>
-        <td align="center" valign="middle">&nbsp;</td>
-        <td align="center" valign="middle">&nbsp;</td>
-        <td align="center" valign="middle">&nbsp;</td>
-        <td align="center" valign="middle">&nbsp;</td>
-        <td align="center" valign="middle">&nbsp;</td>
-        <td align="center" valign="middle">&nbsp;</td>
-        <td align="center" valign="middle" class="link_bk"><table width="55%" border="0" align="center" cellpadding="0" cellspacing="0">
-          <tr>
-            <td height="20" align="center" bgcolor="#00CCFF"  class="top_font">ç¼–è¾‘åˆ†åŒº</td>
-            </tr>
-          </table>
-          <p>&nbsp;</p>
-          <table width="55%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
-              <td height="20" align="center" bgcolor="#00CCFF"  class="top_font">ç¼–è¾‘å†…å®¹</td>
-              </tr>
-          </table></td>
-      </tr>
-      
-  </form>    
-      
-      
-    </table></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-</table>
-</body>
-</html>
+i header.inc
+t <table width="100%" border="0" cellspacing="0" cellpadding="0">
+t <tr>
+t <td align="center" valign="top">
+t <form id="form1" name="form1" method="get" action=""><h3>ÄÚ¡¡Èİ¡¡¹Ü¡¡Àí</h3>
+t <table width="100%" border="1" cellspacing="0" cellpadding="0">
+t <tr><td align="center">Ñ¡Ôñ</td>
+t <td align="center">ID</td>
+t <td align="center">X</td>
+t <td align="center">Y</td>
+t <td align="center">¿í¶È</td>
+t <td align="center">¸ß¶È</td>
+t <td align="center">ÄÚÈİÀàĞÍ</td>
+t <td align="center">±à¼­</td>
+t </tr>
+c c 0 area 0
+c c 1 area 1
+c c 2 area 2
+t </table>
+t <table width="90%" border="0" cellspacing="0" cellpadding="0">
+t <tr><td height="57">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+t <tr><td width="15%" height="57" align="center">&nbsp;</td>
+t <td width="28%" height="57" align="center">
+t <button class="tbs" type="submit" value="delArea">É¾³ı·ÖÇø</button></td>
+t <td width="12%" height="57" align="center">&nbsp;</td>
+t <td width="28%" height="57" align="center">
+t <input type="button" class="tbs" onclick="window.location='areaSet.cgi?areaNo=0'" value="ĞÂÔö·ÖÇø" /></td>
+t <td width="17%" height="57" align="center">&nbsp;</td></tr>
+t </table>
+t </form></td></tr>
+t </table>
+t </body>
+t </html>
+. End of script must be closed with period.
