@@ -12,7 +12,11 @@
 
 #define RTE_CMSIS_RTOS                  /* CMSIS-RTOS */
         #define RTE_CMSIS_RTOS_RTX              /* CMSIS-RTOS Keil RTX */
+#define RTE_DEVICE_STDPERIPH_BKP
 #define RTE_DEVICE_STDPERIPH_FRAMEWORK
+#define RTE_DEVICE_STDPERIPH_GPIO
+#define RTE_DEVICE_STDPERIPH_PWR
+#define RTE_DEVICE_STDPERIPH_RCC
 #define RTE_DEVICE_STDPERIPH_RTC
 #define RTE_Drivers_USART1              /* Driver USART1 */
         #define RTE_Drivers_USART2              /* Driver USART2 */
