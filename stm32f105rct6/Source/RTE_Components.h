@@ -25,4 +25,13 @@
 #define RTE_Network_Socket_TCP          /* Network Socket TCP */
 #define RTE_Network_Web_Server_RO       /* Network Web Server with Read-only Web Resources */
 
+#define RTE_DEVICE_STDPERIPH_BKP
+#define RTE_DEVICE_STDPERIPH_FRAMEWORK
+#define RTE_DEVICE_STDPERIPH_GPIO
+#define RTE_DEVICE_STDPERIPH_PWR
+#define RTE_DEVICE_STDPERIPH_RCC
+#define RTE_DEVICE_STDPERIPH_RTC
+#define RTE_DEVICE_STDPERIPH_USART
+
+
 #endif /* RTE_COMPONENTS_H */

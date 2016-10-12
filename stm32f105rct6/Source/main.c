@@ -49,9 +49,10 @@ static void BlinkLed (void const *arg) {
 
 		
 	   /*  把标准时间转换为北京时间*/
-	  to_tm(RTC_GetCounter() + 8*60*60, &system_time);/*把定时器的值转换为北京时间*/	
-		printf("\ndate:%d-%d-%d  %d:%d:%d\n",system_time.tm_year,system_time.tm_mon,system_time.tm_mday,
-		         system_time.tm_hour,system_time.tm_min,system_time.tm_sec );
+	//  to_tm(RTC_GetCounter() + 8*60*60, &system_time);/*把定时器的值转换为北京时间*/	
+	/*	printf("\ndate:%0.2d-%0.2d-%0.2d  %0.2d:%0.2d:%0.2d\n",system_time.rt_year,system_time.rt_mon,system_time.rt_date,
+		         system_time.rt_hour,system_time.rt_min,system_time.rt_sec );
+		*/
 		osDelay (2050);
 		
   }
