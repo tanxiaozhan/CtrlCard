@@ -1,0 +1,78 @@
+<html><head><title>LED屏显示控制系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+<style> 
+body{ text-align:center; font-size:40px} 
+.div{ margin:0 auto; width:833px; height:470px; font-size:100px}
+.tbs { height:50px; font-size:35px;}
+</style>
+<body  bgColor=#ffffff leftMargin=0 topMargin=10 marginwidth="0" marginheight="0">
+<div align=center class=div>
+<table style="border:1px solid #000080;font-size:40px" height=473 cellSpacing=0 cellPadding=0 width="815">
+ <tr bgColor=#EEEEEE>
+  <td style="border-bottom: 1px solid #000080" vAlign=bottom noWrap height=60 margin=50 width="587">
+    <h3 align="center"><font face="verdana" color="#006699">LED显示屏控制系统</font></h3>
+  </td>
+  <td style="border-bottom: 1px solid #000080" vAlign=center noWrap height=60 width="151">
+   <a href=""><img border="0" src="keil.gif" align="left" width="151" height="47"></a>
+  </td>
+  <td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="75"> 
+   <a href="index.htm"><img border="0" src="home.png" width="55" height="53"></a>
+  </td>
+ </tr>
+ <tr>
+  <td colSpan=5 height=380 vAlign=top background="llblue.jpg" style="background-repeat: repeat-y;">
+   <div align=center>
+    <center><font face="verdana">
+     <table width="90%" border=0 align=center style="font-size:40px">
+      <tr>
+       <td width="95%">系统校时
+
+
+
+
+
+
+
+
+
+<h2 align=center><br>
+  系 统 校 时</h2>
+<p><font size="2">This page allows you to change a message displayed on <b>LCD Module</b>.
+ Simply enter the text which you want to display and click <b>Send</b>.<br><br>
+ This Form uses a <b>POST</b> method to send data to a Web server.</font></p>
+<form action=lcd.cgi method=post name=cgi>
+<input type=hidden value="lcd" name=pg>
+<table border=0 width=99%>
+<tr bgcolor=#aaccff>
+<th width=40%>Item</th>
+  <th width=60%>Setting</th></tr>
+ <tr><td><img src=pabb.gif>Line 1 Text</td>
+ <td><input type=text name=lcd1 size=20 maxlength=20 value="%s"></td></tr>
+ <tr><td><img src=pabb.gif>Line 2 Text</TD>
+ <td><input type=text name=lcd2 size=20 maxlength=20 value="%s"></td></tr>
+ </font></table>
+ <p align=center>
+ <input type=submit name=set value="Send" id="sbm" class="tbs">
+ <input type=reset value="Undo">
+ </p></form>
+
+
+
+
+
+
+       </td>
+      </tr></table>
+     </center>
+    </div>
+   </td>
+  </tr><tr>
+  <td colSpan=5 height=20 background="llblue.jpg" style="background-repeat: repeat-y;">
+   <p align=center><font face="Verdana" size="1"><a href="http://www.keil.com/company/copyright.asp">
+    Copyright</a> ?2004-2014 <a href="http://www.keil.com/company/">KEIL - An ARM Company</a> 
+    All rights reserved.</font></p>
+  </td>
+ </tr></table>
+</div></body>
+</html>
