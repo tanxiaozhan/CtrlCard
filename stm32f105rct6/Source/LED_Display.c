@@ -46,7 +46,6 @@ static void LED_Display (void const *arg) {
 	}
 	
 	while(1){
-
 		//清空显存，cve即用0xFF给显存数组赋值
 		for(row=0;row<32;row++){      
 			for(scan=0;scan<8;scan++){
@@ -65,7 +64,7 @@ static void LED_Display (void const *arg) {
 			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
 			while( col<area[area_no].length ){
 				if( *pStr <= 126 ){      //英文字符
-					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' -1 ][row - area[area_no].y % 16] ;    //获取点阵
+					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y % 16] ;    //获取点阵
 					pStr++ ;
 				}
 				else{    //汉字字符
@@ -237,6 +236,7 @@ void LED_display_start(void){
 */
 void LED_display_power_off(void){
 	if(osThreadTerminate(LED_display_thread_id) == osOK ){
+		EN(OFF);
 		power_on=false;
 	}
 }

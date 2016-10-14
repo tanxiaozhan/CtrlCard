@@ -15,7 +15,7 @@
 //   <o>Number of Sessions <1-10>
 //   <i>Number of simultaneously active HTTP Sessions.
 //   <i>Default: 6
-#define HTTP_SERVER_NUM_SESSIONS    6
+#define HTTP_SERVER_NUM_SESSIONS    8
 
 //   <o>Port Number <1-65535>
 //   <i>Listening port number

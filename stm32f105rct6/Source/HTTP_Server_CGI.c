@@ -83,14 +83,7 @@ void netCGI_ProcessQuery (const char *qstr) {
     //printf("var[]:%s\n",var);
 		if (var[0] != 0) {
       // First character is non-null, string exists
-      if (strncmp (var, "txt=", 4) == 0) {
-        //更新显示数据
-				strcpy((char *)area[current_area].display_data,&var[4]);
-      }
-			else if (strncmp (var, "line=", 5) == 0) {
-				//自动换行显示
-      }
-			else if (strncmp (var, "areaNo=", 7) == 0) {
+			if (strncmp (var, "areaNo=", 7) == 0) {
         //设置/修改当前显示分区
 				current_area=(char)(var[7]-49);
       }
@@ -139,13 +132,15 @@ void netCGI_ProcessQuery (const char *qstr) {
 				del_area(2);
 			}
 			else if (strncmp (var, "strDate=", 8) == 0) {
-				//系统校时，网页返回日期时间格式：yyyy:mm:dd:hh:mm:ss
-				real_time.tm_year=atoi(strtok( var+8, "-" ));
-				real_time.tm_mon=atoi(strtok( NULL,"-" ));
-				real_time.tm_mday =atoi(strtok( NULL,"-" ));
-				real_time.tm_hour=atoi(strtok( NULL,"-" ));
-				real_time.tm_min=atoi(strtok( NULL,"-" ));
-				real_time.tm_sec=atoi(strtok( NULL,"-" ));
+				//系统校时，网页返回日期时间格式：yyyy-mm-dd-ww-hh-mm-ss
+				strcpy((char *)area[current_area].display_data,&var[8]);
+				real_time.rt_year=atoi(strtok( var+8, "-" ));
+				real_time.rt_mon=atoi(strtok( NULL,"-" ))+1;
+				real_time.rt_date=atoi(strtok( NULL,"-" ));
+				real_time.rt_day=atoi(strtok( NULL,"-" ));
+				real_time.rt_hour=atoi(strtok( NULL,"-" ));
+				real_time.rt_min=atoi(strtok( NULL,"-" ));
+				real_time.rt_sec=atoi(strtok( NULL,"-" ));
 				Time_Adjust(&real_time);    //校时
 			}
 			else if (strncmp (var, "power=OFF", 9) == 0) {
@@ -189,6 +184,7 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
       if (strncmp (var, "txt=",4) == 0) {
         //更新显示数据
 				strcpy((char *)area[current_area].display_data,var+4);
+				area[current_area].length=strlen((char *)area[current_area].display_data);
       }
 			else if (strncmp (var, "auth=true", 9) == 0) {
 				//打开身份认证

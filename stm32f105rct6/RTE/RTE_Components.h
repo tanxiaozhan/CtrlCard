@@ -18,6 +18,8 @@
 #define RTE_DEVICE_STDPERIPH_PWR
 #define RTE_DEVICE_STDPERIPH_RCC
 #define RTE_DEVICE_STDPERIPH_RTC
+#define RTE_DEVICE_STDPERIPH_SPI
+#define RTE_DEVICE_STDPERIPH_USART
 #define RTE_Drivers_USART1              /* Driver USART1 */
         #define RTE_Drivers_USART2              /* Driver USART2 */
         #define RTE_Drivers_USART3              /* Driver USART3 */
