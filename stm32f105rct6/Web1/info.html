@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LED屏显示控制系统</title>
+<style type="text/css">
+a:link {
+	text-decoration: none;
+	color: #FFF;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFF;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.tbs {
+	 height:50px;
+	 font-size:35px;
+}
+
+.topBK{
+	background-color: #0080C0;
+}
+
+.buttonBK{
+	background-color:#09F
+}
+
+</style>
+</head>
+
+<body style="font-size:40px">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr class="topBK">
+    <td width="15%" height="30" align="center" valign="middle" >
+	<a href="javascript:history.back();">返回</a></td>
+    <td width="69%" align="center" valign="middle" >&nbsp;</td>
+    <td width="16%" align="center" valign="middle" ><a href="index.htm">主页</a></td>
+  </tr>
+  </table>
+  
+  
+  
+  
+  <tr>
+    <td height="339" colspan="3" align="center" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="top">
+    <form id="form1" name="form1" method="get" action="">
+	<table width="800" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="84" colspan="2" align="center" valign="middle"><h3>系 统 信 息</h3></td>
+        </tr>
+      <tr>
+        <td width="248" height="80">硬件版本：</td>
+        <td width="552">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="80">软件版本：</td>
+        <td height="49" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="80">产品ID：</td>
+        <td height="46" align="center">&nbsp;</td>
+      </tr>
+      <tr>
+        <td height="100" align="center">&nbsp;</td>
+        <td height="100" align="center">&nbsp;</td>
+        </tr>
+    </table>
+    </form>
+    
+        
+    </td>
+  </tr>
+</table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>
+<SCRIPT  LANGUAGE="JavaScript">
+	function setTime(f){
+		var d = new Date();
+		var strD;
+		strD=d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate() +"-"+ d.getDay()+"-";
+		strD=strD + d.getHours() +"-" + d.getMinutes() +"-" + d.getSeconds();
+		//myDate.getFullYear();    //获取完整的年份(4位,1970-????)
+		//myDate.getMonth();       //获取当前月份(0-11,0代表1月)
+		//myDate.getDate();        //获取当前日(1-31)
+		//myDate.getDay();         //获取当前星期X(0-6,0代表星期天)
+		//myDate.getTime();        //获取当前时间(从1970.1.1开始的毫秒数)
+		//myDate.getHours();       //获取当前小时数(0-23)
+		//myDate.getMinutes();     //获取当前分钟数(0-59)
+		//myDate.getSeconds();     //获取当前秒数(0-59)
+		//myDate.getMilliseconds();    //获取当前毫秒数(0-999)
+		//myDate.toLocaleDateString();     //获取当前日期
+		//var mytime=myDate.toLocaleTimeString();     //获取当前时间
+		//myDate.toLocaleString( );        //获取日期与时间
+		document.getElementById("strDate").value=strD;
+		f.submit();
+}
+</Script>

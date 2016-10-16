@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
 <title>LED屏显示控制系统</title>
 <style type="text/css">
@@ -41,24 +41,26 @@ a:active {
   </tr>
 </table>
 
+
+
  <h3 align=center>登　录　设　置</h3>
- <form action="" method=get id="form1" name=cgi><input type=hidden name=auth id=auth>
+ <form action="" method=get name=cgi><input type=hidden name=auth id=auth>
  <table width=80% border=0 align="center">
- <tr><td width="45%" align="right"><img src=pabb.gif height="40px">身份认证：</TD>
- <td width="55%">
- l 1 <input type=radio name=au  id=authON style=width:40px;height:40px; >启用　
- l 2 <input type=radio name=au  id=authOff style=width:40px;height:40px; >停用
- </TD></tr>
- <tr><td colspan="2" align="center"></TD></tr>
+  <tr><td width="45%" align="right"><img src=pabb.gif height="40px">身份认证：</TD>
+   <td width="55%">
+   <input type=radio name=au  id=authON style=width:40px;height:40px;>启用　
+   <input type=radio name=au  id=authOff style=width:40px;height:40px;>停用
+   </TD></tr>
+  <tr><td colspan="2" align="center"></TD></tr>
  </table><p align=center>
- <input type=button name=set value="提 交" class="tbs" onclick="check(this.form);">&nbsp;
- <input type=button value="修改密码" class="tbs" onclick="window.location='password.cgi'"></p>
+  <input type=button name=set value="提 交" class="tbs" onclick="check(this.form);">&nbsp;
+  <input type=button value="修改密码" class="tbs" onclick="window.location='password.html'"></p>
  </form>
  <script language=JavaScript>
- function check(f){
- if(document.getElementById("authON").checked)
- document.getElementById("auth").value="true";
- else
- document.getElementById("auth").value="false";
- f.submit();}
+  function check(f){
+    if(document.getElementById("authON").checked)
+		 document.getElementById("auth").value="true";
+	 else
+		 document.getElementById("auth").value="false";
+	f.submit();}
  </script>

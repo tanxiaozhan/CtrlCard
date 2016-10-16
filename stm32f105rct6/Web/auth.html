@@ -1,66 +1,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<head>
-<title>LEDå±æ˜¾ç¤ºæ§åˆ¶ç³»ç»Ÿ</title>
-<style type="text/css">
-a:link {
-	text-decoration: none;
-	color: #FFF;
-}
-a:visited {
-	text-decoration: none;
-	color: #FFF;
-}
-a:hover {
-	text-decoration: none;
-}
-a:active {
-	text-decoration: none;
-	color: #FFF;
-}
-.tbs {
-	 height:50px;
-	 font-size:35px;
-}
-.topBK{
-	background-color: #0080c0;
-}
-.buttonBK{
-	background-color:#09F
-}
-</style>
+<html><head><title>LEDÆÁÏÔÊ¾¿ØÖÆÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 </head>
-<body style="font-size:40px">
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr class="topBK">
-    <td width="15%" height="30" align="center" valign="middle" >
-	<a href="javascript:history.back();">è¿”å›</a></td>
-    <td width="69%" align="center" valign="middle" >&nbsp;</td>
-    <td width="16%" align="center" valign="middle" ><a href="index.htm">ä¸»é¡µ</a></td>
-  </tr>
-</table>
+<style> 
+body{ text-align:center; font-size:40px} 
+.div{ margin:0 auto; width:833px; height:470px}
+.tbs { height:50px; font-size:35px;}
+</style>
+<body  bgColor=#ffffff leftMargin=0 topMargin=10 marginwidth="0" marginheight="0">
+<div align=center class=div>
+<table style="border:1px solid #000080" height=482 cellSpacing=0 cellPadding=0 width="815">
+ <tr bgColor=#EEEEEE>
+  <td style="border-bottom: 1px solid #000080" vAlign=middle noWrap height=60 margin=50 width="559">
+    <h3 align="center"><font color="#0066aa">LEDÏÔÊ¾ÆÁ¿ØÖÆÏµÍ³</font></h3>
+  </td>
+  <td style="border-bottom: 1px solid #000080" vAlign=center noWrap height=60 width="165"><img src="logo.png" width="139" height="57" /></td>
+  <td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="89"> 
+   <a href="index.htm"><img border="0" src="home.png" width="55" height="53"></a>
+  </td>
+ </tr>
+ <tr>
+  <td colSpan=5 height=380 vAlign=top background="llblue.jpg" style="background-repeat: repeat-y;">
+  
+  
+  
 
-
-
- <h3 align=center>ç™»ã€€å½•ã€€è®¾ã€€ç½®</h3>
- <form action="" method=get name=cgi><input type=hidden name=auth id=auth>
+ <h3 align=center>µÇ¡¡Â¼¡¡Éè¡¡ÖÃ</h3>
+ <form action="" method=post name=cgi><input type=hidden name=auth id=auth>
  <table width=80% border=0 align="center">
-  <tr><td width="45%" align="right"><img src=pabb.gif height="40px">èº«ä»½è®¤è¯ï¼š</TD>
-   <td width="55%">
-   <input type=radio name=au  id=authON style=width:40px;height:40px;>å¯ç”¨ã€€
-   <input type=radio name=au  id=authOff style=width:40px;height:40px;>åœç”¨
-   </TD></tr>
-  <tr><td colspan="2" align="center"></TD></tr>
+ <tr><td width="45%" align="right"><img src=pabb.gif>Éí·İÈÏÖ¤£º</TD>
+ <td width="55%">
+ <input type=radio name=au  id=authON style=width:40px;height:40px; %s>ÆôÓÃ¡¡
+ <input type=radio name=au  id=authOff style=width:40px;height:40px; %s>Í£ÓÃ
+ </TD></tr>
+ <tr><td colspan="2" align="center"></TD></tr>
  </table><p align=center>
-  <input type=button name=set value="æ äº¤" class="tbs" onclick="check(this.form);">&nbsp;
-  <input type=button value="ä¿®æ”¹å¯†ç " class="tbs" onclick="window.location='password.html'"></p>
+ <input type=button name=set value="¡¡Ìá¡¡½»¡¡" class="tbs" onclick="check(this.form);">&nbsp;&nbsp;&nbsp;
+ <input type=button value="ĞŞ¸ÄÃÜÂë" class="tbs" onclick="window.location='password.cgi'"></p>
  </form>
  <script language=JavaScript>
-  function check(f){
-    if(document.getElementById("authON").checked)
-		 document.getElementById("auth").value="true";
-	 else
-		 document.getElementById("auth").value="false";
-	f.submit();}
+ function check(f){
+ if(document.getElementById("authON").checked){
+ document.getElementById("auth").value="true";}
+ else{
+ document.getElementById("auth").value="false";}
+ document.getElementById("result").innerHTML="µÇÂ¼ÉèÖÃÍê³É£¡";
+ f.submit();}
  </script>
+
+
+
+
+
+
+   </td>
+  </tr><tr>
+  <td height=20 colSpan=5 align="center" valign="middle" background="llblue.jpg" style="background-repeat: repeat-y;"><label id="result"></label></td>
+ </tr></table>
+</div></body>
+</html>

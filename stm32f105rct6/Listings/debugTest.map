@@ -383,6 +383,12 @@ Section Cross References
     stm32f10x_rtc.o(i.RTC_SetCounter) refers to stm32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
     stm32f10x_rtc.o(i.RTC_SetPrescaler) refers to stm32f10x_rtc.o(i.RTC_EnterConfigMode) for RTC_EnterConfigMode
     stm32f10x_rtc.o(i.RTC_SetPrescaler) refers to stm32f10x_rtc.o(i.RTC_ExitConfigMode) for RTC_ExitConfigMode
+    stm32f10x_spi.o(i.I2S_Init) refers to stm32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
+    stm32f10x_spi.o(i.SPI_I2S_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_spi.o(i.SPI_I2S_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_usart.o(i.USART_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
+    stm32f10x_usart.o(i.USART_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
+    stm32f10x_usart.o(i.USART_Init) refers to stm32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
     dma_stm32f10x.o(i.DMA1_Channel1_IRQHandler) refers to dma_stm32f10x.o(i.DMA1_Channel1_Event) for DMA1_Channel1_Event
     dma_stm32f10x.o(i.DMA1_Channel2_IRQHandler) refers to dma_stm32f10x.o(i.DMA1_Channel2_Event) for DMA1_Channel2_Event
     dma_stm32f10x.o(i.DMA1_Channel3_IRQHandler) refers to dma_stm32f10x.o(i.DMA1_Channel3_Event) for DMA1_Channel3_Event
@@ -403,12 +409,6 @@ Section Cross References
     dma_stm32f10x.o(i.DMA_ChannelUninitialize) refers to dma_stm32f10x.o(.data) for DMA1_Channel
     gpio_stm32f10x.o(i.GPIO_PinConfigure) refers to gpio_stm32f10x.o(i.GPIO_GetPortClockState) for GPIO_GetPortClockState
     gpio_stm32f10x.o(i.GPIO_PinConfigure) refers to gpio_stm32f10x.o(i.GPIO_PortClock) for GPIO_PortClock
-    stm32f10x_usart.o(i.USART_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
-    stm32f10x_usart.o(i.USART_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
-    stm32f10x_usart.o(i.USART_Init) refers to stm32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
-    stm32f10x_spi.o(i.I2S_Init) refers to stm32f10x_rcc.o(i.RCC_GetClocksFreq) for RCC_GetClocksFreq
-    stm32f10x_spi.o(i.SPI_I2S_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphResetCmd) for RCC_APB2PeriphResetCmd
-    stm32f10x_spi.o(i.SPI_I2S_DeInit) refers to stm32f10x_rcc.o(i.RCC_APB1PeriphResetCmd) for RCC_APB1PeriphResetCmd
     net_config.o(.constdata) refers to net_sys.o(i.netCore_Thread) for netCore_Thread
     net_config.o(.constdata) refers to net_config.o(.bss) for os_mutex_cb_net_lock
     net_config.o(.constdata) refers to net_config.o(.conststring) for .conststring
@@ -1968,19 +1968,27 @@ Removing Unused input sections from the image.
     Removing stm32f10x_rtc.o(i.RTC_SetAlarm), (28 bytes).
     Removing stm32f10x_rtc.o(i.RTC_SetPrescaler), (32 bytes).
     Removing stm32f10x_rtc.o(i.RTC_WaitForSynchro), (36 bytes).
-    Removing dma_stm32f10x.o(.rev16_text), (4 bytes).
-    Removing dma_stm32f10x.o(.revsh_text), (4 bytes).
-    Removing dma_stm32f10x.o(.rrx_text), (6 bytes).
-    Removing dma_stm32f10x.o(i.DMA2_Channel4_IRQHandler), (32 bytes).
-    Removing dma_stm32f10x.o(i.DMA_ChannelInitialize), (464 bytes).
-    Removing dma_stm32f10x.o(i.DMA_ChannelUninitialize), (356 bytes).
-    Removing dma_stm32f10x.o(i.NVIC_ClearPendingIRQ), (24 bytes).
-    Removing dma_stm32f10x.o(i.NVIC_DisableIRQ), (24 bytes).
-    Removing dma_stm32f10x.o(i.NVIC_EnableIRQ), (22 bytes).
-    Removing dma_stm32f10x.o(.data), (2 bytes).
-    Removing gpio_stm32f10x.o(.rev16_text), (4 bytes).
-    Removing gpio_stm32f10x.o(.revsh_text), (4 bytes).
-    Removing gpio_stm32f10x.o(.rrx_text), (6 bytes).
+    Removing stm32f10x_spi.o(.rev16_text), (4 bytes).
+    Removing stm32f10x_spi.o(.revsh_text), (4 bytes).
+    Removing stm32f10x_spi.o(.rrx_text), (6 bytes).
+    Removing stm32f10x_spi.o(i.I2S_Cmd), (24 bytes).
+    Removing stm32f10x_spi.o(i.I2S_Init), (232 bytes).
+    Removing stm32f10x_spi.o(i.I2S_StructInit), (20 bytes).
+    Removing stm32f10x_spi.o(i.SPI_BiDirectionalLineConfig), (28 bytes).
+    Removing stm32f10x_spi.o(i.SPI_CalculateCRC), (24 bytes).
+    Removing stm32f10x_spi.o(i.SPI_DataSizeConfig), (18 bytes).
+    Removing stm32f10x_spi.o(i.SPI_GetCRC), (16 bytes).
+    Removing stm32f10x_spi.o(i.SPI_GetCRCPolynomial), (6 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_ClearFlag), (6 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_ClearITPendingBit), (20 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_DMACmd), (18 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_DeInit), (88 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_GetITStatus), (52 bytes).
+    Removing stm32f10x_spi.o(i.SPI_I2S_ITConfig), (32 bytes).
+    Removing stm32f10x_spi.o(i.SPI_NSSInternalSoftwareConfig), (30 bytes).
+    Removing stm32f10x_spi.o(i.SPI_SSOutputCmd), (24 bytes).
+    Removing stm32f10x_spi.o(i.SPI_StructInit), (24 bytes).
+    Removing stm32f10x_spi.o(i.SPI_TransmitCRC), (10 bytes).
     Removing stm32f10x_usart.o(.rev16_text), (4 bytes).
     Removing stm32f10x_usart.o(.revsh_text), (4 bytes).
     Removing stm32f10x_usart.o(.rrx_text), (6 bytes).
@@ -2009,27 +2017,19 @@ Removing Unused input sections from the image.
     Removing stm32f10x_usart.o(i.USART_SmartCardNACKCmd), (24 bytes).
     Removing stm32f10x_usart.o(i.USART_StructInit), (24 bytes).
     Removing stm32f10x_usart.o(i.USART_WakeUpConfig), (18 bytes).
-    Removing stm32f10x_spi.o(.rev16_text), (4 bytes).
-    Removing stm32f10x_spi.o(.revsh_text), (4 bytes).
-    Removing stm32f10x_spi.o(.rrx_text), (6 bytes).
-    Removing stm32f10x_spi.o(i.I2S_Cmd), (24 bytes).
-    Removing stm32f10x_spi.o(i.I2S_Init), (232 bytes).
-    Removing stm32f10x_spi.o(i.I2S_StructInit), (20 bytes).
-    Removing stm32f10x_spi.o(i.SPI_BiDirectionalLineConfig), (28 bytes).
-    Removing stm32f10x_spi.o(i.SPI_CalculateCRC), (24 bytes).
-    Removing stm32f10x_spi.o(i.SPI_DataSizeConfig), (18 bytes).
-    Removing stm32f10x_spi.o(i.SPI_GetCRC), (16 bytes).
-    Removing stm32f10x_spi.o(i.SPI_GetCRCPolynomial), (6 bytes).
-    Removing stm32f10x_spi.o(i.SPI_I2S_ClearFlag), (6 bytes).
-    Removing stm32f10x_spi.o(i.SPI_I2S_ClearITPendingBit), (20 bytes).
-    Removing stm32f10x_spi.o(i.SPI_I2S_DMACmd), (18 bytes).
-    Removing stm32f10x_spi.o(i.SPI_I2S_DeInit), (88 bytes).
-    Removing stm32f10x_spi.o(i.SPI_I2S_GetITStatus), (52 bytes).
-    Removing stm32f10x_spi.o(i.SPI_I2S_ITConfig), (32 bytes).
-    Removing stm32f10x_spi.o(i.SPI_NSSInternalSoftwareConfig), (30 bytes).
-    Removing stm32f10x_spi.o(i.SPI_SSOutputCmd), (24 bytes).
-    Removing stm32f10x_spi.o(i.SPI_StructInit), (24 bytes).
-    Removing stm32f10x_spi.o(i.SPI_TransmitCRC), (10 bytes).
+    Removing dma_stm32f10x.o(.rev16_text), (4 bytes).
+    Removing dma_stm32f10x.o(.revsh_text), (4 bytes).
+    Removing dma_stm32f10x.o(.rrx_text), (6 bytes).
+    Removing dma_stm32f10x.o(i.DMA2_Channel4_IRQHandler), (32 bytes).
+    Removing dma_stm32f10x.o(i.DMA_ChannelInitialize), (464 bytes).
+    Removing dma_stm32f10x.o(i.DMA_ChannelUninitialize), (356 bytes).
+    Removing dma_stm32f10x.o(i.NVIC_ClearPendingIRQ), (24 bytes).
+    Removing dma_stm32f10x.o(i.NVIC_DisableIRQ), (24 bytes).
+    Removing dma_stm32f10x.o(i.NVIC_EnableIRQ), (22 bytes).
+    Removing dma_stm32f10x.o(.data), (2 bytes).
+    Removing gpio_stm32f10x.o(.rev16_text), (4 bytes).
+    Removing gpio_stm32f10x.o(.revsh_text), (4 bytes).
+    Removing gpio_stm32f10x.o(.rrx_text), (6 bytes).
     Removing net_config.o(i.netSNTPc_GetTime), (4 bytes).
     Removing net_config.o(i.net_eth_get_addr), (4 bytes).
     Removing net_config.o(i.net_eth_get_option), (4 bytes).
@@ -2194,54 +2194,54 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  islower_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isgraph_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isdigit_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  iscntrl_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isblank_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_c.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_c.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isxdigit_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isdigit_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isgraph_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  iscntrl_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ispunct_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  islower_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isupper_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_o.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ispunct_o.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isprint_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_c.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalpha_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isalnum_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_o.o ABSOLUTE
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isblank_o.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
     ../clib/microlib/errno.c                 0x00000000   Number         0  errno.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/string/memcmp.c         0x00000000   Number         0  memcmp.o ABSOLUTE
-    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpyb.o ABSOLUTE
+    ../clib/microlib/string/memcpy.c         0x00000000   Number         0  memcpya.o ABSOLUTE
     ../clib/microlib/string/memset.c         0x00000000   Number         0  memseta.o ABSOLUTE
     ../clib/microlib/string/strcmp.c         0x00000000   Number         0  strcmp.o ABSOLUTE
     ../clib/microlib/string/strcpy.c         0x00000000   Number         0  strcpy.o ABSOLUTE
@@ -2250,15 +2250,15 @@ Image Symbol Table
     ../clib/microlib/string/strtok.c         0x00000000   Number         0  strtok.o ABSOLUTE
     ../clib/microlib/string/strtok.c         0x00000000   Number         0  strtok_r.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  _sgetc.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  atoi.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  _scanf.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  scanf_char.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  strtol.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  _chval.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  __0sscanf.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  _strtoul.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  _scanf.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  _scanf_int.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  __0sscanf.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  _chval.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  atoi.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  strtol.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  _sgetc.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  scanf_char.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
     ../fplib/microlib/fpdiv.c                0x00000000   Number         0  ddiv.o ABSOLUTE
     ../fplib/microlib/fpepilogue.c           0x00000000   Number         0  depilogue.o ABSOLUTE
@@ -2281,21 +2281,21 @@ Image Symbol Table
     ..\rt_Time.c                             0x00000000   Number         0  rt_time.o ABSOLUTE
     HAL_CM3.c                                0x00000000   Number         0  hal_cm3.o ABSOLUTE
     HAL_CM3.c                                0x00000000   Number         0  hal_cm3.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_ping.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_http_server.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_serial.o ABSOLUTE
     RL_ARM.s                                 0x00000000   Number         0  net_loop.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_serial.o ABSOLUTE
     RL_ARM.s                                 0x00000000   Number         0  net_icmp.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_tcp.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_slip.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_version.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_addr.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_common.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_mem.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_ip4.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_http_server_err.o ABSOLUTE
-    RL_ARM.s                                 0x00000000   Number         0  net_modem_drv.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_ping.o ABSOLUTE
     RL_ARM.s                                 0x00000000   Number         0  net_sys.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_common.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_modem_drv.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_addr.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_ip4.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_http_server.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_tcp.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_version.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_http_server_err.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_mem.o ABSOLUTE
+    RL_ARM.s                                 0x00000000   Number         0  net_slip.o ABSOLUTE
     RTE\CMSIS\RTX_Conf_CM.c                  0x00000000   Number         0  rtx_conf_cm.o ABSOLUTE
     RTE\Device\STM32F103VE\startup_stm32f10x_hd.s 0x00000000   Number         0  startup_stm32f10x_hd.o ABSOLUTE
     RTE\Device\STM32F103VE\system_stm32f10x.c 0x00000000   Number         0  system_stm32f10x.o ABSOLUTE
@@ -2989,59 +2989,59 @@ Image Symbol Table
     tcp_write                                0x0800c921   Thumb Code   186  net_tcp.o(i.tcp_write)
     i.utc_to_http                            0x0800c9e0   Section        0  net_http_server.o(i.utc_to_http)
     utc_to_http                              0x0800c9e1   Thumb Code   196  net_http_server.o(i.utc_to_http)
-    .constdata                               0x0800cad0   Section    197800  web.o(.constdata)
-    imageFileData                            0x0800cad4   Data       197602  web.o(.constdata)
-    imageFileTable                           0x0803ceb8   Data         192  web.o(.constdata)
-    .constdata                               0x0803cf78   Section       24  board_led.o(.constdata)
-    .constdata                               0x0803cf90   Section       16  main.o(.constdata)
-    .constdata                               0x0803cfa0   Section     1536  led_display.o(.constdata)
-    .constdata                               0x0803d5a0   Section       86  rtx_conf_cm.o(.constdata)
-    __tagsym$$used                           0x0803d5bc   Number         0  rtx_conf_cm.o(.constdata)
-    __tagsym$$used                           0x0803d5c0   Number         0  rtx_conf_cm.o(.constdata)
-    __tagsym$$used                           0x0803d5c4   Number         0  rtx_conf_cm.o(.constdata)
-    __tagsym$$used                           0x0803d5c8   Number         0  rtx_conf_cm.o(.constdata)
-    .constdata                               0x0803d5f8   Section      388  usart_stm32f10x.o(.constdata)
-    usart_driver_version                     0x0803d5f8   Data           4  usart_stm32f10x.o(.constdata)
-    USART1_tx                                0x0803d5fc   Data           8  usart_stm32f10x.o(.constdata)
-    USART1_rx                                0x0803d604   Data           8  usart_stm32f10x.o(.constdata)
-    USART1_Resources                         0x0803d60c   Data          56  usart_stm32f10x.o(.constdata)
-    USART2_tx                                0x0803d644   Data           8  usart_stm32f10x.o(.constdata)
-    USART2_rx                                0x0803d64c   Data           8  usart_stm32f10x.o(.constdata)
-    USART2_Resources                         0x0803d654   Data          56  usart_stm32f10x.o(.constdata)
-    USART3_tx                                0x0803d68c   Data           8  usart_stm32f10x.o(.constdata)
-    USART3_rx                                0x0803d694   Data           8  usart_stm32f10x.o(.constdata)
-    USART3_Resources                         0x0803d69c   Data          56  usart_stm32f10x.o(.constdata)
-    .constdata                               0x0803d77c   Section      248  net_config.o(.constdata)
-    os_thread_def_netCore_Thread             0x0803d77c   Data          16  net_config.o(.constdata)
-    os_thread_def_netSLIP_Thread             0x0803d7b4   Data          16  net_config.o(.constdata)
-    .constdata                               0x0803d874   Section       28  modem_null.o(.constdata)
-    .constdata                               0x0803d890   Section       68  net_tcp.o(.constdata)
-    sa                                       0x0803d890   Data          44  net_tcp.o(.constdata)
-    flg                                      0x0803d8bc   Data          24  net_tcp.o(.constdata)
-    .constdata                               0x0803d8d4   Section      250  net_http_server.o(.constdata)
-    DYear                                    0x0803d8d4   Data           6  net_http_server.o(.constdata)
-    Month                                    0x0803d8da   Data          48  net_http_server.o(.constdata)
-    WkDay                                    0x0803d90a   Data          28  net_http_server.o(.constdata)
-    DMonth                                   0x0803d926   Data          24  net_http_server.o(.constdata)
-    ftype                                    0x0803d93e   Data         144  net_http_server.o(.constdata)
-    .constdata                               0x0803d9ce   Section       18  net_ping.o(.constdata)
-    .constdata                               0x0803d9e0   Section      182  net_sys.o(.constdata)
-    proc_id                                  0x0803d9e8   Data         174  net_sys.o(.constdata)
-    .constdata                               0x0803da96   Section       32  net_ip4.o(.constdata)
-    p_bin                                    0x0803da9e   Data           4  net_ip4.o(.constdata)
-    p_asc                                    0x0803daa2   Data          20  net_ip4.o(.constdata)
-    .constdata                               0x0803dab8   Section       24  net_icmp.o(.constdata)
-    t_bin                                    0x0803dab8   Data           5  net_icmp.o(.constdata)
-    t_asc                                    0x0803dac0   Data          16  net_icmp.o(.constdata)
-    .constdata                               0x0803dad0   Section       24  net_http_server_err.o(.constdata)
-    .constdata                               0x0803dae8   Section      129  ctype_o.o(.constdata)
-    .constdata                               0x0803db6c   Section        4  ctype_o.o(.constdata)
-    table                                    0x0803db6c   Data           4  ctype_o.o(.constdata)
-    .conststring                             0x0803db70   Section      296  http_server_cgi.o(.conststring)
-    .conststring                             0x0803dc98   Section       69  net_config.o(.conststring)
-    .conststring                             0x0803dce0   Section      109  net_tcp.o(.conststring)
-    .conststring                             0x0803dd50   Section       67  net_icmp.o(.conststring)
-    .conststring                             0x0803dd94   Section      511  net_http_server_err.o(.conststring)
+    .constdata                               0x0800cad0   Section    223364  web.o(.constdata)
+    imageFileData                            0x0800cad4   Data       223029  web.o(.constdata)
+    imageFileTable                           0x0804320c   Data         328  web.o(.constdata)
+    .constdata                               0x08043354   Section       24  board_led.o(.constdata)
+    .constdata                               0x0804336c   Section       16  main.o(.constdata)
+    .constdata                               0x0804337c   Section     1536  led_display.o(.constdata)
+    .constdata                               0x0804397c   Section       86  rtx_conf_cm.o(.constdata)
+    __tagsym$$used                           0x08043998   Number         0  rtx_conf_cm.o(.constdata)
+    __tagsym$$used                           0x0804399c   Number         0  rtx_conf_cm.o(.constdata)
+    __tagsym$$used                           0x080439a0   Number         0  rtx_conf_cm.o(.constdata)
+    __tagsym$$used                           0x080439a4   Number         0  rtx_conf_cm.o(.constdata)
+    .constdata                               0x080439d4   Section      388  usart_stm32f10x.o(.constdata)
+    usart_driver_version                     0x080439d4   Data           4  usart_stm32f10x.o(.constdata)
+    USART1_tx                                0x080439d8   Data           8  usart_stm32f10x.o(.constdata)
+    USART1_rx                                0x080439e0   Data           8  usart_stm32f10x.o(.constdata)
+    USART1_Resources                         0x080439e8   Data          56  usart_stm32f10x.o(.constdata)
+    USART2_tx                                0x08043a20   Data           8  usart_stm32f10x.o(.constdata)
+    USART2_rx                                0x08043a28   Data           8  usart_stm32f10x.o(.constdata)
+    USART2_Resources                         0x08043a30   Data          56  usart_stm32f10x.o(.constdata)
+    USART3_tx                                0x08043a68   Data           8  usart_stm32f10x.o(.constdata)
+    USART3_rx                                0x08043a70   Data           8  usart_stm32f10x.o(.constdata)
+    USART3_Resources                         0x08043a78   Data          56  usart_stm32f10x.o(.constdata)
+    .constdata                               0x08043b58   Section      248  net_config.o(.constdata)
+    os_thread_def_netCore_Thread             0x08043b58   Data          16  net_config.o(.constdata)
+    os_thread_def_netSLIP_Thread             0x08043b90   Data          16  net_config.o(.constdata)
+    .constdata                               0x08043c50   Section       28  modem_null.o(.constdata)
+    .constdata                               0x08043c6c   Section       68  net_tcp.o(.constdata)
+    sa                                       0x08043c6c   Data          44  net_tcp.o(.constdata)
+    flg                                      0x08043c98   Data          24  net_tcp.o(.constdata)
+    .constdata                               0x08043cb0   Section      250  net_http_server.o(.constdata)
+    DYear                                    0x08043cb0   Data           6  net_http_server.o(.constdata)
+    Month                                    0x08043cb6   Data          48  net_http_server.o(.constdata)
+    WkDay                                    0x08043ce6   Data          28  net_http_server.o(.constdata)
+    DMonth                                   0x08043d02   Data          24  net_http_server.o(.constdata)
+    ftype                                    0x08043d1a   Data         144  net_http_server.o(.constdata)
+    .constdata                               0x08043daa   Section       18  net_ping.o(.constdata)
+    .constdata                               0x08043dbc   Section      182  net_sys.o(.constdata)
+    proc_id                                  0x08043dc4   Data         174  net_sys.o(.constdata)
+    .constdata                               0x08043e72   Section       32  net_ip4.o(.constdata)
+    p_bin                                    0x08043e7a   Data           4  net_ip4.o(.constdata)
+    p_asc                                    0x08043e7e   Data          20  net_ip4.o(.constdata)
+    .constdata                               0x08043e94   Section       24  net_icmp.o(.constdata)
+    t_bin                                    0x08043e94   Data           5  net_icmp.o(.constdata)
+    t_asc                                    0x08043e9c   Data          16  net_icmp.o(.constdata)
+    .constdata                               0x08043eac   Section       24  net_http_server_err.o(.constdata)
+    .constdata                               0x08043ec4   Section      129  ctype_o.o(.constdata)
+    .constdata                               0x08043f48   Section        4  ctype_o.o(.constdata)
+    table                                    0x08043f48   Data           4  ctype_o.o(.constdata)
+    .conststring                             0x08043f4c   Section      296  http_server_cgi.o(.conststring)
+    .conststring                             0x08044074   Section       69  net_config.o(.conststring)
+    .conststring                             0x080440bc   Section      109  net_tcp.o(.conststring)
+    .conststring                             0x0804412c   Section       67  net_icmp.o(.conststring)
+    .conststring                             0x08044170   Section      511  net_http_server_err.o(.conststring)
     .data                                    0x20000000   Section        8  http_server_cgi.o(.data)
     P2                                       0x20000001   Data           1  http_server_cgi.o(.data)
     adv                                      0x20000004   Data           4  http_server_cgi.o(.data)
@@ -3613,51 +3613,51 @@ Image Symbol Table
     svcTimerStart                            0x0800c125   Thumb Code    96  rt_cmsis.o(i.svcTimerStart)
     sysTimerTick                             0x0800c189   Thumb Code    84  rt_cmsis.o(i.sysTimerTick)
     imageLastModified                        0x0800cad0   Data           4  web.o(.constdata)
-    Pin_LED                                  0x0803cf78   Data          24  board_led.o(.constdata)
-    os_thread_def_BlinkLed                   0x0803cf90   Data          16  main.o(.constdata)
-    ascii_Dot                                0x0803cfa0   Data        1520  led_display.o(.constdata)
-    os_thread_def_LED_Display                0x0803d590   Data          16  led_display.o(.constdata)
-    os_maxtaskrun                            0x0803d5a0   Data           2  rtx_conf_cm.o(.constdata)
-    os_stackinfo                             0x0803d5a4   Data           4  rtx_conf_cm.o(.constdata)
-    os_rrobin                                0x0803d5a8   Data           4  rtx_conf_cm.o(.constdata)
-    os_tickfreq                              0x0803d5ac   Data           4  rtx_conf_cm.o(.constdata)
-    os_tickus_i                              0x0803d5b0   Data           2  rtx_conf_cm.o(.constdata)
-    os_tickus_f                              0x0803d5b2   Data           2  rtx_conf_cm.o(.constdata)
-    os_trv                                   0x0803d5b4   Data           4  rtx_conf_cm.o(.constdata)
-    os_flags                                 0x0803d5b8   Data           1  rtx_conf_cm.o(.constdata)
-    CMSIS_RTOS_API_Version                   0x0803d5bc   Data           4  rtx_conf_cm.o(.constdata)
-    CMSIS_RTOS_RTX_Version                   0x0803d5c0   Data           4  rtx_conf_cm.o(.constdata)
-    os_clockrate                             0x0803d5c4   Data           4  rtx_conf_cm.o(.constdata)
-    os_timernum                              0x0803d5c8   Data           4  rtx_conf_cm.o(.constdata)
-    mp_tcb_size                              0x0803d5cc   Data           2  rtx_conf_cm.o(.constdata)
-    mp_stk_size                              0x0803d5d0   Data           4  rtx_conf_cm.o(.constdata)
-    os_stack_sz                              0x0803d5d4   Data           4  rtx_conf_cm.o(.constdata)
-    os_fifo_size                             0x0803d5d8   Data           1  rtx_conf_cm.o(.constdata)
-    os_thread_def_osTimerThread              0x0803d5dc   Data          16  rtx_conf_cm.o(.constdata)
-    os_messageQ_def_osTimerMessageQ          0x0803d5ec   Data           8  rtx_conf_cm.o(.constdata)
-    mp_tmr_size                              0x0803d5f4   Data           2  rtx_conf_cm.o(.constdata)
-    Driver_USART1                            0x0803d6d4   Data          56  usart_stm32f10x.o(.constdata)
-    Driver_USART2                            0x0803d70c   Data          56  usart_stm32f10x.o(.constdata)
-    Driver_USART3                            0x0803d744   Data          56  usart_stm32f10x.o(.constdata)
-    os_mutex_def_net_lock                    0x0803d78c   Data           4  net_config.o(.constdata)
-    os_mutex_def_mem_lock                    0x0803d790   Data           4  net_config.o(.constdata)
-    net_sys_config                           0x0803d794   Data          32  net_config.o(.constdata)
-    os_semaphore_def_slip_lock               0x0803d7c4   Data           4  net_config.o(.constdata)
-    net_slip_config                          0x0803d7c8   Data          40  net_config.o(.constdata)
-    net_localm                               0x0803d7f0   Data          12  net_config.o(.constdata)
-    net_localm6                              0x0803d7fc   Data          12  net_config.o(.constdata)
-    net_tcp_config                           0x0803d808   Data          20  net_config.o(.constdata)
-    net_http_config                          0x0803d81c   Data          40  net_config.o(.constdata)
-    net_sys_func                             0x0803d844   Data          48  net_config.o(.constdata)
-    Driver_MODEM                             0x0803d874   Data          28  modem_null.o(.constdata)
-    net_ping_payload                         0x0803d9ce   Data          18  net_ping.o(.constdata)
-    os_timer_def_net_tick                    0x0803d9e0   Data           8  net_sys.o(.constdata)
-    net_addr4_bcast                          0x0803da96   Data           4  net_ip4.o(.constdata)
-    net_addr4_loopback                       0x0803da9a   Data           4  net_ip4.o(.constdata)
-    net_http_error                           0x0803dad0   Data          24  net_http_server_err.o(.constdata)
-    __ctype_table                            0x0803dae8   Data         129  ctype_o.o(.constdata)
-    Region$$Table$$Base                      0x0803df94   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x0803dfb4   Number         0  anon$$obj.o(Region$$Table)
+    Pin_LED                                  0x08043354   Data          24  board_led.o(.constdata)
+    os_thread_def_BlinkLed                   0x0804336c   Data          16  main.o(.constdata)
+    ascii_Dot                                0x0804337c   Data        1520  led_display.o(.constdata)
+    os_thread_def_LED_Display                0x0804396c   Data          16  led_display.o(.constdata)
+    os_maxtaskrun                            0x0804397c   Data           2  rtx_conf_cm.o(.constdata)
+    os_stackinfo                             0x08043980   Data           4  rtx_conf_cm.o(.constdata)
+    os_rrobin                                0x08043984   Data           4  rtx_conf_cm.o(.constdata)
+    os_tickfreq                              0x08043988   Data           4  rtx_conf_cm.o(.constdata)
+    os_tickus_i                              0x0804398c   Data           2  rtx_conf_cm.o(.constdata)
+    os_tickus_f                              0x0804398e   Data           2  rtx_conf_cm.o(.constdata)
+    os_trv                                   0x08043990   Data           4  rtx_conf_cm.o(.constdata)
+    os_flags                                 0x08043994   Data           1  rtx_conf_cm.o(.constdata)
+    CMSIS_RTOS_API_Version                   0x08043998   Data           4  rtx_conf_cm.o(.constdata)
+    CMSIS_RTOS_RTX_Version                   0x0804399c   Data           4  rtx_conf_cm.o(.constdata)
+    os_clockrate                             0x080439a0   Data           4  rtx_conf_cm.o(.constdata)
+    os_timernum                              0x080439a4   Data           4  rtx_conf_cm.o(.constdata)
+    mp_tcb_size                              0x080439a8   Data           2  rtx_conf_cm.o(.constdata)
+    mp_stk_size                              0x080439ac   Data           4  rtx_conf_cm.o(.constdata)
+    os_stack_sz                              0x080439b0   Data           4  rtx_conf_cm.o(.constdata)
+    os_fifo_size                             0x080439b4   Data           1  rtx_conf_cm.o(.constdata)
+    os_thread_def_osTimerThread              0x080439b8   Data          16  rtx_conf_cm.o(.constdata)
+    os_messageQ_def_osTimerMessageQ          0x080439c8   Data           8  rtx_conf_cm.o(.constdata)
+    mp_tmr_size                              0x080439d0   Data           2  rtx_conf_cm.o(.constdata)
+    Driver_USART1                            0x08043ab0   Data          56  usart_stm32f10x.o(.constdata)
+    Driver_USART2                            0x08043ae8   Data          56  usart_stm32f10x.o(.constdata)
+    Driver_USART3                            0x08043b20   Data          56  usart_stm32f10x.o(.constdata)
+    os_mutex_def_net_lock                    0x08043b68   Data           4  net_config.o(.constdata)
+    os_mutex_def_mem_lock                    0x08043b6c   Data           4  net_config.o(.constdata)
+    net_sys_config                           0x08043b70   Data          32  net_config.o(.constdata)
+    os_semaphore_def_slip_lock               0x08043ba0   Data           4  net_config.o(.constdata)
+    net_slip_config                          0x08043ba4   Data          40  net_config.o(.constdata)
+    net_localm                               0x08043bcc   Data          12  net_config.o(.constdata)
+    net_localm6                              0x08043bd8   Data          12  net_config.o(.constdata)
+    net_tcp_config                           0x08043be4   Data          20  net_config.o(.constdata)
+    net_http_config                          0x08043bf8   Data          40  net_config.o(.constdata)
+    net_sys_func                             0x08043c20   Data          48  net_config.o(.constdata)
+    Driver_MODEM                             0x08043c50   Data          28  modem_null.o(.constdata)
+    net_ping_payload                         0x08043daa   Data          18  net_ping.o(.constdata)
+    os_timer_def_net_tick                    0x08043dbc   Data           8  net_sys.o(.constdata)
+    net_addr4_bcast                          0x08043e72   Data           4  net_ip4.o(.constdata)
+    net_addr4_loopback                       0x08043e76   Data           4  net_ip4.o(.constdata)
+    net_http_error                           0x08043eac   Data          24  net_http_server_err.o(.constdata)
+    __ctype_table                            0x08043ec4   Data         129  ctype_o.o(.constdata)
+    Region$$Table$$Base                      0x08044370   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08044390   Number         0  anon$$obj.o(Region$$Table)
     current_area                             0x20000000   Data           1  http_server_cgi.o(.data)
     LEDrun                                   0x20000008   Data           1  main.o(.data)
     LED_display_thread_id                    0x2000000c   Data           4  led_display.o(.data)
@@ -3703,9 +3703,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000131
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0003e080, Max: 0x00080000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0004445c, Max: 0x00080000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x0003dfb4, Max: 0x00080000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00044390, Max: 0x00080000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -3758,49 +3758,49 @@ Memory Map of the image
     0x08000eae   0x000000ba   Code   RO         4738    .text               mf_w.l(depilogue.o)
     0x08000f68   0x00000004   Code   RO         4358    SVC_TABLE           RTX_CM3.lib(svc_table.o)
     0x08000f6c   0x00000048   Code   RO          287    i.BlinkLed          main.o
-    0x08000fb4   0x00000002   Code   RO         1771    i.DMA1_Channel1_Event  dma_stm32f10x.o
+    0x08000fb4   0x00000002   Code   RO         2119    i.DMA1_Channel1_Event  dma_stm32f10x.o
     0x08000fb6   0x00000002   PAD
-    0x08000fb8   0x0000001c   Code   RO         1772    i.DMA1_Channel1_IRQHandler  dma_stm32f10x.o
-    0x08000fd4   0x00000002   Code   RO         1773    i.DMA1_Channel2_Event  dma_stm32f10x.o
+    0x08000fb8   0x0000001c   Code   RO         2120    i.DMA1_Channel1_IRQHandler  dma_stm32f10x.o
+    0x08000fd4   0x00000002   Code   RO         2121    i.DMA1_Channel2_Event  dma_stm32f10x.o
     0x08000fd6   0x00000002   PAD
-    0x08000fd8   0x0000001c   Code   RO         1774    i.DMA1_Channel2_IRQHandler  dma_stm32f10x.o
-    0x08000ff4   0x00000002   Code   RO         1775    i.DMA1_Channel3_Event  dma_stm32f10x.o
+    0x08000fd8   0x0000001c   Code   RO         2122    i.DMA1_Channel2_IRQHandler  dma_stm32f10x.o
+    0x08000ff4   0x00000002   Code   RO         2123    i.DMA1_Channel3_Event  dma_stm32f10x.o
     0x08000ff6   0x00000002   PAD
-    0x08000ff8   0x0000001c   Code   RO         1776    i.DMA1_Channel3_IRQHandler  dma_stm32f10x.o
-    0x08001014   0x00000002   Code   RO         1777    i.DMA1_Channel4_Event  dma_stm32f10x.o
+    0x08000ff8   0x0000001c   Code   RO         2124    i.DMA1_Channel3_IRQHandler  dma_stm32f10x.o
+    0x08001014   0x00000002   Code   RO         2125    i.DMA1_Channel4_Event  dma_stm32f10x.o
     0x08001016   0x00000002   PAD
-    0x08001018   0x0000001c   Code   RO         1778    i.DMA1_Channel4_IRQHandler  dma_stm32f10x.o
-    0x08001034   0x00000002   Code   RO         1779    i.DMA1_Channel5_Event  dma_stm32f10x.o
+    0x08001018   0x0000001c   Code   RO         2126    i.DMA1_Channel4_IRQHandler  dma_stm32f10x.o
+    0x08001034   0x00000002   Code   RO         2127    i.DMA1_Channel5_Event  dma_stm32f10x.o
     0x08001036   0x00000002   PAD
-    0x08001038   0x0000001c   Code   RO         1780    i.DMA1_Channel5_IRQHandler  dma_stm32f10x.o
-    0x08001054   0x00000002   Code   RO         1781    i.DMA1_Channel6_Event  dma_stm32f10x.o
+    0x08001038   0x0000001c   Code   RO         2128    i.DMA1_Channel5_IRQHandler  dma_stm32f10x.o
+    0x08001054   0x00000002   Code   RO         2129    i.DMA1_Channel6_Event  dma_stm32f10x.o
     0x08001056   0x00000002   PAD
-    0x08001058   0x0000001c   Code   RO         1782    i.DMA1_Channel6_IRQHandler  dma_stm32f10x.o
-    0x08001074   0x00000002   Code   RO         1783    i.DMA1_Channel7_Event  dma_stm32f10x.o
+    0x08001058   0x0000001c   Code   RO         2130    i.DMA1_Channel6_IRQHandler  dma_stm32f10x.o
+    0x08001074   0x00000002   Code   RO         2131    i.DMA1_Channel7_Event  dma_stm32f10x.o
     0x08001076   0x00000002   PAD
-    0x08001078   0x0000001c   Code   RO         1784    i.DMA1_Channel7_IRQHandler  dma_stm32f10x.o
-    0x08001094   0x00000002   Code   RO         1785    i.DMA2_Channel1_Event  dma_stm32f10x.o
+    0x08001078   0x0000001c   Code   RO         2132    i.DMA1_Channel7_IRQHandler  dma_stm32f10x.o
+    0x08001094   0x00000002   Code   RO         2133    i.DMA2_Channel1_Event  dma_stm32f10x.o
     0x08001096   0x00000002   PAD
-    0x08001098   0x0000001c   Code   RO         1786    i.DMA2_Channel1_IRQHandler  dma_stm32f10x.o
-    0x080010b4   0x00000002   Code   RO         1787    i.DMA2_Channel2_Event  dma_stm32f10x.o
+    0x08001098   0x0000001c   Code   RO         2134    i.DMA2_Channel1_IRQHandler  dma_stm32f10x.o
+    0x080010b4   0x00000002   Code   RO         2135    i.DMA2_Channel2_Event  dma_stm32f10x.o
     0x080010b6   0x00000002   PAD
-    0x080010b8   0x00000020   Code   RO         1788    i.DMA2_Channel2_IRQHandler  dma_stm32f10x.o
-    0x080010d8   0x00000002   Code   RO         1789    i.DMA2_Channel3_Event  dma_stm32f10x.o
+    0x080010b8   0x00000020   Code   RO         2136    i.DMA2_Channel2_IRQHandler  dma_stm32f10x.o
+    0x080010d8   0x00000002   Code   RO         2137    i.DMA2_Channel3_Event  dma_stm32f10x.o
     0x080010da   0x00000002   PAD
-    0x080010dc   0x00000020   Code   RO         1790    i.DMA2_Channel3_IRQHandler  dma_stm32f10x.o
-    0x080010fc   0x00000038   Code   RO         1791    i.DMA2_Channel4_5_IRQHandler  dma_stm32f10x.o
-    0x08001134   0x00000002   Code   RO         1792    i.DMA2_Channel4_Event  dma_stm32f10x.o
-    0x08001136   0x00000002   Code   RO         1794    i.DMA2_Channel5_Event  dma_stm32f10x.o
+    0x080010dc   0x00000020   Code   RO         2138    i.DMA2_Channel3_IRQHandler  dma_stm32f10x.o
+    0x080010fc   0x00000038   Code   RO         2139    i.DMA2_Channel4_5_IRQHandler  dma_stm32f10x.o
+    0x08001134   0x00000002   Code   RO         2140    i.DMA2_Channel4_Event  dma_stm32f10x.o
+    0x08001136   0x00000002   Code   RO         2142    i.DMA2_Channel5_Event  dma_stm32f10x.o
     0x08001138   0x0000004c   Code   RO         2572    i.Dial              modem_null.o
     0x08001184   0x00000044   Code   RO          143    i.ESP8266_GPIO_Config  esp8266.o
     0x080011c8   0x00000020   Code   RO          144    i.ESP8266_init      esp8266.o
     0x080011e8   0x000000d8   Code   RO          512    i.FLASH_SPI_initialize  flash_spi.o
-    0x080012c0   0x00000058   Code   RO         1975    i.GPIO_AFConfigure  gpio_stm32f10x.o
-    0x08001318   0x00000098   Code   RO         1976    i.GPIO_GetPortClockState  gpio_stm32f10x.o
+    0x080012c0   0x00000058   Code   RO         2323    i.GPIO_AFConfigure  gpio_stm32f10x.o
+    0x08001318   0x00000098   Code   RO         2324    i.GPIO_GetPortClockState  gpio_stm32f10x.o
     0x080013b0   0x00000116   Code   RO         1265    i.GPIO_Init         stm32f10x_gpio.o
-    0x080014c6   0x00000078   Code   RO         1977    i.GPIO_PinConfigure  gpio_stm32f10x.o
+    0x080014c6   0x00000078   Code   RO         2325    i.GPIO_PinConfigure  gpio_stm32f10x.o
     0x0800153e   0x00000002   PAD
-    0x08001540   0x0000013c   Code   RO         1978    i.GPIO_PortClock    gpio_stm32f10x.o
+    0x08001540   0x0000013c   Code   RO         2326    i.GPIO_PortClock    gpio_stm32f10x.o
     0x0800167c   0x00000004   Code   RO         1272    i.GPIO_ResetBits    stm32f10x_gpio.o
     0x08001680   0x00000004   Code   RO         1273    i.GPIO_SetBits      stm32f10x_gpio.o
     0x08001684   0x0000003c   Code   RO          513    i.GetGBKCode_from_EXFlash  flash_spi.o
@@ -3833,14 +3833,14 @@ Memory Map of the image
     0x08002134   0x00000014   Code   RO         1672    i.RTC_ExitConfigMode  stm32f10x_rtc.o
     0x08002148   0x0000001c   Code   RO         1679    i.RTC_SetCounter    stm32f10x_rtc.o
     0x08002164   0x00000014   Code   RO         1681    i.RTC_WaitForLastTask  stm32f10x_rtc.o
-    0x08002178   0x00000018   Code   RO         2217    i.SPI_Cmd           stm32f10x_spi.o
+    0x08002178   0x00000018   Code   RO         1776    i.SPI_Cmd           stm32f10x_spi.o
     0x08002190   0x00000050   Code   RO          514    i.SPI_FLASH_BufferRead  flash_spi.o
     0x080021e0   0x00000050   Code   RO          520    i.SPI_FLASH_ReadID  flash_spi.o
     0x08002230   0x00000074   Code   RO          522    i.SPI_FLASH_SendByte  flash_spi.o
-    0x080022a4   0x00000012   Code   RO         2225    i.SPI_I2S_GetFlagStatus  stm32f10x_spi.o
-    0x080022b6   0x00000006   Code   RO         2228    i.SPI_I2S_ReceiveData  stm32f10x_spi.o
-    0x080022bc   0x00000004   Code   RO         2229    i.SPI_I2S_SendData  stm32f10x_spi.o
-    0x080022c0   0x0000003c   Code   RO         2230    i.SPI_Init          stm32f10x_spi.o
+    0x080022a4   0x00000012   Code   RO         1784    i.SPI_I2S_GetFlagStatus  stm32f10x_spi.o
+    0x080022b6   0x00000006   Code   RO         1787    i.SPI_I2S_ReceiveData  stm32f10x_spi.o
+    0x080022bc   0x00000004   Code   RO         1788    i.SPI_I2S_SendData  stm32f10x_spi.o
+    0x080022c0   0x0000003c   Code   RO         1789    i.SPI_Init          stm32f10x_spi.o
     0x080022fc   0x00000034   Code   RO          529    i.SPI_TIMEOUT_UserCallback  flash_spi.o
     0x08002330   0x00000008   Code   RO         1075    i.SetSysClock       system_stm32f10x.o
     0x08002338   0x000000e0   Code   RO         1076    i.SetSysClockTo72   system_stm32f10x.o
@@ -3889,23 +3889,23 @@ Memory Map of the image
     0x08002794   0x00000014   Code   RO          774    i.USART3_SetModemControl  usart_stm32f10x.o
     0x080027a8   0x0000001c   Code   RO          775    i.USART3_Transfer   usart_stm32f10x.o
     0x080027c4   0x00000010   Code   RO          776    i.USART3_Uninitialize  usart_stm32f10x.o
-    0x080027d4   0x00000018   Code   RO         2024    i.USART_Cmd         stm32f10x_usart.o
+    0x080027d4   0x00000018   Code   RO         1931    i.USART_Cmd         stm32f10x_usart.o
     0x080027ec   0x00000800   Code   RO          777    i.USART_Control     usart_stm32f10x.o
     0x08002fec   0x00000006   Code   RO          778    i.USART_GetCapabilities  usart_stm32f10x.o
-    0x08002ff2   0x0000001a   Code   RO         2027    i.USART_GetFlagStatus  stm32f10x_usart.o
+    0x08002ff2   0x0000001a   Code   RO         1934    i.USART_GetFlagStatus  stm32f10x_usart.o
     0x0800300c   0x0000005e   Code   RO          779    i.USART_GetModemStatus  usart_stm32f10x.o
     0x0800306a   0x00000008   Code   RO          780    i.USART_GetRxCount  usart_stm32f10x.o
     0x08003072   0x00000076   Code   RO          781    i.USART_GetStatus   usart_stm32f10x.o
     0x080030e8   0x00000008   Code   RO          782    i.USART_GetTxCount  usart_stm32f10x.o
     0x080030f0   0x0000025a   Code   RO          783    i.USART_IRQHandler  usart_stm32f10x.o
     0x0800334a   0x00000002   PAD
-    0x0800334c   0x000000d8   Code   RO         2031    i.USART_Init        stm32f10x_usart.o
+    0x0800334c   0x000000d8   Code   RO         1938    i.USART_Init        stm32f10x_usart.o
     0x08003424   0x000000a2   Code   RO          784    i.USART_Initialize  usart_stm32f10x.o
     0x080034c6   0x00000002   PAD
     0x080034c8   0x000003d8   Code   RO          785    i.USART_PowerControl  usart_stm32f10x.o
     0x080038a0   0x000000a2   Code   RO          786    i.USART_Receive     usart_stm32f10x.o
     0x08003942   0x00000088   Code   RO          787    i.USART_Send        usart_stm32f10x.o
-    0x080039ca   0x00000008   Code   RO         2041    i.USART_SendData    stm32f10x_usart.o
+    0x080039ca   0x00000008   Code   RO         1948    i.USART_SendData    stm32f10x_usart.o
     0x080039d2   0x00000094   Code   RO          788    i.USART_SetModemControl  usart_stm32f10x.o
     0x08003a66   0x0000006a   Code   RO          789    i.USART_Transfer    usart_stm32f10x.o
     0x08003ad0   0x0000006c   Code   RO          790    i.USART_Uninitialize  usart_stm32f10x.o
@@ -4229,36 +4229,36 @@ Memory Map of the image
     0x0800c8b8   0x00000068   Code   RO         3346    i.tcp_transit       Net4_Dbg_CM3_L.lib(net_tcp.o)
     0x0800c920   0x000000c0   Code   RO         3347    i.tcp_write         Net4_Dbg_CM3_L.lib(net_tcp.o)
     0x0800c9e0   0x000000f0   Code   RO         3464    i.utc_to_http       Net4_Dbg_CM3_L.lib(net_http_server.o)
-    0x0800cad0   0x000304a8   Data   RO            3    .constdata          web.o
-    0x0803cf78   0x00000018   Data   RO           38    .constdata          board_led.o
-    0x0803cf90   0x00000010   Data   RO          290    .constdata          main.o
-    0x0803cfa0   0x00000600   Data   RO          451    .constdata          led_display.o
-    0x0803d5a0   0x00000056   Data   RO          701    .constdata          rtx_conf_cm.o
-    0x0803d5f6   0x00000002   PAD
-    0x0803d5f8   0x00000184   Data   RO          793    .constdata          usart_stm32f10x.o
-    0x0803d77c   0x000000f8   Data   RO         2390    .constdata          net_config.o
-    0x0803d874   0x0000001c   Data   RO         2579    .constdata          modem_null.o
-    0x0803d890   0x00000044   Data   RO         3348    .constdata          Net4_Dbg_CM3_L.lib(net_tcp.o)
-    0x0803d8d4   0x000000fa   Data   RO         3465    .constdata          Net4_Dbg_CM3_L.lib(net_http_server.o)
-    0x0803d9ce   0x00000012   Data   RO         3532    .constdata          Net4_Dbg_CM3_L.lib(net_ping.o)
-    0x0803d9e0   0x000000b6   Data   RO         3561    .constdata          Net4_Dbg_CM3_L.lib(net_sys.o)
-    0x0803da96   0x00000020   Data   RO         4144    .constdata          Net4_Dbg_CM3_L.lib(net_ip4.o)
-    0x0803dab6   0x00000002   PAD
-    0x0803dab8   0x00000018   Data   RO         4166    .constdata          Net4_Dbg_CM3_L.lib(net_icmp.o)
-    0x0803dad0   0x00000018   Data   RO         4221    .constdata          Net4_Dbg_CM3_L.lib(net_http_server_err.o)
-    0x0803dae8   0x00000081   Data   RO         4707    .constdata          mc_w.l(ctype_o.o)
-    0x0803db69   0x00000003   PAD
-    0x0803db6c   0x00000004   Data   RO         4708    .constdata          mc_w.l(ctype_o.o)
-    0x0803db70   0x00000128   Data   RO          190    .conststring        http_server_cgi.o
-    0x0803dc98   0x00000045   Data   RO         2391    .conststring        net_config.o
-    0x0803dcdd   0x00000003   PAD
-    0x0803dce0   0x0000006d   Data   RO         3349    .conststring        Net4_Dbg_CM3_L.lib(net_tcp.o)
-    0x0803dd4d   0x00000003   PAD
-    0x0803dd50   0x00000043   Data   RO         4167    .conststring        Net4_Dbg_CM3_L.lib(net_icmp.o)
-    0x0803dd93   0x00000001   PAD
-    0x0803dd94   0x000001ff   Data   RO         4222    .conststring        Net4_Dbg_CM3_L.lib(net_http_server_err.o)
-    0x0803df93   0x00000001   PAD
-    0x0803df94   0x00000020   Data   RO         4743    Region$$Table       anon$$obj.o
+    0x0800cad0   0x00036884   Data   RO            3    .constdata          web.o
+    0x08043354   0x00000018   Data   RO           38    .constdata          board_led.o
+    0x0804336c   0x00000010   Data   RO          290    .constdata          main.o
+    0x0804337c   0x00000600   Data   RO          451    .constdata          led_display.o
+    0x0804397c   0x00000056   Data   RO          701    .constdata          rtx_conf_cm.o
+    0x080439d2   0x00000002   PAD
+    0x080439d4   0x00000184   Data   RO          793    .constdata          usart_stm32f10x.o
+    0x08043b58   0x000000f8   Data   RO         2390    .constdata          net_config.o
+    0x08043c50   0x0000001c   Data   RO         2579    .constdata          modem_null.o
+    0x08043c6c   0x00000044   Data   RO         3348    .constdata          Net4_Dbg_CM3_L.lib(net_tcp.o)
+    0x08043cb0   0x000000fa   Data   RO         3465    .constdata          Net4_Dbg_CM3_L.lib(net_http_server.o)
+    0x08043daa   0x00000012   Data   RO         3532    .constdata          Net4_Dbg_CM3_L.lib(net_ping.o)
+    0x08043dbc   0x000000b6   Data   RO         3561    .constdata          Net4_Dbg_CM3_L.lib(net_sys.o)
+    0x08043e72   0x00000020   Data   RO         4144    .constdata          Net4_Dbg_CM3_L.lib(net_ip4.o)
+    0x08043e92   0x00000002   PAD
+    0x08043e94   0x00000018   Data   RO         4166    .constdata          Net4_Dbg_CM3_L.lib(net_icmp.o)
+    0x08043eac   0x00000018   Data   RO         4221    .constdata          Net4_Dbg_CM3_L.lib(net_http_server_err.o)
+    0x08043ec4   0x00000081   Data   RO         4707    .constdata          mc_w.l(ctype_o.o)
+    0x08043f45   0x00000003   PAD
+    0x08043f48   0x00000004   Data   RO         4708    .constdata          mc_w.l(ctype_o.o)
+    0x08043f4c   0x00000128   Data   RO          190    .conststring        http_server_cgi.o
+    0x08044074   0x00000045   Data   RO         2391    .conststring        net_config.o
+    0x080440b9   0x00000003   PAD
+    0x080440bc   0x0000006d   Data   RO         3349    .conststring        Net4_Dbg_CM3_L.lib(net_tcp.o)
+    0x08044129   0x00000003   PAD
+    0x0804412c   0x00000043   Data   RO         4167    .conststring        Net4_Dbg_CM3_L.lib(net_icmp.o)
+    0x0804416f   0x00000001   PAD
+    0x08044170   0x000001ff   Data   RO         4222    .conststring        Net4_Dbg_CM3_L.lib(net_http_server_err.o)
+    0x0804436f   0x00000001   PAD
+    0x08044370   0x00000020   Data   RO         4743    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00005b40, Max: 0x00010000, ABSOLUTE)
@@ -4339,10 +4339,10 @@ Image component sizes
        328         28          0          0          0       1877   system_stm32f10x.o
        164         12          0          0          0       1040   usart1.o
       5522        308        388          0        168      67234   usart_stm32f10x.o
-       136          8     197800          0          0       6276   web.o
+       136          8     223364          0          0       6284   web.o
 
     ----------------------------------------------------------------------
-     14870       1472     200832         96      22480     443897   Object Totals
+     14870       1472     226396         96      22480     443905   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         34          0          5          3          6          0   (incl. Padding)
 
@@ -4447,15 +4447,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     51616      10246     202260        204      23156     523595   Grand Totals
-     51616      10246     202260        204      23156     523595   ELF Image Totals
-     51616      10246     202260        204          0          0   ROM Totals
+     51616      10246     227824        204      23156     523603   Grand Totals
+     51616      10246     227824        204      23156     523603   ELF Image Totals
+     51616      10246     227824        204          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)               253876 ( 247.93kB)
+    Total RO  Size (Code + RO Data)               279440 ( 272.89kB)
     Total RW  Size (RW Data + ZI Data)             23360 (  22.81kB)
-    Total ROM Size (Code + RO Data + RW Data)     254080 ( 248.13kB)
+    Total ROM Size (Code + RO Data + RW Data)     279644 ( 273.09kB)
 
 ==============================================================================
 

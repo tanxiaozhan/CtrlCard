@@ -1,96 +1,58 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>LEDå±æ˜¾ç¤ºæ§åˆ¶ç³»ç»Ÿ</title>
-<style type="text/css">
-a:link {
-	text-decoration: none;
-	color: #FFF;
-}
-a:visited {
-	text-decoration: none;
-	color: #FFF;
-}
-a:hover {
-	text-decoration: none;
-}
-a:active {
-	text-decoration: none;
-	color: #FFF;
-}
-
-.tbs {
-	 height:50px;
-	 font-size:35px;
-}
-
-.topBK{
-	background-color: #0080C0;
-}
-
-.buttonBK{
-	background-color:#09F
-}
-
-</style>
+<html><head><title>LEDÆÁÏÔÊ¾¿ØÖÆÏµÍ³</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 </head>
+<style> 
+body{ text-align:center; font-size:40px} 
+.div{ margin:0 auto; width:833px; height:470px}
+.tbs { height:50px; font-size:35px;}
+</style>
+<body  bgColor=#ffffff leftMargin=0 topMargin=10 marginwidth="0" marginheight="0">
+<div align=center class=div>
+<table style="border:1px solid #000080" height=473 cellSpacing=0 cellPadding=0 width="815">
+ <tr bgColor=#EEEEEE>
+  <td style="border-bottom: 1px solid #000080" vAlign=bottom noWrap height=60 margin=50 width="587">
+    <h3 align="center"><font color="#006699">LEDÏÔÊ¾ÆÁ¿ØÖÆÏµÍ³</font></h3>
+  </td>
+  <td style="border-bottom: 1px solid #000080" vAlign=center noWrap height=60 width="151">
+   <a href=""><img border="0" src="keil.gif" align="left" width="151" height="47"></a>
+  </td>
+  <td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="75"> 
+   <a href="index.htm"><img border="0" src="home.png" width="55" height="53"></a>
+  </td>
+ </tr>
+ <tr>
+  <td colSpan=5 height=380 vAlign=top background="llblue.jpg" style="background-repeat: repeat-y;">
+  
+  
+  
 
-<body style="font-size:40px">
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr class="topBK">
-    <td width="15%" height="30" align="center" valign="middle" >
-	<a href="javascript:history.back();">è¿”å›</a></td>
-    <td width="69%" align="center" valign="middle" >&nbsp;</td>
-    <td width="16%" align="center" valign="middle" ><a href="index.htm">ä¸»é¡µ</a></td>
-  </tr>
-  </table>
-  
-  
-  
-  
-  <tr>
-    <td height="339" colspan="3" align="center" valign="top">
-<table width="100%" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td align="center" valign="top">
-    <form id="form1" name="form1" method="get" action="">
-	<table width="800" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td height="70" align="center" valign="middle"><h3>å± å¹• æ£€ æµ‹</h3></td>
-        </tr>
-      <tr>
-        <td height="25"><input type="hidden" name="chk" id="chk"/></td>
-      </tr>
-      <tr>
-        <td height="100" align="center"><button type="button" class="tbs" onclick="power1('ALL');" style="background:#FF0"> çº¢ç»¿å…¨äº® </button>ã€€ã€€<button type="button" class="tbs" onclick="power1('RED');" style="background:#F00"> çº¢è‰²å…¨äº® </button></td>
-        </tr>
-      <tr>
-        <td height="100" align="center"><button type="button" class="tbs" onclick="power1('GREEN');" style="background:#0F0"> ç»¿è‰²å…¨äº® </button>ã€€ã€€<button type="button" class="tbs" onclick="power1('OFF');"> é€€å‡ºæ£€æµ‹ </button></td>
-        </tr>
-      <tr>
-        <td height="100" align="center">&nbsp;</td>
-        </tr>
-    </table>
-    </form>
-    
-        
-    </td>
-  </tr>
-</table>
-    </td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-</table>
-</body>
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tr><td align="center" valign="top">
+ <form id="form1" name="form1" method="get" action="">
+ <table width="800" border="0" cellpadding="0" cellspacing="0">
+ <tr><td height="70" align="center" valign="middle"><h3>ÆÁ Ä» ¼ì ²â</h3></td></tr>
+ <tr><td height="15"><input type="hidden" name="chk" id="chk"/></td></tr>
+ <tr><td height="100" align="center"><button type="button" class="tbs" onclick="power1('ALLON');" style="background:#FF0"> ºìÂÌÈ«ÁÁ </button>
+ <button type="button" class="tbs" onclick="power1('RED');" style="background:#F00"> ºìÉ«È«ÁÁ </button></td></tr>
+ <tr><td height="100" align="center"><button type="button" class="tbs" onclick="power1('GREEN');" style="background:#0F0"> ÂÌÉ«È«ÁÁ </button>
+ <button type="button" class="tbs" onclick="power1('ALLOFF');">ºìÂÌÈ«Ãğ</button></td></tr>
+ <tr><td height="100" align="center"><button type="button" class="tbs" onclick="power1('EXIT');"> ÍË³ö¼ì²â </button></td></tr>
+ <tr><td height="100" align="center">&nbsp;</td></tr></table></form></td></tr></table>
+ <SCRIPT LANGUAGE="JavaScript">
+ function power1(chkItem){
+ document.getElementById("chk").value=chkItem;
+ document.getElementById("form1").submit();}
+ </Script>
+
+
+
+
+
+
+   </td>
+  </tr><tr>
+  <td height=20 colSpan=5 align="center" valign="middle" background="llblue.jpg" style="background-repeat: repeat-y;"><label id="result"></label></td>
+ </tr></table>
+</div></body>
 </html>
-<SCRIPT  LANGUAGE="JavaScript">
-	function power1(p){
-		document.getElementById("chk").value=p;
-		document.getElementById("form1").submit();
-}
-</Script>

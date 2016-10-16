@@ -2,7 +2,7 @@ i header.inc
 t <h3 align=center>登　录　设　置</h3>
 t <form action="" method=post name=cgi><input type=hidden name=auth id=auth>
 t <table width=80% border=0 align="center">
-t <tr><td width="45%" align="right"><img src=pabb.gif height="40px">身份认证：</TD>
+t <tr><td width="45%" align="right"><img src=pabb.gif>身份认证：</TD>
 t <td width="55%">
 c l 1 <input type=radio name=au  id=authON style=width:40px;height:40px; %s>启用　
 c l 2 <input type=radio name=au  id=authOff style=width:40px;height:40px; %s>停用
@@ -18,6 +18,8 @@ t if(document.getElementById("authON").checked){
 t document.getElementById("auth").value="true";}
 t else{
 t document.getElementById("auth").value="false";}
+t document.getElementById("result").innerHTML="登录设置完成！";
 t f.submit();}
 t </script>
-. End of script must be closed with period.
+i footer.inc
+. End of script must be closed with period

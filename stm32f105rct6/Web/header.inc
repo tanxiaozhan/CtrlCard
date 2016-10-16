@@ -1,18 +1,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
-<title>LED屏显示控制系统</title>
-<style type="text/css">
-a:link {text-decoration: none;color: #FFF;}
-a:visited {text-decoration: none;color: #FFF;}
-a:hover {text-decoration: none;}
-a:active {text-decoration: none;color: #FFF;}
-.tbs {height:50px;font-size:35px;}
-.topBK{background-color: #0080C0;}
-.buttonBK{background-color:#09F}
-</style></head>
-<body background="llblue.jpg" style="background-repeat:repeat-y;font-size:40px;">
-<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-<tr class="topBK"><td width="15%" height="30" align="center" valign="middle" >
-<a href="javascript:history.back();">返回</a></td>
-<td width="69%" align="center" valign="middle" >&nbsp;</td>
-<td width="16%" align="center" valign="middle" ><a href="index.htm">主页</a></td></tr></table>
+<html><head><title>LED屏显示控制系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+</head>
+<style> 
+body{ text-align:center; font-size:40px} 
+.div{ margin:0 auto; width:833px; height:470px}
+.tbs { height:50px; font-size:35px;}
+</style>
+<body  bgColor=#ffffff leftMargin=0 topMargin=10 marginwidth="0" marginheight="0">
+<div align=center class=div>
+<table style="border:1px solid #000080" height=482 cellSpacing=0 cellPadding=0 width="815">
+<tr bgColor=#EEEEEE>
+<td style="border-bottom: 1px solid #000080" vAlign=middle noWrap height=60 margin=50 width="559">
+<h3 align="center"><font color="#006699">LED显示屏控制系统</font></h3></td>
+<td style="border-bottom: 1px solid #000080" vAlign=center noWrap height=60 width="165"><img src="logo.png" width="139" height="57" /></td>
+<td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="89"> 
+<a href="index.htm"><img border="0" src="home.png" width="55" height="53"></a></td></tr>
+<tr><td colSpan=5 height=380 vAlign=top background="llblue.jpg" style="background-repeat: repeat-y;">

@@ -15,4 +15,4 @@ a:active {text-decoration: none;color: #FFF;}
 <tr class="topBK"><td width="15%" height="30" align="center" valign="middle" >
 <a href="javascript:history.back();">·µ»Ø</a></td>
 <td width="69%" align="center" valign="middle" >&nbsp;</td>
-<td width="16%" align="center" valign="middle" ><a href="index.htm">Ö÷Ò³</a></td></tr></table>
+<td width="16%" align="center" valign="middle" ><a href="index1.htm">Ö÷Ò³</a></td></tr></table>

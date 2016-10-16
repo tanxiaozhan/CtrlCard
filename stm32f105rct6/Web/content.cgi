@@ -1,18 +1,16 @@
 i header.inc
-t <table width="100%" border="0" cellspacing="0" cellpadding="0">
-t <tr>
-t <td align="center" valign="top">
+t <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:30px">
+t <tr><td align="center" valign="top">
 t <form id="form1" name="form1" method="get" action=""><h3>内　容　管　理</h3>
-t <table width="100%" border="1" cellspacing="0" cellpadding="0">
-t <tr><td align="center">选择</td>
-t <td align="center">ID</td>
-t <td align="center">X</td>
-t <td align="center">Y</td>
-t <td align="center">宽度</td>
-t <td align="center">高度</td>
-t <td align="center">内容类型</td>
-t <td align="center">编辑</td>
-t </tr>
+t <table width="100%" cellspacing="0" cellpadding="0" style="border-top:1px solid">
+t <tr><td width="8%" align="center" class="td" >选择</td>
+t <td width="6%" align="center" class="td">ID</td>
+t <td width="12%" align="center" class="td">X</td>
+t <td width="12%" align="center" class="td">Y</td>
+t <td width="12%" align="center" class="td">宽度</td>
+t <td width="12%" align="center" class="td">高度</td>
+t <td width="16%" align="center" class="td">内容类型</td>
+t <td width="22%" align="center" style="border-bottom:1px solid #000080">编辑</td></tr>
 c c 0 area 0
 c c 1 area 1
 c c 2 area 2
@@ -29,6 +27,5 @@ t <td width="17%" height="57" align="center">&nbsp;</td></tr>
 t </table>
 t </form></td></tr>
 t </table>
-t </body>
-t </html>
-. End of script must be closed with period.
+i footer.inc
+. End of script must be closed with period
