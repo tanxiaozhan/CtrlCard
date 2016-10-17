@@ -32,6 +32,7 @@ a:active {
 .buttonBK{
 	background-color:#09F
 }
+.td{ border-bottom:1px solid #000080;border-left:1px solid #000080}
 </style>
 </head>
 
@@ -52,26 +53,26 @@ a:active {
   <tr>
    <td align="center" valign="top">
    <form id="form1" name="form1" method="get" action=""><h3>内　容　管　理</h3>
-	<table width="100%" border="1" cellspacing="0" cellpadding="0">
-	 <tr><td align="center">选择</td>
-	  <td align="center">ID</td>
-	  <td align="center">X</td>
-	  <td align="center">Ｙ</td>
-	  <td align="center">宽度</td>
-	  <td align="center">高度</td>
-	  <td align="center">内容类型</td>
-	  <td align="center">编辑</td>
+	<table width="100%" cellspacing="0" cellpadding="0" style="border-top:1px solid" >
+	 <tr><td align="center" class="td">选择</td>
+	  <td align="center" class="td">ID</td>
+	  <td align="center" class="td">X</td>
+	  <td align="center" class="td">Ｙ</td>
+	  <td align="center" class="td">宽度</td>
+	  <td align="center" class="td">高度</td>
+	  <td align="center" class="td">内容类型</td>
+	  <td align="center" class="td" style="border-right:1px solid #000080">编辑</td>
 	 </tr>
 	 <tr>
-	  <td align="center">
+	  <td align="center" class="td">
       <input name="chkbox" type="checkbox" class="tbs" id="chkbox" style="width:40px;height:40px" /></td>
-	  <td align="center">1</td>
-      <td align="center">32</td>
-	  <td align="center">64</td>
-	  <td align="center">64</td>
-	  <td align="center">32</td>
-	  <td align="center">文本</td>
-	  <td align="center">
+	  <td align="center" class="td">1</td>
+      <td align="center" class="td">32</td>
+	  <td align="center" class="td">64</td>
+	  <td align="center" class="td">64</td>
+	  <td align="center" class="td">32</td>
+	  <td align="center" class="td">文本</td>
+	  <td align="center" class="td" style="border-right:1px solid #000080">
       <button class="tbs" type="button" onclick="window.location='edit.html?areaNo'">内容编辑</button>
 	  <p><button class="tbs" type="button" onclick="window.location='areaEdit.html?areaNo'">分区编辑</button></p></td>
 	 </tr>

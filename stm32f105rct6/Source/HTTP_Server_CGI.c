@@ -151,7 +151,26 @@ void netCGI_ProcessQuery (const char *qstr) {
 				//¿ª»ú
 				LED_display_start();
 			}
-			
+			else if (strncmp (var, "chk=ALLON", 9) == 0) {
+				//ÆÁÄ»¼ì²â£¬ºìÂÌÈ«ÁÁ
+				check_screen(true,true,true);
+			}
+			else if (strncmp (var, "chk=RED", 7) == 0) {
+				//ÆÁÄ»¼ì²â£¬ºìÉ«
+				check_screen(true,true,false);
+			}
+			else if (strncmp (var, "chk=GREEN", 9) == 0) {
+				//ÆÁÄ»¼ì²â
+				check_screen(true,false,true);
+			}
+			else if (strncmp (var, "chk=ALLOFF", 10) == 0) {
+				//ÆÁÄ»¼ì²â£¬È«Ãð
+				check_screen(true,false,false);
+			}
+			else if (strncmp (var, "chk=EXIT", 8) == 0) {
+				//ÍË³öÆÁÄ»¼ì²â
+				check_screen(false,false,false);
+			}			
     }
   } while (qstr);
 }
@@ -276,18 +295,18 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
     case 'c':
       //ÄÚÈÝ¹ÜÀí
 			id=(uint8_t)env[2]-48;
-			if( area[id].width<1 || area[id].height<1 )
+			if( area[id].width<1 || area[id].height<1 )   //ÏÔÊ¾·ÖÇøÊÇ·ñ´æÔÚ
 				break;
 				
-				len += sprintf(buf+len,"<tr><td align=center>");
+				len += sprintf(buf+len,"<tr><td align=center class=td>");
 				len += sprintf(buf+len,"<input name=delArea%d type=checkbox class=tbs style=width:40px;height:40px/></td>",id);
-				len += sprintf(buf+len,"<td align=center>%d</td>",id+1);
-				len += sprintf(buf+len,"<td align=center>%d</td>",area[id].x);
-				len += sprintf(buf+len,"<td align=center>%d</td>",area[id].y);
-				len += sprintf(buf+len,"<td align=center>%d</td>",area[id].width);
-				len += sprintf(buf+len,"<td align=center>%d</td>",area[id].height);
-				len += sprintf(buf+len,"<td align=center>%d</td>",area[id].content_type);
-				len += sprintf(buf+len,"<td align=center>");
+				len += sprintf(buf+len,"<td align=center class=td>%d</td>",id+1);
+				len += sprintf(buf+len,"<td align=center class=td>%d</td>",area[id].x);
+				len += sprintf(buf+len,"<td align=center class=td>%d</td>",area[id].y);
+				len += sprintf(buf+len,"<td align=center class=td>%d</td>",area[id].width);
+				len += sprintf(buf+len,"<td align=center class=td>%d</td>",area[id].height);
+				len += sprintf(buf+len,"<td align=center class=td>%d</td>",area[id].content_type);
+				len += sprintf(buf+len,"<td align=center style='border-bottom:1px solid #000080'>");
 				len += sprintf(buf+len,"<button class=tbs type=button onclick=\"window.location='edit.cgi?areaNo=%d'\">ÄÚÈÝ±à¼­</button>",id+1);
 				len += sprintf(buf+len,"<p><button class=tbs type=button onclick=\"window.location='areaEdit.cgi?areaNo=%d'\">·ÖÇø±à¼­</button></p></td></tr>",id+1);
 				break;

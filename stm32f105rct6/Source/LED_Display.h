@@ -51,6 +51,8 @@ typedef struct{
 	uint8_t y;          //分区起点的Y坐标
 	uint8_t width;      //分区宽度
 	uint8_t height;
+	uint8_t red;        //颜色，1-红色，0-不显示
+	uint8_t green;      //颜色，1-绿色，0-不显示
 	uint8_t ani_in;         //显示进入的特效
 	uint8_t ani_out;        //显示退出的特效
 	uint8_t speed;      //显示效果中点阵的移动速度
@@ -73,4 +75,6 @@ void LED_display_start(void);
 void LED_display_power_off(void);
 
 void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, bool point);
-void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_width, uint8_t screen_height);
+void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff_red, uint8_t * pdot_buff_green, uint8_t screen_width, uint8_t screen_height);
+void check_screen(bool check, bool check_red, bool check_green);  //进入/退出屏幕检测
+void buffer_to_display(void);

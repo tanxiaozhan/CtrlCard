@@ -6,6 +6,7 @@
 body{ text-align:center; font-size:40px} 
 .div{ margin:0 auto; width:833px; height:470px}
 .tbs { height:50px; font-size:35px;}
+.td{ border-bottom:1px solid #000080; border-right:1px solid #000080}
 </style>
 <body  bgColor=#ffffff leftMargin=0 topMargin=10 marginwidth="0" marginheight="0">
 <div align=center class=div>

@@ -17,17 +17,25 @@
 osThreadId LED_display_thread_id;   //显示线程id，创建/中止此线程控制显示的开关
 
 bool power_on=false;  //显示屏开机/关机
+bool check_on=false;  //屏幕检测中
 
 screen_para screen;        //显示屏参数
 area_para area[MAX_AREA_NUMBER];           //显示区参数
 
 uint8_t max_len=0;    // 各显示中显示字符最长的长度
-uint8_t screen_dot[32][8];    //保存当前显示的一屏点阵数据
+uint8_t screen_dot_red[32][8];    //保存当前显示的一屏点阵数据
+uint8_t screen_dot_green[32][8];   //保存当前显示的一屏绿色点阵数据
 
 uint8_t current_row_dot[MAX_STRING_LENGTH];   //该数组保存了当前显示行的点阵数据
 
+//显示主线程
 static void LED_Display(void const *arg);
 osThreadDef(LED_Display, osPriorityAboveNormal, 1, 0);
+
+//屏幕检测
+static void check_Display(void const *arg);
+osThreadDef(check_Display, osPriorityAboveNormal, 1, 0);
+
 
 /*----------------------------------------------------------------------------
  * 线程'LED_Dispaly'：LED显示屏扫描显示
@@ -49,7 +57,8 @@ static void LED_Display (void const *arg) {
 		//清空显存，cve即用0xFF给显存数组赋值
 		for(row=0;row<32;row++){      
 			for(scan=0;scan<8;scan++){
-				screen_dot[row][scan]=0xFF;
+				screen_dot_red[row][scan]=0xFF;
+				screen_dot_green[row][scan]=0xFF;
 			}
 		}
 	
@@ -87,7 +96,8 @@ static void LED_Display (void const *arg) {
 				if( startX[area_no]+v_col >= area[area_no].width && startX[area_no]+v_col < area[area_no].width+area[area_no].length*8 ){
 					dot = startX[area_no]+v_col-area[area_no].width ;
 					dot = current_row_dot[dot/8] & ( 0x80 >> (dot%8)) ;
-					fill_point( (uint8_t *)screen_dot, screen.width/8, col, row ,dot ) ;
+					if(area[area_no].red) fill_point( (uint8_t *)screen_dot_red, screen.width/8, col, row ,dot ) ;
+					if(area[area_no].green) fill_point( (uint8_t *)screen_dot_green, screen.width/8, col, row ,dot ) ;
 				}
 				col++;
 			}
@@ -103,49 +113,26 @@ static void LED_Display (void const *arg) {
 	}
 //到此，显存点阵数据写入完成
 
-	
-	//确定扫描类型	
-	switch(screen.scan_type){
-		case SCAN_16:                   //1/16扫描
-			break;
-		
-		case SCAN_8_LINE_1FOR8ROW:          //1/8直线走线，一路数据带8行
-			break;
-		
-		case SCAN_8_UP_TO_DOWN_1FOR16ROW:   //1/8上蛇行，一路数据带16行，8行折列
-			break;
-		
-		
-		case SCAN_8_DOWN_TO_UP_1FOR16ROW:   //1/8下蛇行，一路数据带16行，8行折列
-			break;
-		
-		case SCAN_4_LINE_1FOR4_ROW:         //1/4直线走线，一路数据带4行
-			break;
+	//显示一屏，将显存中的数据显示在屏幕上
+	buffer_to_display();
 
-		case 	SCAN_4_UP_TO_DOWN_1FOR16ROW:   //1/4上蛇行，一路数据带16行，8行折列
-			dispay_scan_4_up_to_down_1for16row((uint8_t *)screen_dot, screen.width, screen.height );
-			break;
-		
-		case SCAN_4_DOWN_TO_UP_1FOR16ROW:   //1/4下蛇行，一路数据带16行
-			break;
-		
-		case SCAN_4_UP_TO_DOWN_1FOR8ROW:    //1/4上蛇行，一路数据带8行
-			break;
-		
-		case SCAN_4_DOWN_TO_UP_1FOR8ROW:   //1/4下蛇行，一路数据带8行
-			break;
 	}
-//osDelay(1);
-}
 
 }
 
-
+/*----------------------------------------------------------------------------
+ * 线程'check_Dispaly'：屏幕检测
+ *---------------------------------------------------------------------------*/
+static void check_Display (void const *arg) {
+	while(1){	
+		buffer_to_display();
+	}
+}
 
 /*
  *------------------------------------------------------------------------------------
  *
- *	 在(x,y)处显示一个点，实际上在显存中(x,y)处设置一个比特位的值，0-显示，1-不显示
+ * 在(x,y)处显示一个点，实际上在显存中(x,y)处设置一个比特位的值，0-显示，1-不显示
  * 参数：pbuff
  *       screen_width   屏宽，字节为单位，即屏宽像素占多少字节
  *       screen_height  屏高
@@ -169,6 +156,53 @@ void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, boo
 /*
  *------------------------------------------------------------------------------------
  *
+ * 显示一屏，即将显存的信息显示在屏幕上 
+ * 参数：pbuff
+ *       screen_width   屏宽，字节为单位，即屏宽像素占多少字节
+ *       screen_height  屏高
+ *
+ *------------------------------------------------------------------------------------
+*/
+void buffer_to_display(void){
+	//确定扫描类型	
+	switch(screen.scan_type){
+		case SCAN_16:                   //1/16扫描
+			break;
+		
+		case SCAN_8_LINE_1FOR8ROW:          //1/8直线走线，一路数据带8行
+			break;
+		
+		case SCAN_8_UP_TO_DOWN_1FOR16ROW:   //1/8上蛇行，一路数据带16行，8行折列
+			break;
+		
+		
+		case SCAN_8_DOWN_TO_UP_1FOR16ROW:   //1/8下蛇行，一路数据带16行，8行折列
+			break;
+		
+		case SCAN_4_LINE_1FOR4_ROW:         //1/4直线走线，一路数据带4行
+			break;
+
+		case 	SCAN_4_UP_TO_DOWN_1FOR16ROW:   //1/4上蛇行，一路数据带16行，8行折列
+			dispay_scan_4_up_to_down_1for16row((uint8_t *)screen_dot_red, (uint8_t *)screen_dot_green,screen.width, screen.height);
+			break;
+		
+		case SCAN_4_DOWN_TO_UP_1FOR16ROW:   //1/4下蛇行，一路数据带16行
+			break;
+		
+		case SCAN_4_UP_TO_DOWN_1FOR8ROW:    //1/4上蛇行，一路数据带8行
+			break;
+		
+		case SCAN_4_DOWN_TO_UP_1FOR8ROW:   //1/4下蛇行，一路数据带8行
+			break;
+	}
+//osDelay(1);
+}
+
+
+
+/*
+ *------------------------------------------------------------------------------------
+ *
  * 将显存（即screen_dot数组） 的数据显示到显示屏
  * 参数：pbuff          显存指针，指向保存了一屏点阵数据的数组
  *       screen_width   屏宽多少像素
@@ -176,7 +210,7 @@ void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, boo
  *
  *------------------------------------------------------------------------------------
 */
-void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_width, uint8_t screen_height){	
+void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff_red, uint8_t * pdot_buff_green, uint8_t screen_width, uint8_t screen_height){	
 	uint8_t scan_rows=4;   // 1/4扫描  
 	uint8_t scan, i, j;
 	uint8_t row, col;   //当前行、列
@@ -190,10 +224,16 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff, uint8_t screen_widt
 				scan=0x80;
 				for(j=0;j<8;j++){
 					CLK(OFF);     
-					PORT_12_1_R( *(pdot_buff + (12-4*i+row)*screen_width_bytes + col) & scan );
-					PORT_12_2_R( *(pdot_buff + (12-4*i+row+16)*screen_width_bytes + col) & scan );
-					PORT_12_3_R( *(pdot_buff + (12-4*i+row+32)*screen_width_bytes + col) & scan );
-					PORT_12_4_R( *(pdot_buff + (12-4*i+row+48)*screen_width_bytes + col) & scan );
+					PORT_12_1_R( *(pdot_buff_red + (12-4*i+row)*screen_width_bytes + col) & scan );
+					PORT_12_2_R( *(pdot_buff_red + (12-4*i+row+16)*screen_width_bytes + col) & scan );
+					PORT_12_3_R( *(pdot_buff_red + (12-4*i+row+32)*screen_width_bytes + col) & scan );
+					PORT_12_4_R( *(pdot_buff_red + (12-4*i+row+48)*screen_width_bytes + col) & scan );
+					
+					PORT_12_1_G( *(pdot_buff_green + (12-4*i+row)*screen_width_bytes + col) & scan );
+					PORT_12_2_G( *(pdot_buff_green + (12-4*i+row+16)*screen_width_bytes + col) & scan );
+					PORT_12_3_G( *(pdot_buff_green + (12-4*i+row+32)*screen_width_bytes + col) & scan );
+					PORT_12_4_G( *(pdot_buff_green + (12-4*i+row+48)*screen_width_bytes + col) & scan );
+
 					CLK(ON);       //594移位信号
 					scan >>= 1;
 				}
@@ -240,6 +280,52 @@ void LED_display_power_off(void){
 		power_on=false;
 	}
 }
+
+/*
+	********************************************************
+	*
+	*  进入/退出屏幕检测
+	*
+	********************************************************
+*/
+void check_screen(bool check, bool check_red, bool check_green){
+
+	uint8_t row, col;
+	uint8_t red, green;
+	if(check_red)
+		red=0x0;
+	else
+		red=0xFF;
+	
+	if(check_green)
+		green=0x0;
+	else
+		green=0xFF;
+	for(row=0;row<screen.height;row++){      
+		for(col=0;col<screen.width/8 ;col++){
+			screen_dot_red[row][col]=red;
+			screen_dot_green[row][col]=green;
+		}
+	}
+	
+	//进入屏幕检测
+	if(check && !check_on){      
+		if(osThreadTerminate(LED_display_thread_id) == osOK ){
+			LED_display_thread_id=osThreadCreate(osThread(check_Display),NULL);
+			check_on=true;
+		}
+	}
+	
+	//退出屏幕检测
+	if(!check && check_on){     
+		if(osThreadTerminate(LED_display_thread_id) == osOK){
+			LED_display_thread_id = osThreadCreate(osThread(LED_Display), NULL);
+			check_on=false;
+		}
+	}
+}
+
+
 
 /*
 	********************************************************

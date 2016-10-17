@@ -14,7 +14,7 @@
         <TargetCommonOption>
           <Device>STM32F103VE</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F1xx_DFP.2.1.0</PackID>
+          <PackID>Keil.STM32F1xx_DFP.2.0.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x08000000,0x80000) IRAM(0x20000000,0x10000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -583,56 +583,6 @@
               <FilePath>.\Web\logo.png</FilePath>
             </File>
             <File>
-              <FileName>areaEdit1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\areaEdit1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>areaSet1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\areaSet1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>auth1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\auth1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>content1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\content1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>edit1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\edit1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>index1.htm</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\index1.htm</FilePath>
-            </File>
-            <File>
-              <FileName>password1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\password1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>power1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\power1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>screenSet1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\screenSet1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>setTime1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web1\setTime1.cgi</FilePath>
-            </File>
-            <File>
               <FileName>back.png</FileName>
               <FileType>9</FileType>
               <FilePath>.\Web\back.png</FilePath>
@@ -662,6 +612,76 @@
               <FileType>9</FileType>
               <FilePath>.\Web\scan.cgi</FilePath>
             </File>
+            <File>
+              <FileName>areaEdit1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\areaEdit1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>areaSet1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\areaSet1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>auth1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\auth1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>chkScreen1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\chkScreen1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>content1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\content1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>edit1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\edit1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>info1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\info1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>password1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\password1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>power1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\power1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>scan1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\scan1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>screenSet1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\screenSet1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>setTime1.cgi</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\setTime1.cgi</FilePath>
+            </File>
+            <File>
+              <FileName>index1.htm</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\index1.htm</FilePath>
+            </File>
+            <File>
+              <FileName>header1.inc</FileName>
+              <FileType>9</FileType>
+              <FilePath>.\Web\header1.inc</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -669,7 +689,7 @@
           <Files>
             <File>
               <FileName>scan_type.jpg</FileName>
-              <FileType>9</FileType>
+              <FileType>5</FileType>
               <FilePath>.\Doc\scan_type.jpg</FilePath>
             </File>
             <File>
