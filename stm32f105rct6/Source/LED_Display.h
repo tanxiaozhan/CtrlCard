@@ -30,8 +30,8 @@ typedef enum{
 
 //LED显示屏参数
 typedef struct{
-	uint8_t width;         //屏宽（像素）
-	uint8_t height;        //屏高
+	uint16_t width;         //屏宽（像素）
+	uint16_t height;        //屏高
 	uint8_t light;         //亮度
 	led_display_color color;         //单色/双色屏
 	module_scan_type scan_type;     //扫描方式，1/4、1/8、1/16扫描及走线，如1/4直线、上蛇形等
@@ -44,7 +44,7 @@ typedef enum{
 	TEXT             //文本类型
 }area_content_type;
 
-//显示屏各个区的参数
+//显示屏各显示区参数
 typedef struct{
 	uint8_t id;         //区号
 	uint8_t x;          //分区起点的X坐标

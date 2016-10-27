@@ -40,6 +40,5 @@ scan1.cgi,
 screenSet1.cgi,
 setTime1.cgi,
 index1.htm,
-header1.inc,
-..\Doc\scan_type.jpg 
+header1.inc 
 TO Web.c RTE NOPRINT ROOT(Web)

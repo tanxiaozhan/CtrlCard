@@ -36,7 +36,6 @@ extern area_para area[MAX_AREA_NUMBER];           //显示区参数
 
 extern bool power_on;
 
-char IP_Addr[20];
 extern bool LEDrun;
 
 char current_area=0;   //当前显示区号
@@ -74,7 +73,7 @@ void netCGI_ProcessQuery (const char *qstr) {
   char var[40];
 	/*时间结构体*/
 	struct rtc_time real_time;
-	
+	char buff[2];
 	//printf("cgi_process. qstr:%s\n",qstr);
   do {
     // Loop through all the parameters
@@ -90,30 +89,44 @@ void netCGI_ProcessQuery (const char *qstr) {
 			else if (strncmp (var, "X=", 2) == 0) {
         //显示区起始X坐标
 				area[current_area].x=atoi(&var[2]);
+				sprintf(buff,"%c%c",area[current_area].x/256,area[current_area].x%256);
+				SPI_FLASH_BufferWrite((uint8_t *)buff, (current_area+1)*100+1, 2);
       }
       else if (strncmp (var, "Y=", 2) == 0) {
         //显示区起始Y坐标
 				area[current_area].y=atoi(&var[2]);
+				sprintf(buff,"%c%c",area[current_area].y/256,area[current_area].y%256);
+				SPI_FLASH_BufferWrite((uint8_t *)buff, (current_area+1)*100+3, 2);
       }
       else if (strncmp (var, "Width=", 6) == 0) {
         //显示区宽度
 				area[current_area].width=atoi(&var[6]);
+				sprintf(buff,"%c%c",area[current_area].width/256,area[current_area].width%256);
+				SPI_FLASH_BufferWrite((uint8_t *)buff, (current_area+1)*100+5, 2);
       }
       else if (strncmp (var, "Height=", 7) == 0) {
         //显示区高度
 				area[current_area].height=atoi(&var[7]);
+				sprintf(buff,"%c%c",area[current_area].height/256,area[current_area].height%256);
+				SPI_FLASH_BufferWrite((uint8_t *)buff, (current_area+1)*100+7, 2);
       }
       else if (strncmp (var, "ScreenWidth=", 12) == 0) {
-        // 显示区起始X坐标
+        // 屏幕宽
 				screen.width=atoi(&var[12]);
+				sprintf(buff,"%c%c",screen.width/256,screen.width%256);
+				SPI_FLASH_BufferWrite((uint8_t *)buff, 0, 2);
       }
       else if (strncmp (var, "ScreenHeight=", 13) == 0) {
-        // 显示区起始X坐标
+        // 屏幕高
 				screen.height=atoi(&var[13]);
+				sprintf(buff,"%c%c",screen.height/256,screen.height%256);
+				SPI_FLASH_BufferWrite((uint8_t *)buff, 2, 2);
       }
       else if (strncmp (var, "ScreenLight=", 12) == 0) {
-        // 显示区起始X坐标
+        // 屏幕亮度
 				screen.light=atoi(&var[12]);
+				sprintf(buff,"%c%c",screen.light/256,screen.light%256);
+				SPI_FLASH_BufferWrite((uint8_t *)buff, 4, 2);
       }
       else if (strncmp (var, "delArea=T", 9) == 0) {
 				  //删除显示分区
@@ -204,15 +217,19 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
         //更新显示数据
 				strcpy((char *)area[current_area].display_data,var+4);
 				area[current_area].length=strlen((char *)area[current_area].display_data);
+				SPI_FLASH_BufferWrite(area[current_area].display_data, (current_area+1)*100+16, area[current_area].length);
+				
       }
 			else if (strncmp (var, "auth=true", 9) == 0) {
 				//打开身份认证
 				//http_EnAuth=true;
 				netHTTPs_LoginOnOff (true);
+				SPI_FLASH_BufferWrite((uint8_t *)"T", 50, 1);
 			}
 			else if (strncmp (var, "auth=false", 10) == 0) {
 				//关闭身份认证
 				netHTTPs_LoginOnOff (false);
+				SPI_FLASH_BufferWrite((uint8_t *)"F", 50, 1);
 			}
       else if ((strncmp (var, "pw0=", 4) == 0) ||
                (strncmp (var, "pw2=", 4) == 0)) {
@@ -224,6 +241,8 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
           else if (strcmp (passw, var+4) == 0) {
             // 二次输入的密码相同
             strcpy (http_auth_passw, passw);
+						SPI_FLASH_BufferWrite((uint8_t *)passw, 51, strlen(passw));
+
           }
         }
       }

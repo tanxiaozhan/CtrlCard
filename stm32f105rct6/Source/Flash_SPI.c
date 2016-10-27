@@ -611,7 +611,6 @@ int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c, uint8_t rowNo)
 		//SPI_FLASH_BufferRead(pBuffer,4096+pos,32);
 		SPI_FLASH_BufferRead(pBuffer,4096+pos+rowNo*2,2);
 
-	  //printf ( "%02x %02x %02x %02x\n", pBuffer[0],pBuffer[1],pBuffer[2],pBuffer[3]);
 	
 		return 0;  
      
