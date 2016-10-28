@@ -334,45 +334,76 @@ void check_screen(bool check, bool check_red, bool check_green){
 */
 void LED_display_init(void){
 	
-	uint8_t i;
+	uint8_t i,j;
 	uint8_t pBuff[100];
-	uint8_t buf[2];
 	Port_08_12_GPIO_Config();    //初始化控制卡08、12输出接口用到的GPIO引脚
-	buf[0]=0x00;
-	buf[1]=0x40;
-	//从外部闪存读取显示屏参数
-	SPI_FLASH_BufferWrite(buf,0,2);
-	
-	SPI_FLASH_BufferWrite(buf,2,2);
-	SPI_FLASH_BufferWrite(buf,6,2);
-	
-	SPI_FLASH_BufferRead(pBuff,0,9);
-	screen.width =(((uint16_t)pBuff[0]) <<16) + (uint16_t)pBuff[1] ;
-	screen.height=(((uint16_t)pBuff[2]) <<16) + (uint16_t)pBuff[3] ;
-	screen.light=(((uint16_t)pBuff[4]) <<16) + (uint16_t)pBuff[5] ;
-	screen.color=pBuff[6];
-	screen.scan_type=SCAN_4_UP_TO_DOWN_1FOR16ROW;
-	screen.scan_type=pBuff[7];
-	screen.area_number =pBuff[8];    //显示分区数
 
+	//从外部闪存读取显示屏参数
+	SPI_FLASH_BufferRead(pBuff,0,9);
+	if(pBuff[0]==0xFF){
+		screen.width=64;
+		screen.height=32;
+		screen.light=100;
+		screen.color=SINGLE;
+		screen.area_number=MAX_AREA_NUMBER;
+		screen.scan_type=SCAN_4_UP_TO_DOWN_1FOR16ROW;
+	}
+	else{
+		screen.width =(((uint16_t)pBuff[0]) <<16) + (uint16_t)pBuff[1] ;
+		screen.height=(((uint16_t)pBuff[2]) <<16) + (uint16_t)pBuff[3] ;
+		screen.light= (((uint16_t)pBuff[4]) <<16) + (uint16_t)pBuff[5] ;
+		if(pBuff[6]==0)
+			screen.color=SINGLE;
+			else if(pBuff[6]==1)
+				screen.color=DOUBLE;
+			else
+				screen.color=COLOR;
+	
+		screen.scan_type=SCAN_4_UP_TO_DOWN_1FOR16ROW;
+		screen.area_number =pBuff[8];    //显示分区数
+		if(screen.area_number>MAX_AREA_NUMBER)
+			screen.area_number=MAX_AREA_NUMBER;
+	}
 	//从外部闪存读取各显示区参数
-	for(i=0;i<screen.area_number;i++){
+	for(i=0;i<MAX_AREA_NUMBER;i++){
 		//显示区参数保存在外部闪存，地址从0100开始，每区参数数据占用100字节
 		SPI_FLASH_BufferRead(pBuff, (i+1)*100, 100);
-
-		area[i].id=pBuff[0];
-		area[i].x=(((uint16_t)pBuff[1]) <<16) + (uint16_t)pBuff[2];
-		area[i].y=(((uint16_t)pBuff[3]) <<16) + (uint16_t)pBuff[4];
-		area[i].width=(((uint16_t)pBuff[5]) <<16) + (uint16_t)pBuff[6];
-		area[i].height=(((uint16_t)pBuff[7]) <<16) + (uint16_t)pBuff[8];
-		area[i].red=pBuff[9];
-		area[i].green =pBuff[10];
-		area[i].ani_in=pBuff[11];
-		area[i].ani_out=pBuff[12];
-		area[i].speed=pBuff[13];
-		area[i].content_type=TEXT;
-		area[i].length=pBuff[15];
-		//area[i].length=strlen((char *)area[i].display_data);
-		strcpy((char *)area[i].display_data, (char *)pBuff+16 );
+		
+		if(pBuff[0]<MAX_AREA_NUMBER){  //显示分区号正确，初始化分区参数，反之，清除分区参数
+			area[i].id=pBuff[0];
+			area[i].x=(((uint16_t)pBuff[1]) <<16) + (uint16_t)pBuff[2];
+			area[i].y=(((uint16_t)pBuff[3]) <<16) + (uint16_t)pBuff[4];
+			area[i].width=(((uint16_t)pBuff[5]) <<16) + (uint16_t)pBuff[6];
+			area[i].height=(((uint16_t)pBuff[7]) <<16) + (uint16_t)pBuff[8];
+			area[i].red=pBuff[9];
+			area[i].green =pBuff[10];
+			area[i].ani_in=pBuff[11];
+			area[i].ani_out=pBuff[12];
+			area[i].speed=pBuff[13];
+			area[i].content_type=TEXT;
+			area[i].length=pBuff[15];
+			//area[i].length=strlen((char *)area[i].display_data);
+			if(area[i].length>MAX_STRING_LENGTH)
+				area[i].length=MAX_STRING_LENGTH;
+			
+			for(j=0;j<area[i].length;j++)
+					area[i].display_data[j]=pBuff[j+16];
+		}
+		else
+			del_area(i);
 	}
+}
+
+//删除显示分区
+//参数：area_no 显示分区号，0-2
+void del_area(uint8_t area_no){
+	area[area_no].width=0;
+	area[area_no].height=0;
+	area[area_no].x=0;
+	area[area_no].y=0;
+	area[area_no].content_type=TEXT;
+	area[area_no].ani_in=0;
+	area[area_no].ani_out=0;
+	area[area_no].length=0;
+	area[area_no].display_data[0]='\0';
 }

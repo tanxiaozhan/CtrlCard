@@ -1,4 +1,4 @@
-i header.inc
+i header1.inc
 t <h3 align=center>ĞŞ¡¡¸Ä¡¡ÃÜ¡¡Âë</h3>
 t <form action="" method=post name=cgi>
 t <table width=80% border=0 align="center">

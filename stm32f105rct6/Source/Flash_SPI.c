@@ -6,13 +6,6 @@
   * @date    2013-xx-xx
   * @brief   spi flash 底层应用函数bsp 
   ******************************************************************************
-  * @attention
-  *
-  * 实验平台:野火 iSO STM32 开发板 
-  * 论坛    :http://www.chuxue123.com
-  * 淘宝    :http://firestm32.taobao.com
-  *
-  ******************************************************************************
   */
   
 #include "flash_spi.h"
@@ -589,29 +582,23 @@ static  uint16_t SPI_TIMEOUT_UserCallback(void)
   return 0;
 }
    
-/*********************************************END OF FILE**********************/
 /*******************************************************************************
 * Function Name  : GetGBKCode_from_FLASH
 *
 * rwoNo 读取汉字点阵中（共16行）的第几行，共读取2个字节
 *
 *******************************************************************************/ 
-
 int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c, uint8_t rowNo)
 { 
     unsigned char High8bit,Low8bit;
     unsigned int pos;
-
 	
     High8bit= c >> 8;     /* 取高8位数据 */
     Low8bit= c & 0x00FF;  /* 取低8位数据 */	
-	
 	  
     pos = ((High8bit-0xa0-16)*94+Low8bit-0xa0-1)*2*16;
 		//SPI_FLASH_BufferRead(pBuffer,4096+pos,32);
 		SPI_FLASH_BufferRead(pBuffer,4096+pos+rowNo*2,2);
-
 	
 		return 0;  
-     
 }

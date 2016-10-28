@@ -78,3 +78,4 @@ void fill_point(uint8_t * pbuff, uint8_t screen_width, uint8_t x, uint8_t y, boo
 void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff_red, uint8_t * pdot_buff_green, uint8_t screen_width, uint8_t screen_height);
 void check_screen(bool check, bool check_red, bool check_green);  //½øÈë/ÍË³öÆÁÄ»¼ì²â
 void buffer_to_display(void);
+void del_area(uint8_t area_no);
