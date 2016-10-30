@@ -1,9 +1,9 @@
 i header.inc
-t <table width="600" border="0" cellpadding="0" cellspacing="0">
-t <tr><td height="84" colspan="2" align="center" valign="middle"><h3>ç³» ç»Ÿ ä¿¡ æ¯</h3></td></tr>
-t <tr><td width="218" height="80">ç¡¬ä»¶ç‰ˆæœ¬ï¼š</td><td width="382">&nbsp;</td></tr>
-t <tr><td height="80">è½¯ä»¶ç‰ˆæœ¬ï¼š</td><td>&nbsp;</td></tr>
-t <tr><td height="80">äº§ å“ IDï¼š</td><td>&nbsp;</td></tr>
+t <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+t <tr><td height="84" colspan="2" align="center" valign="middle"><h3>Ïµ Í³ ĞÅ Ï¢</h3></td></tr>
+t <tr><td width="290" height="80" align="right">Ó²¼ş°æ±¾£º</td><td width="310">NL1610</td></tr>
+t <tr><td height="80" align="right">Èí¼ş°æ±¾£º</td><td>V 1.0.0</td></tr>
+t <tr><td height="80" align="right">²ú Æ· ID£º</td><td>&nbsp;</td></tr>
 t <tr><td height="80">&nbsp;</td><td>&nbsp;</td></tr></table>
 i footer.inc
 . End of script must be closed with period

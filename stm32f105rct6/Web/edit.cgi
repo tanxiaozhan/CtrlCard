@@ -35,7 +35,7 @@ t <option value="2">底端对齐</option>
 t </select></td></tr>
 t </table></td></tr>
 t <tr><td height="92">
-c e t <textarea name=txt id=txt cols=60 rows=5 class=tbs style=height:200px>%s
+c e t <textarea name=txt id=txt cols=30 rows=5 class=tbs style=height:200px>%s
 t </textarea></td></tr>
 t </table>
 t <table width="90%" border="0" cellspacing="0" cellpadding="0">
@@ -59,4 +59,5 @@ t if( confirm("确认删除该分区吗？") ){
 t document.getElementById("delArea").value="T";
 t f.submit();}}
 t </Script>
+i footer.inc
 . End of script must be closed with period.

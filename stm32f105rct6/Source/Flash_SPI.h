@@ -62,7 +62,7 @@
 #define SPI_FLASH_CS_HIGH()     GPIO_SetBits(macFLASH_CS_GPIO_PORT, macFLASH_CS_PIN)			  //设置为高电平 GPIO_SetBits(FLASH_CS_GPIO_PORT, FLASH_CS_PIN)
 
 /*等待超时时间*/
-#define SPIT_FLAG_TIMEOUT         ((uint32_t)0x1000)
+#define SPIT_FLAG_TIMEOUT         ((uint32_t)0x1500)
 #define SPIT_LONG_TIMEOUT         ((uint32_t)(10 * SPIT_FLAG_TIMEOUT))
 
 /*信息输出*/

@@ -82,7 +82,9 @@ void save_display_para_to_flash(void){
 		buff[0]=0;
 	
 	SPI_FLASH_BufferWrite(buff, 50, 1);
+
 	strcpy((char *)buff,netHTTPs_GetPassword());
+	
   SPI_FLASH_BufferWrite(buff, 0, strlen((char *)buff));
 	
 	//保存各显示区参数
@@ -105,8 +107,8 @@ void save_display_para_to_flash(void){
 		buff[15]=area[i].length;
 
 	  SPI_FLASH_BufferWrite(buff, (i+1)*100, 16);
+		SPI_FLASH_BufferWrite(area[i].display_data, (i+1)*100+16, area[i].length);
 		
-		SPI_FLASH_BufferWrite(area[i].display_data, (i+1)*100, area[i].length);
 	}
 }
 
@@ -246,7 +248,6 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
         //更新显示数据
 				strcpy((char *)area[current_area].display_data,var+4);
 				area[current_area].length=strlen((char *)area[current_area].display_data);
-				printf("\r\ntext len:%d\r\n",area[current_area].length);
 				save_display_para_to_flash();
       }
 			else if (strncmp (var, "auth=true", 9) == 0) {

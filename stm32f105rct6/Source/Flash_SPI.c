@@ -527,13 +527,11 @@ void SPI_FLASH_WaitForWriteEnd(void)
     and put the value of the status register in FLASH_Status variable */
     FLASH_Status = SPI_FLASH_SendByte(Dummy_Byte);	 
 
-    {
       if((SPITimeout--) == 0) 
       {
         SPI_TIMEOUT_UserCallback();
         return;
       }
-    } 
   }
   while ((FLASH_Status & WIP_Flag) == SET); /* Write in progress */
 
