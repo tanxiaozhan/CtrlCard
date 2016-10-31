@@ -50,7 +50,7 @@ bool wifi_softap_setup( void ){
     wifi_softap_get_config(config); // Get soft-AP config first.
     os_sprintf(config->ssid, ESP_AP_SSID,softap_mac[3],softap_mac[4],softap_mac[5]);
     os_sprintf(config->password, ESP_AP_PASSWORD);
-    config->authmode = AUTH_OPEN;
+    config->authmode = AUTH_WPA2_PSK;
     config->ssid_len = 0;        // or its actual SSID length
     config->max_connection = 2;
 

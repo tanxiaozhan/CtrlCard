@@ -2017,89 +2017,173 @@ Disassembly of section .text:
 401013a6:	124024        	excw
 
 401013a8 <wifi_softap_setup>:
-401013a8:	c0c112        	addi	a1, a1, -64
+ 设置ESP8266为AP模式，并设置IP及DHCP服务器地址池
+参数：无
+返回：无
+*******************************************************
+*/
+bool wifi_softap_setup( void ){
+401013a8:	d0c112        	addi	a1, a1, -48
+
+    bool ap_init_result;   //记录wifi_softap初始化结果
+
+	ap_init_result = wifi_set_opmode(SOFTAP_MODE);
 401013ab:	220c      	movi.n	a2, 2
-401013ad:	f109      	s32i.n	a0, a1, 60
-401013af:	e1c9      	s32i.n	a12, a1, 56
-401013b1:	d1d9      	s32i.n	a13, a1, 52
-401013b3:	c1e9      	s32i.n	a14, a1, 48
-401013b5:	b1f9      	s32i.n	a15, a1, 44
-401013b7:	fff301        	l32r	a0, 40101384 <system_rtc_mem_read+0x78>
-401013ba:	0000c0        	callx0	a0
-401013bd:	02ed      	mov.n	a14, a2
-401013bf:	fff201        	l32r	a0, 40101388 <system_rtc_mem_read+0x7c>
-401013c2:	0000c0        	callx0	a0
-401013c5:	1022e0        	and	a2, a2, a14
-401013c8:	ffe731        	l32r	a3, 40101364 <system_rtc_mem_read+0x58>
-401013cb:	74e020        	extui	a14, a2, 0, 8
-401013ce:	feab21        	l32r	a2, 40100e7c <Cache_Read_Enable_2+0x30>
-401013d1:	3139      	s32i.n	a3, a1, 12
-401013d3:	5139      	s32i.n	a3, a1, 20
-401013d5:	4129      	s32i.n	a2, a1, 16
-401013d7:	31cb      	addi.n	a3, a1, 12
-401013d9:	120c      	movi.n	a2, 1
-401013db:	ffec01        	l32r	a0, 4010138c <system_rtc_mem_read+0x80>
-401013de:	0000c0        	callx0	a0
-401013e1:	10ee20        	and	a14, a14, a2
-401013e4:	ffe121        	l32r	a2, 40101368 <system_rtc_mem_read+0x5c>
-401013e7:	0d0c      	movi.n	a13, 0
-401013e9:	1129      	s32i.n	a2, a1, 4
-401013eb:	ffe021        	l32r	a2, 4010136c <system_rtc_mem_read+0x60>
-401013ee:	2129      	s32i.n	a2, a1, 8
-401013f0:	012d      	mov.n	a2, a1
-401013f2:	ffe701        	l32r	a0, 40101390 <system_rtc_mem_read+0x84>
-401013f5:	0000c0        	callx0	a0
-401013f8:	10ee20        	and	a14, a14, a2
-401013fb:	ffe601        	l32r	a0, 40101394 <system_rtc_mem_read+0x88>
-401013fe:	0000c0        	callx0	a0
-40101401:	10ee20        	and	a14, a14, a2
-40101404:	18c132        	addi	a3, a1, 24
-40101407:	020c      	movi.n	a2, 0
-40101409:	ffe301        	l32r	a0, 40101398 <system_rtc_mem_read+0x8c>
-4010140c:	0000c0        	callx0	a0
-4010140f:	ffd8f1        	l32r	a15, 40101370 <system_rtc_mem_read+0x64>
-40101412:	040c      	movi.n	a4, 0
-40101414:	0f3d      	mov.n	a3, a15
-40101416:	6ca022        	movi	a2, 108
-40101419:	ff9405        	call0	40100d5c <pvPortZalloc>
-4010141c:	02cd      	mov.n	a12, a2
-4010141e:	ffdf01        	l32r	a0, 4010139c <system_rtc_mem_read+0x90>
-40101421:	0000c0        	callx0	a0
-40101424:	1b0142        	l8ui	a4, a1, 27
-40101427:	1c0152        	l8ui	a5, a1, 28
-4010142a:	1d0162        	l8ui	a6, a1, 29
-4010142d:	ffd131        	l32r	a3, 40101374 <system_rtc_mem_read+0x68>
-40101430:	0c2d      	mov.n	a2, a12
-40101432:	ffdb01        	l32r	a0, 401013a0 <system_rtc_mem_read+0x94>
-40101435:	0000c0        	callx0	a0
-40101438:	ffd031        	l32r	a3, 40101378 <system_rtc_mem_read+0x6c>
-4010143b:	20cc22        	addi	a2, a12, 32
-4010143e:	ffd801        	l32r	a0, 401013a0 <system_rtc_mem_read+0x94>
-40101441:	0000c0        	callx0	a0
-40101444:	220c      	movi.n	a2, 2
-40101446:	694c22        	s8i	a2, a12, 105
-40101449:	196cd2        	s32i	a13, a12, 100
-4010144c:	604cd2        	s8i	a13, a12, 96
+ 设置ESP8266为AP模式，并设置IP及DHCP服务器地址池
+参数：无
+返回：无
+*******************************************************
+*/
+bool wifi_softap_setup( void ){
+401013ad:	b109      	s32i.n	a0, a1, 44
+401013af:	a1c9      	s32i.n	a12, a1, 40
+401013b1:	91d9      	s32i.n	a13, a1, 36
+401013b3:	81e9      	s32i.n	a14, a1, 32
+
+    bool ap_init_result;   //记录wifi_softap初始化结果
+
+	ap_init_result = wifi_set_opmode(SOFTAP_MODE);
+401013b5:	fff301        	l32r	a0, 40101384 <system_rtc_mem_read+0x78>
+401013b8:	0000c0        	callx0	a0
+401013bb:	02dd      	mov.n	a13, a2
+
+    ap_init_result &= wifi_softap_dhcps_stop();
+401013bd:	fff201        	l32r	a0, 40101388 <system_rtc_mem_read+0x7c>
+401013c0:	0000c0        	callx0	a0
+401013c3:	1022d0        	and	a2, a2, a13
+
+    struct ip_info info;
+    IP4_ADDR(&info.ip, 192, 168, 10, 254);  // set IP
+401013c6:	ffe731        	l32r	a3, 40101364 <system_rtc_mem_read+0x58>
+
+    bool ap_init_result;   //记录wifi_softap初始化结果
+
+	ap_init_result = wifi_set_opmode(SOFTAP_MODE);
+
+    ap_init_result &= wifi_softap_dhcps_stop();
+401013c9:	74d020        	extui	a13, a2, 0, 8
+
+    struct ip_info info;
+    IP4_ADDR(&info.ip, 192, 168, 10, 254);  // set IP
+    IP4_ADDR(&info.gw, 192, 168, 10, 254);    // set gateway
+    IP4_ADDR(&info.netmask, 255, 255, 255, 0); // set netmask
+401013cc:	feac21        	l32r	a2, 40100e7c <Cache_Read_Enable_2+0x30>
+	ap_init_result = wifi_set_opmode(SOFTAP_MODE);
+
+    ap_init_result &= wifi_softap_dhcps_stop();
+
+    struct ip_info info;
+    IP4_ADDR(&info.ip, 192, 168, 10, 254);  // set IP
+401013cf:	3139      	s32i.n	a3, a1, 12
+    IP4_ADDR(&info.gw, 192, 168, 10, 254);    // set gateway
+401013d1:	5139      	s32i.n	a3, a1, 20
+    IP4_ADDR(&info.netmask, 255, 255, 255, 0); // set netmask
+401013d3:	4129      	s32i.n	a2, a1, 16
+    ap_init_result &= wifi_set_ip_info(SOFTAP_IF, &info);
+401013d5:	31cb      	addi.n	a3, a1, 12
+401013d7:	120c      	movi.n	a2, 1
+401013d9:	ffec01        	l32r	a0, 4010138c <system_rtc_mem_read+0x80>
+401013dc:	0000c0        	callx0	a0
+401013df:	10dd20        	and	a13, a13, a2
+
+    struct dhcps_lease esp_dhcps_lease;
+    IP4_ADDR(&esp_dhcps_lease.start_ip,192,168,10,1);
+401013e2:	ffe121        	l32r	a2, 40101368 <system_rtc_mem_read+0x5c>
+401013e5:	1129      	s32i.n	a2, a1, 4
+    IP4_ADDR(&esp_dhcps_lease.end_ip,192,168,10,5);
+401013e7:	ffe121        	l32r	a2, 4010136c <system_rtc_mem_read+0x60>
+401013ea:	2129      	s32i.n	a2, a1, 8
+    ap_init_result &= wifi_softap_set_dhcps_lease(&esp_dhcps_lease);
+401013ec:	012d      	mov.n	a2, a1
+401013ee:	ffe801        	l32r	a0, 40101390 <system_rtc_mem_read+0x84>
+401013f1:	0000c0        	callx0	a0
+401013f4:	10dd20        	and	a13, a13, a2
+
+    ap_init_result &= wifi_softap_dhcps_start();
+401013f7:	ffe701        	l32r	a0, 40101394 <system_rtc_mem_read+0x88>
+401013fa:	0000c0        	callx0	a0
+401013fd:	10dd20        	and	a13, a13, a2
+
+
+    char softap_mac[6];
+    wifi_get_macaddr(STATION_IF, softap_mac);
+40101400:	18c132        	addi	a3, a1, 24
+40101403:	020c      	movi.n	a2, 0
+40101405:	ffe401        	l32r	a0, 40101398 <system_rtc_mem_read+0x8c>
+40101408:	0000c0        	callx0	a0
+
+    struct softap_config *config = (struct softap_config *)os_zalloc(sizeof(struct softap_config ));
+4010140b:	ffd9e1        	l32r	a14, 40101370 <system_rtc_mem_read+0x64>
+4010140e:	040c      	movi.n	a4, 0
+40101410:	0e3d      	mov.n	a3, a14
+40101412:	6ca022        	movi	a2, 108
+40101415:	ff9445        	call0	40100d5c <pvPortZalloc>
+40101418:	02cd      	mov.n	a12, a2
+    wifi_softap_get_config(config); // Get soft-AP config first.
+4010141a:	ffe001        	l32r	a0, 4010139c <system_rtc_mem_read+0x90>
+4010141d:	0000c0        	callx0	a0
+    os_sprintf(config->ssid, ESP_AP_SSID,softap_mac[3],softap_mac[4],softap_mac[5]);
+40101420:	1b0142        	l8ui	a4, a1, 27
+40101423:	1c0152        	l8ui	a5, a1, 28
+40101426:	1d0162        	l8ui	a6, a1, 29
+40101429:	ffd231        	l32r	a3, 40101374 <system_rtc_mem_read+0x68>
+4010142c:	0c2d      	mov.n	a2, a12
+4010142e:	ffdc01        	l32r	a0, 401013a0 <system_rtc_mem_read+0x94>
+40101431:	0000c0        	callx0	a0
+    os_sprintf(config->password, ESP_AP_PASSWORD);
+40101434:	ffd131        	l32r	a3, 40101378 <system_rtc_mem_read+0x6c>
+40101437:	20cc22        	addi	a2, a12, 32
+4010143a:	ffd901        	l32r	a0, 401013a0 <system_rtc_mem_read+0x94>
+4010143d:	0000c0        	callx0	a0
+    config->authmode = AUTH_WPA2_PSK;
+40101440:	320c      	movi.n	a2, 3
+40101442:	196c22        	s32i	a2, a12, 100
+    config->ssid_len = 0;        // or its actual SSID length
+40101445:	020c      	movi.n	a2, 0
+40101447:	604c22        	s8i	a2, a12, 96
+    config->max_connection = 2;
+4010144a:	220c      	movi.n	a2, 2
+4010144c:	694c22        	s8i	a2, a12, 105
+
+    ap_init_result &= wifi_softap_set_config(config); // Set ESP8266 soft-AP config
 4010144f:	202cc0        	or	a2, a12, a12
 40101452:	ffd401        	l32r	a0, 401013a4 <system_rtc_mem_read+0x98>
 40101455:	0000c0        	callx0	a0
-40101458:	10ee20        	and	a14, a14, a2
-4010145b:	0f3d      	mov.n	a3, a15
+40101458:	10dd20        	and	a13, a13, a2
+
+    os_free(config);
+4010145b:	0e3d      	mov.n	a3, a14
 4010145d:	0c2d      	mov.n	a2, a12
-4010145f:	0d4d      	mov.n	a4, a13
+4010145f:	040c      	movi.n	a4, 0
 40101461:	ff8705        	call0	40100cd4 <vPortFree>
+
+
+    if(ap_init_result)
+    	os_printf("softap setup success!\n");
 40101464:	ffc621        	l32r	a2, 4010137c <system_rtc_mem_read+0x70>
-40101467:	029ed7        	bne	a14, a13, 4010146d <wifi_softap_setup+0xc5>
-4010146a:	ffc521        	l32r	a2, 40101380 <system_rtc_mem_read+0x74>
-4010146d:	ffc205        	call0	40101090 <os_printf_plus>
-40101470:	0f2102        	l32i	a0, a1, 60
-40101473:	202ee0        	or	a2, a14, a14
-40101476:	0e21c2        	l32i	a12, a1, 56
-40101479:	d1d8      	l32i.n	a13, a1, 52
-4010147b:	c1e8      	l32i.n	a14, a1, 48
-4010147d:	b1f8      	l32i.n	a15, a1, 44
-4010147f:	40c112        	addi	a1, a1, 64
-40101482:	f00d      	ret.n
+    ap_init_result &= wifi_softap_set_config(config); // Set ESP8266 soft-AP config
+
+    os_free(config);
+
+
+    if(ap_init_result)
+40101467:	1dcc      	bnez.n	a13, 4010146c <wifi_softap_setup+0xc4>
+    	os_printf("softap setup success!\n");
+    else
+    	os_printf("softap setup fail!\n");
+40101469:	ffc521        	l32r	a2, 40101380 <system_rtc_mem_read+0x74>
+4010146c:	ffc205        	call0	40101090 <os_printf_plus>
+
+    return ap_init_result;
+}
+4010146f:	0b2102        	l32i	a0, a1, 44
+40101472:	202dd0        	or	a2, a13, a13
+40101475:	0a21c2        	l32i	a12, a1, 40
+40101478:	91d8      	l32i.n	a13, a1, 36
+4010147a:	81e8      	l32i.n	a14, a1, 32
+4010147c:	30c112        	addi	a1, a1, 48
+4010147f:	f00d      	ret.n
+40101481:	000000        	ill
 40101484:	ff          	.byte 0xff
 40101485:	7f          	.byte 0x7f
 40101486:	700000        	excw
@@ -18341,46 +18425,88 @@ Disassembly of section .irom0.text:
 40244a15:	401017        	beq	a0, a1, 40244a59 <user_init+0x41>
 
 40244a18 <user_init>:
+
+void ICACHE_FLASH_ATTR
+user_init(void)
+{
+
+	uart_init(BIT_RATE_115200, BIT_RATE_115200);
 40244a18:	fffb31        	l32r	a3, 40244a04 <eagle_lwip_getif+0x24>
+}
+
+
+void ICACHE_FLASH_ATTR
+user_init(void)
+{
 40244a1b:	f0c112        	addi	a1, a1, -16
+
+	uart_init(BIT_RATE_115200, BIT_RATE_115200);
 40244a1e:	032d      	mov.n	a2, a3
+}
+
+
+void ICACHE_FLASH_ATTR
+user_init(void)
+{
 40244a20:	3109      	s32i.n	a0, a1, 12
 40244a22:	0261c2        	s32i	a12, a1, 8
+
+	uart_init(BIT_RATE_115200, BIT_RATE_115200);
 40244a25:	0a5a05        	call0	4024efc8 <uart_init>
+
+	init_data_buffer();     //初始化接收SLIP数据包的缓冲区
 40244a28:	000705        	call0	40244a9c <init_data_buffer>
 40244a2b:	fff7c1        	l32r	a12, 40244a08 <eagle_lwip_getif+0x28>
+
+    for(;;){
+    	if( wifi_softap_setup() )     //设置ESP8266为ap模式，设置ap的IP，分配DHCP地址范围
 40244a2e:	fff801        	l32r	a0, 40244a10 <eagle_lwip_getif+0x30>
 40244a31:	0000c0        	callx0	a0
 40244a34:	00c256        	bnez	a2, 40244a44 <user_init+0x2c>
+    		break;
+    	else
+    		os_delay_us(5000);
 40244a37:	202cc0        	or	a2, a12, a12
 40244a3a:	f2aa01        	l32r	a0, 402414e4 <system_upgrade_reboot+0x128>
 40244a3d:	0000c0        	callx0	a0
+    }
 40244a40:	fffa86        	j	40244a2e <user_init+0x16>
 40244a43:	2cc000        	excw
+
+    os_delay_us(5000);
 40244a46:	a70120        	excw
 40244a49:	00c0f2        	addi	a15, a0, 0
 40244a4c:	2cc000        	excw
+    os_delay_us(5000);
 40244a4f:	a50120        	extui	a0, a2, 17, 11
 40244a52:	00c0f2        	addi	a15, a0, 0
 40244a55:	2cc000        	excw
+    os_delay_us(5000);
 40244a58:	a20120        	excw
 40244a5b:	00c0f2        	addi	a15, a0, 0
 40244a5e:	0c2d00        	excw
+    os_delay_us(5000);
 40244a61:	f2a001        	l32r	a0, 402414e4 <system_upgrade_reboot+0x128>
 40244a64:	0000c0        	callx0	a0
+    os_delay_us(5000);
 40244a67:	0c2d      	mov.n	a2, a12
 40244a69:	f29e01        	l32r	a0, 402414e4 <system_upgrade_reboot+0x128>
 40244a6c:	0000c0        	callx0	a0
+
+    uart_tx_one_char(UART0,0x0d);   //先输出换行符(0x0D,0x0A)，再输出CLIENT，连接到SLIP服务器。
 40244a6f:	d30c      	movi.n	a3, 13
 40244a71:	020c      	movi.n	a2, 0
 40244a73:	ffe801        	l32r	a0, 40244a14 <eagle_lwip_getif+0x34>
 40244a76:	0000c0        	callx0	a0
+    uart_tx_one_char(UART0,0x0a);
 40244a79:	a30c      	movi.n	a3, 10
 40244a7b:	020c      	movi.n	a2, 0
 40244a7d:	ffe501        	l32r	a0, 40244a14 <eagle_lwip_getif+0x34>
 40244a80:	0000c0        	callx0	a0
+    uart0_sendStr("CLIENT");
 40244a83:	ffe221        	l32r	a2, 40244a0c <eagle_lwip_getif+0x2c>
 40244a86:	0a5085        	call0	4024ef90 <at_port_print>
+}
 40244a89:	3108      	l32i.n	a0, a1, 12
 40244a8b:	21c8      	l32i.n	a12, a1, 8
 40244a8d:	10c112        	addi	a1, a1, 16
