@@ -225,21 +225,29 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff_red, uint8_t * pdot_
 				for(j=0;j<8;j++){
 					CLK(OFF);     
 					PORT_12_1_R( *(pdot_buff_red + (12-4*i+row)*screen_width_bytes + col) & scan );
+					PORT_08_1_R1( *(pdot_buff_red + (12-4*i+row)*screen_width_bytes + col) & scan );
 					PORT_12_2_R( *(pdot_buff_red + (12-4*i+row+16)*screen_width_bytes + col) & scan );
+					PORT_08_1_R2( *(pdot_buff_red + (12-4*i+row+16)*screen_width_bytes + col) & scan );
 					PORT_12_3_R( *(pdot_buff_red + (12-4*i+row+32)*screen_width_bytes + col) & scan );
+					PORT_08_2_R1( *(pdot_buff_red + (12-4*i+row+32)*screen_width_bytes + col) & scan );
 					PORT_12_4_R( *(pdot_buff_red + (12-4*i+row+48)*screen_width_bytes + col) & scan );
+					PORT_08_2_R2( *(pdot_buff_red + (12-4*i+row+48)*screen_width_bytes + col) & scan );
 					
 					PORT_12_1_G( *(pdot_buff_green + (12-4*i+row)*screen_width_bytes + col) & scan );
+					PORT_08_1_G1( *(pdot_buff_green + (12-4*i+row)*screen_width_bytes + col) & scan );
 					PORT_12_2_G( *(pdot_buff_green + (12-4*i+row+16)*screen_width_bytes + col) & scan );
+					PORT_08_1_G2( *(pdot_buff_green + (12-4*i+row+16)*screen_width_bytes + col) & scan );
 					PORT_12_3_G( *(pdot_buff_green + (12-4*i+row+32)*screen_width_bytes + col) & scan );
+					PORT_08_2_G1( *(pdot_buff_green + (12-4*i+row+32)*screen_width_bytes + col) & scan );
 					PORT_12_4_G( *(pdot_buff_green + (12-4*i+row+48)*screen_width_bytes + col) & scan );
+					PORT_08_2_G2( *(pdot_buff_green + (12-4*i+row+48)*screen_width_bytes + col) & scan );
 
 					CLK(ON);       //594移位信号
 					scan >>= 1;
 				}
 			}
 		}
-		A( row & 0x01 );B( row & 0x02 );   //行扫描
+		A( row & 0x01 );B( row & 0x02 );C( row & 0x04 );D( row & 0x08 );   //行扫描
 		STB(0);
 		STB(1);  //锁存
 		EN(ON);
@@ -364,6 +372,8 @@ void LED_display_init(void){
 		if(screen.area_number>MAX_AREA_NUMBER)
 			screen.area_number=MAX_AREA_NUMBER;
 	}
+	
+	
 	//从外部闪存读取各显示区参数
 	for(i=0;i<MAX_AREA_NUMBER;i++){
 		//显示区参数保存在外部闪存，地址从0100开始，每区参数数据占用100字节
@@ -376,10 +386,13 @@ void LED_display_init(void){
 			area[i].width=(((uint16_t)pBuff[5]) <<16) + (uint16_t)pBuff[6];
 			area[i].height=(((uint16_t)pBuff[7]) <<16) + (uint16_t)pBuff[8];
 			area[i].red=pBuff[9];
+			area[i].red=1;
 			area[i].green =pBuff[10];
+			area[i].green=1;
 			area[i].ani_in=pBuff[11];
 			area[i].ani_out=pBuff[12];
 			area[i].speed=pBuff[13];
+			area[i].speed=i*2+4;
 			area[i].content_type=TEXT;
 			area[i].length=pBuff[15];
 			//area[i].length=strlen((char *)area[i].display_data);
@@ -392,6 +405,7 @@ void LED_display_init(void){
 		else
 			del_area(i);
 	}
+	
 }
 
 //删除显示分区
