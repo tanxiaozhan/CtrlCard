@@ -4,14 +4,14 @@ t <table width="100%" border="0" cellspacing="0" cellpadding="0">
 t <tr><td align="center" valign="top">
 t <form id="form1" name="form1" method="get" action="">
 t <table width="800" border="0" cellpadding="0" cellspacing="0">
-t <tr><td height="70" align="center" valign="middle"><h3>Е╠▐ Е╧∙ Фё─ Ф╣▀</h3></td></tr>
+t <tr><td height="70" align="center" valign="middle"><h3>фа д╩ ╪Л ╡Б</h3></td></tr>
 t <tr><td height="25"><input type="hidden" name="chk" id="chk"/></td></tr>
 t <tr><td height="100" align="center">
-t <button type=button class=tbs onclick="power1('ALL');" style="background:#FF0">Г╨╒Г╩©Е┘╗Д╨╝</button>
-t <button type=button class=tbs onclick="power1('RED');" style="background:#F00">Г╨╒Х┴╡Е┘╗Д╨╝</button></td></tr>
+t <button type=button class=tbs onclick="power1('ALL');" style="background:#FF0">╨Лблх╚аа</button>
+t <button type=button class=tbs onclick="power1('RED');" style="background:#F00">╨Ли╚х╚аа</button></td></tr>
 t <tr><td height="100" align="center">
-t <button type="button" class="tbs" onclick="power1('GREEN');" style="background:#0F0"> Г╩©Х┴╡Е┘╗Д╨╝ </button>
-t <button type="button" class="tbs" onclick="power1('OFF');"> И──Е┤╨Фё─Ф╣▀ </button></td></tr>
+t <button type="button" class="tbs" onclick="power1('GREEN');" style="background:#0F0"> бли╚х╚аа </button>
+t <button type="button" class="tbs" onclick="power1('OFF');"> мкЁЖ╪Л╡Б </button></td></tr>
 t <tr><td height="100" align="center">&nbsp;</td></tr></table></form></td></tr></table></td></tr>
 t <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr></table></body></html>
 t <SCRIPT  LANGUAGE="JavaScript">

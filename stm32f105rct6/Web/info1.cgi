@@ -4,12 +4,12 @@ t <table width="100%" border="0" cellspacing="0" cellpadding="0">
 t <tr><td align="center" valign="top">
 t <form id="form1" name="form1" method="get" action="">
 t <table width="800" border="0" cellpadding="0" cellspacing="0">
-t <tr><td height=84 colspan=2 align=center valign=middle><h3>系 统 信 息</h3></td></tr>
-t <tr><td width="248" height="80">硬件版本：</td>
+t <tr><td height=84 colspan=2 align=center valign=middle><h3>ϵ ͳ �� Ϣ</h3></td></tr>
+t <tr><td width="248" height="80">Ӳ���汾��</td>
 t <td width="552">&nbsp;</td></tr>
-t <tr><td height="80">软件版本：</td>
+t <tr><td height="80">�����汾��</td>
 t <td height="49" align="center">&nbsp;</td></tr>
-t <tr><td height="80">产品ID：</td>
+t <tr><td height="80">��ƷID��</td>
 t <td height="46" align="center">&nbsp;</td></tr>
 t <tr><td height="100" align="center">&nbsp;</td>
 t <td height=100 align=center>&nbsp;</td></tr></table></form></td></tr></table></td></tr>

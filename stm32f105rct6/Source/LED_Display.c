@@ -66,14 +66,19 @@ static void LED_Display (void const *arg) {
 	//按显示区获取一行点阵数据，保存到数组current_row_dot
 	for( area_no=0;area_no<screen.area_number;area_no++ ){
 		for( row=area[area_no].y; row<(area[area_no].y+area[area_no].height);row++){
+
+			/////////////////////////////////////
+			if(row-area[area_no].y>=16 ) continue;  //暂时使用
+
+
 			pStr = area[area_no].display_data;
 			
 			col=0;
 			
 			//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
 			while( col<area[area_no].length ){
-				if( *pStr <= 126 ){      //英文字符
-					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y % 16] ;    //获取点阵
+				if( *pStr <= 126){      //英文字符
+					current_row_dot[col++] = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y ] ;    //获取点阵
 					pStr++ ;
 				}
 				else{    //汉字字符
