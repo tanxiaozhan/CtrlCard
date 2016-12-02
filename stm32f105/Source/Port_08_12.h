@@ -12,128 +12,128 @@
 
 //控制卡08、12接口公共管脚定义
 #define PORT_08_12_STB_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   // 开启GPIO的外设时钟
-#define PORT_08_12_STB_GPIO_PORT    	GPIOB			                     // GPIO端口 
-#define PORT_08_12_STB_GPIO_CLK 	    RCC_APB2Periph_GPIOB	  	     // GPIO端口时钟  
-#define PORT_08_12_STB_GPIO_PIN		  GPIO_Pin_13			               // 连接到SCL时钟线的GPIO 
+#define PORT_08_12_STB_GPIO_PORT    	GPIOC			                     // GPIO端口 
+#define PORT_08_12_STB_GPIO_CLK 	    RCC_APB2Periph_GPIOC	  	     // GPIO端口时钟  
+#define PORT_08_12_STB_GPIO_PIN		    GPIO_Pin_2			               // 连接到SCL时钟线的GPIO 
 
 #define PORT_08_12_SCK_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
-#define PORT_08_12_SCK_GPIO_PORT    	GPIOB			              
-#define PORT_08_12_SCK_GPIO_CLK 	    RCC_APB2Periph_GPIOB		
-#define PORT_08_12_SCK_GPIO_PIN		  GPIO_Pin_14			        
+#define PORT_08_12_SCK_GPIO_PORT    	GPIOC			              
+#define PORT_08_12_SCK_GPIO_CLK 	    RCC_APB2Periph_GPIOC		
+#define PORT_08_12_SCK_GPIO_PIN		    GPIO_Pin_1			        
 
 #define PORT_08_12_EN_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
-#define PORT_08_12_EN_GPIO_PORT    	GPIOB			           
-#define PORT_08_12_EN_GPIO_CLK 	    RCC_APB2Periph_GPIOB	
-#define PORT_08_12_EN_GPIO_PIN		 		GPIO_Pin_15			        
+#define PORT_08_12_EN_GPIO_PORT    	  GPIOC			           
+#define PORT_08_12_EN_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
+#define PORT_08_12_EN_GPIO_PIN		 	  GPIO_Pin_0			        
 
 #define PORT_08_12_A_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
-#define PORT_08_12_A_GPIO_PORT    	  GPIOC			           
-#define PORT_08_12_A_GPIO_CLK 	      RCC_APB2Periph_GPIOC
-#define PORT_08_12_A_GPIO_PIN		 		GPIO_Pin_1			        
+#define PORT_08_12_A_GPIO_PORT    	  GPIOB			           
+#define PORT_08_12_A_GPIO_CLK 	      RCC_APB2Periph_GPIOB
+#define PORT_08_12_A_GPIO_PIN		 		  GPIO_Pin_13			        
 
 #define PORT_08_12_B_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_12_B_GPIO_PORT    	  GPIOC			           
 #define PORT_08_12_B_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
-#define PORT_08_12_B_GPIO_PIN		 		GPIO_Pin_2			        
+#define PORT_08_12_B_GPIO_PIN		 		  GPIO_Pin_5			        
 
 #define PORT_08_12_C_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_12_C_GPIO_PORT    	  GPIOC			           
 #define PORT_08_12_C_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
-#define PORT_08_12_C_GPIO_PIN		 		GPIO_Pin_3			        
+#define PORT_08_12_C_GPIO_PIN		 		  GPIO_Pin_4			        
 
 #define PORT_08_12_D_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_12_D_GPIO_PORT    	  GPIOC			           
 #define PORT_08_12_D_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
-#define PORT_08_12_D_GPIO_PIN		 		GPIO_Pin_4			        
+#define PORT_08_12_D_GPIO_PIN		 		  GPIO_Pin_3			        
 
 
 //控制卡08-1接口管脚定义
 
 #define PORT_08_1_R1_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
-#define PORT_08_1_R1_GPIO_PORT    	GPIOC			           
-#define PORT_08_1_R1_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_1_R1_GPIO_PIN		 		GPIO_Pin_5			        
+#define PORT_08_1_R1_GPIO_PORT    	GPIOB			           
+#define PORT_08_1_R1_GPIO_CLK 	    RCC_APB2Periph_GPIOB	
+#define PORT_08_1_R1_GPIO_PIN		 		GPIO_Pin_14			        
 
 #define PORT_08_1_G1_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
 #define PORT_08_1_G1_GPIO_PORT    	GPIOC			           
 #define PORT_08_1_G1_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_1_G1_GPIO_PIN		 		GPIO_Pin_9			        
+#define PORT_08_1_G1_GPIO_PIN		 		GPIO_Pin_6			        
 
 #define PORT_08_1_R2_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
-#define PORT_08_1_R2_GPIO_PORT    	GPIOC			           
-#define PORT_08_1_R2_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_1_R2_GPIO_PIN		 		GPIO_Pin_6			        
+#define PORT_08_1_R2_GPIO_PORT    	GPIOB			           
+#define PORT_08_1_R2_GPIO_CLK 	    RCC_APB2Periph_GPIOB	
+#define PORT_08_1_R2_GPIO_PIN		 		GPIO_Pin_15			        
 
 #define PORT_08_1_G2_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_1_G2_GPIO_PORT    	GPIOC			           
 #define PORT_08_1_G2_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_1_G2_GPIO_PIN		 		GPIO_Pin_10			        
+#define PORT_08_1_G2_GPIO_PIN		 		GPIO_Pin_7			        
 
 
 //控制卡08-2接口管脚定义
 #define PORT_08_2_R1_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_2_R1_GPIO_PORT    	GPIOC			           
 #define PORT_08_2_R1_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_2_R1_GPIO_PIN		 		GPIO_Pin_7			        
+#define PORT_08_2_R1_GPIO_PIN		 		GPIO_Pin_8			        
 
 #define PORT_08_2_G1_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
 #define PORT_08_2_G1_GPIO_PORT    	GPIOC			           
 #define PORT_08_2_G1_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_2_G1_GPIO_PIN		 		GPIO_Pin_11			        
+#define PORT_08_2_G1_GPIO_PIN		 		GPIO_Pin_10			        
 
 #define PORT_08_2_R2_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
 #define PORT_08_2_R2_GPIO_PORT    	GPIOC			           
 #define PORT_08_2_R2_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_2_R2_GPIO_PIN		 		GPIO_Pin_8		        
+#define PORT_08_2_R2_GPIO_PIN		 		GPIO_Pin_9		        
 
 #define PORT_08_2_G2_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
 #define PORT_08_2_G2_GPIO_PORT    	GPIOC			           
 #define PORT_08_2_G2_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_08_2_G2_GPIO_PIN		 		GPIO_Pin_12			        
+#define PORT_08_2_G2_GPIO_PIN		 		GPIO_Pin_11			        
 
 //控制卡12-1接口管脚定义
 #define PORT_12_1_R_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
-#define PORT_12_1_R_GPIO_PORT    	GPIOC			           
-#define PORT_12_1_R_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_1_R_GPIO_PIN		 		GPIO_Pin_5			        
+#define PORT_12_1_R_GPIO_PORT    	  GPIOB			           
+#define PORT_12_1_R_GPIO_CLK 	      RCC_APB2Periph_GPIOB	
+#define PORT_12_1_R_GPIO_PIN		 		GPIO_Pin_14			        
 
 #define PORT_12_1_G_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
-#define PORT_12_1_G_GPIO_PORT    	GPIOC			           
-#define PORT_12_1_G_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_1_G_GPIO_PIN		 		GPIO_Pin_9			        
+#define PORT_12_1_G_GPIO_PORT    	  GPIOC			           
+#define PORT_12_1_G_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
+#define PORT_12_1_G_GPIO_PIN		 	  GPIO_Pin_6			        
 
 //控制卡12-2接口管脚定义
 #define PORT_12_2_R_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
-#define PORT_12_2_R_GPIO_PORT    	GPIOC			           
-#define PORT_12_2_R_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_2_R_GPIO_PIN		 		GPIO_Pin_6			        
+#define PORT_12_2_R_GPIO_PORT    	  GPIOB			           
+#define PORT_12_2_R_GPIO_CLK 	      RCC_APB2Periph_GPIOB
+#define PORT_12_2_R_GPIO_PIN		 		GPIO_Pin_15
 
 #define PORT_12_2_G_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
-#define PORT_12_2_G_GPIO_PORT    	GPIOC			           
-#define PORT_12_2_G_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_2_G_GPIO_PIN		 		GPIO_Pin_10			        
+#define PORT_12_2_G_GPIO_PORT    	  GPIOC			           
+#define PORT_12_2_G_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
+#define PORT_12_2_G_GPIO_PIN		 		GPIO_Pin_7			        
 
 //控制卡12-3接口管脚定义
 #define PORT_12_3_R_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
-#define PORT_12_3_R_GPIO_PORT    	GPIOC			           
-#define PORT_12_3_R_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_3_R_GPIO_PIN		 		GPIO_Pin_7		        
+#define PORT_12_3_R_GPIO_PORT    	  GPIOC			           
+#define PORT_12_3_R_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
+#define PORT_12_3_R_GPIO_PIN		 		GPIO_Pin_8		        
 
 #define PORT_12_3_G_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
-#define PORT_12_3_G_GPIO_PORT    	GPIOC			           
-#define PORT_12_3_G_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_3_G_GPIO_PIN		 		GPIO_Pin_11			        
+#define PORT_12_3_G_GPIO_PORT    	  GPIOC			           
+#define PORT_12_3_G_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
+#define PORT_12_3_G_GPIO_PIN		 		GPIO_Pin_10			        
 
 //控制卡12-4接口管脚定义
 #define PORT_12_4_R_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   
-#define PORT_12_4_R_GPIO_PORT    	GPIOC			           
-#define PORT_12_4_R_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_4_R_GPIO_PIN		 		GPIO_Pin_8			        
+#define PORT_12_4_R_GPIO_PORT    	  GPIOC			           
+#define PORT_12_4_R_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
+#define PORT_12_4_R_GPIO_PIN		 		GPIO_Pin_9			        
 
 #define PORT_12_4_G_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd  
-#define PORT_12_4_G_GPIO_PORT    	GPIOC			           
-#define PORT_12_4_G_GPIO_CLK 	    RCC_APB2Periph_GPIOC	
-#define PORT_12_4_G_GPIO_PIN		 		GPIO_Pin_12		  
+#define PORT_12_4_G_GPIO_PORT    	  GPIOC			           
+#define PORT_12_4_G_GPIO_CLK 	      RCC_APB2Periph_GPIOC	
+#define PORT_12_4_G_GPIO_PIN		 		GPIO_Pin_11		  
 
 //控制卡接口使用的管脚定义结束
 
