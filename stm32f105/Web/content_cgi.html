@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LED屏显示控制系统</title>
+<style type="text/css">
+a:link {
+	text-decoration: none;
+	color: #FFF;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFF;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.tbs {
+	 height:50px;
+	 font-size:35px;
+}
+
+.topBK{
+	background-color: #0080C0;
+}
+
+.buttonBK{
+	background-color:#09F
+}
+</style>
+</head>
+
+<body style="font-size:40px">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr class="topBK">
+    <td width="15%" height="30" align="center">
+	<a href="javascript:history.back();">返回</a></td>
+    <td width="69%" align="center">&nbsp;</td>
+    <td width="16%" align="center"><a href="index.htm">主页</a></td>
+  </tr>
+  </table>
+  
+  
+  
+  
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+   <td align="center" valign="top">
+   <form id="form1" name="form1" method="get" action=""><h3>内　容　管　理</h3>
+	<table width="100%" border="1" cellspacing="0" cellpadding="0">
+	 <tr><td align="center">选择</td>
+	  <td align="center">ID</td>
+	  <td align="center">X</td>
+	  <td align="center">Ｙ</td>
+	  <td align="center">宽度</td>
+	  <td align="center">高度</td>
+	  <td align="center">内容类型</td>
+	  <td align="center">编辑</td>
+	 </tr>
+	 <tr>
+	  <td align="center">
+      <input name="chkbox" type="checkbox" class="tbs" id="chkbox" style="width:40px;height:40px" /></td>
+	  <td align="center">1</td>
+      <td align="center">32</td>
+	  <td align="center">64</td>
+	  <td align="center">64</td>
+	  <td align="center">32</td>
+	  <td align="center">文本</td>
+	  <td align="center">
+      <button class="tbs" type="button" onclick="window.location='edit.html?areaNo'">内容编辑</button>
+	  <p><button class="tbs" type="button" onclick="window.location='areaEdit.html?areaNo'">分区编辑</button></p></td>
+	 </tr>
+    </table>
+	<table width="90%" border="0" cellspacing="0" cellpadding="0">
+	 <tr><td height="57">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+	 <tr><td width="15%" height="57" align="center">&nbsp;</td>
+	  <td width="28%" height="57" align="center">
+	   <button class="tbs" type="submit" value="delArea">删除分区</button></td>
+	  <td width="12%" height="57" align="center">&nbsp;</td>
+	  <td width="28%" height="57" align="center">
+	   <input type="button" class="tbs" onclick="window.location='areaSet.html?areaNo=0'" value="新增分区" /></td>
+	  <td width="17%" height="57" align="center">&nbsp;</td></tr>
+   </table>
+   </form></td></tr>
+ </table>
+ </body>
+ </html>
