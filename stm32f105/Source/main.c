@@ -66,11 +66,11 @@ static void BlinkLed (void const *arg) {
 int main (void) {
 
 		FLASH_SPI_initialize();
-		USARTx_Config();	
+//		USARTx_Config();	
 
 		//LED指示灯
-		LED_Initialize ();
-		osThreadCreate (osThread(BlinkLed), NULL);
+//		LED_Initialize ();
+//		osThreadCreate (osThread(BlinkLed), NULL);
 	
 		LED_display_init();      //显示屏初始化
 		LED_display_start();     //控制卡输出启动，LED显示屏开始显示

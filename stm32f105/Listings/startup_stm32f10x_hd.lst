@@ -553,16 +553,17 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\startup_stm32f10x_hd.d -o.\objects\startup_stm32f10x_hd.
-o -IE:\CtrlCard\STM32F105\RTE -IE:\CtrlCard\STM32F105\RTE\Device\STM32F103VE -I
-C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Driver\Include -IC:\Keil_v5\ARM\PACK\
-ARM\CMSIS\4.3.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\RTOS\
-RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Include -IC:\Ke
-il_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include -IC:\Keil_v5\ARM\PACK\Ke
-il\STM32F1xx_DFP\2.0.0\Device\StdPeriph_Driver\inc -IC:\Keil_v5\ARM\PACK\Keil\S
-TM32F1xx_DFP\2.0.0\RTE_Driver --predefine="__RTX SETA 1" --predefine="__MICROLI
-B SETA 1" --predefine="__UVISION_VERSION SETA 515" --predefine="_RTE_ SETA 1" -
--predefine="STM32F10X_HD SETA 1" --list=.\listings\startup_stm32f10x_hd.lst RTE
-\Device\STM32F103VE\startup_stm32f10x_hd.s
+o -IE:\CtrlCard\stm32f105\RTE -IE:\CtrlCard\stm32f105\RTE\Device\STM32F103VE -I
+e:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Driver\Include -Ie:\Keil_v5\ARM\PACK\
+ARM\CMSIS\4.3.0\CMSIS\Include -Ie:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\RTOS\
+RTX\INC -Ie:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Include -Ie:\Ke
+il_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include -Ie:\Keil_v5\ARM\PACK\Ke
+il\STM32F1xx_DFP\2.0.0\Device\StdPeriph_Driver\inc -Ie:\Keil_v5\ARM\PACK\Keil\S
+TM32F1xx_DFP\2.0.0\RTE_Driver -Ie:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\De
+vice\Include --predefine="__RTX SETA 1" --predefine="__MICROLIB SETA 1" --prede
+fine="__UVISION_VERSION SETA 515" --predefine="_RTE_ SETA 1" --predefine="STM32
+F10X_HD SETA 1" --list=.\listings\startup_stm32f10x_hd.lst RTE\Device\STM32F103
+VE\startup_stm32f10x_hd.s
 
 
 
