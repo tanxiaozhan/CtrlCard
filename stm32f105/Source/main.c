@@ -65,6 +65,12 @@ static void BlinkLed (void const *arg) {
  *---------------------------------------------------------------------------*/
 int main (void) {
 
+	
+	int i;
+	i=10;
+	i=i*2;
+	
+	
 		FLASH_SPI_initialize();
 		USARTx_Config();	
 
@@ -81,8 +87,8 @@ int main (void) {
 
 netHTTPs_LoginOnOff (false);
 	
-		ESP8266_init();      //初始化控制EPS8266用到的PGIO引脚
-		ESP8266_ENABLE();   //打开WIFI
+//		ESP8266_init();      //初始化控制EPS8266用到的PGIO引脚
+//		ESP8266_ENABLE();   //打开WIFI
 
 		printf("\nLED CtrlCard is running...\n");
 

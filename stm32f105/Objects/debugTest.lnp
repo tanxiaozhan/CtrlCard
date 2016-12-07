@@ -22,7 +22,7 @@
 ".\objects\stm32f10x_usart.o"
 ".\objects\dma_stm32f10x.o"
 ".\objects\gpio_stm32f10x.o"
-".\objects\startup_stm32f10x_hd.o"
+".\objects\startup_stm32f10x_cl.o"
 ".\objects\system_stm32f10x.o"
 ".\objects\modem_null.o"
 "C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Lib\ARM\Net4_Dbg_CM3_L.lib"
