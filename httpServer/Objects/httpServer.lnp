@@ -1,0 +1,16 @@
+--cpu Cortex-M3
+".\objects\main.o"
+"C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib"
+".\objects\rtx_conf_cm.o"
+".\objects\usart_stm32f10x.o"
+".\objects\dma_stm32f10x.o"
+".\objects\gpio_stm32f10x.o"
+".\objects\startup_stm32f10x_cl.o"
+".\objects\system_stm32f10x.o"
+".\objects\modem_null.o"
+"C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Lib\ARM\Net4_CM3_L.lib"
+".\objects\net_config.o"
+--strict --scatter ".\Objects\httpServer.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\httpServer.map" -o .\Objects\httpServer.axf

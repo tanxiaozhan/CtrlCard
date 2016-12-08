@@ -1,0 +1,12 @@
+Dependencies for Project 'GPIO_FLOAT', Target 'Target 1': (DO NOT MODIFY !)
+F (.\main.c)(0x5844C2AB)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I E:\CtrlCard\GPIO_FLOAT\RTE-I E:\CtrlCard\GPIO_FLOAT\RTE\Device\STM32F105RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F10X_CL-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (RTE\Device\STM32F105RC\RTE_Device.h)(0x5615ADFE)()
+F (RTE\Device\STM32F105RC\startup_stm32f10x_cl.s)(0x4F1E2E3C)(--cpu Cortex-M3 -g --apcs=interwork -I E:\CtrlCard\GPIO_FLOAT\RTE-I E:\CtrlCard\GPIO_FLOAT\RTE\Device\STM32F105RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include--pd "__UVISION_VERSION SETA 515" --pd "_RTE_ SETA 1" --pd "STM32F10X_CL SETA 1"--list .\listings\startup_stm32f10x_cl.lst --xref -o .\objects\startup_stm32f10x_cl.o --depend .\objects\startup_stm32f10x_cl.d)
+F (RTE\Device\STM32F105RC\system_stm32f10x.c)(0x4F1E2E3C)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections-I E:\CtrlCard\GPIO_FLOAT\RTE-I E:\CtrlCard\GPIO_FLOAT\RTE\Device\STM32F105RC-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include-D__UVISION_VERSION="515" -D_RTE_ -DSTM32F10X_CL-o .\objects\system_stm32f10x.o --omf_browse .\objects\system_stm32f10x.crf --depend .\objects\system_stm32f10x.d)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include\stm32f10x.h)(0x53BA0D60)
+I (E:\CtrlCard\GPIO_FLOAT\RTE\RTE_Components.h)(0x5844C4E1)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm3.h)(0x55093C04)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x54C245B8)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h)(0x55093C04)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmFunc.h)(0x55093C04)
+I (C:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include\system_stm32f10x.h)(0x4F1E2E3C)

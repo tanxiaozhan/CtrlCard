@@ -1,0 +1,9 @@
+.\objects\main.o: main.c
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\RTOS\RTX\INC\cmsis_os.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Include\rl_net.h
+.\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Include\rl_net_ds.h
+.\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: E:\CtrlCard\httpServer\RTE\RTE_Components.h
