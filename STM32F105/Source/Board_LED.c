@@ -10,7 +10,7 @@
 #include "GPIO_STM32F10x.h"
 
 const GPIO_PIN_ID Pin_LED[] = {
-  { GPIOB,  0 },
+  { GPIOC,  11 },
   { GPIOB,  2 },
   { GPIOB,  5 },
 };

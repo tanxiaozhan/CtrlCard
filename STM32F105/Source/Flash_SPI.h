@@ -53,9 +53,9 @@
 #define macFLASH_SPI_MOSI_PIN                  GPIO_Pin_7                  /* PA.07 */
 #define macFLASH_SPI_MOSI_GPIO_PORT            GPIOA                       /* GPIOA */
 
-#define macFLASH_CS_PIN                        GPIO_Pin_0                 /* PC.0 */
-#define macFLASH_CS_GPIO_PORT                  GPIOC                       /* GPIOC */
-#define macFLASH_CS_GPIO_CLK                   RCC_APB2Periph_GPIOC
+#define macFLASH_CS_PIN                        GPIO_Pin_4                 /* PC.0 */
+#define macFLASH_CS_GPIO_PORT                  GPIOA                       /* GPIOC */
+#define macFLASH_CS_GPIO_CLK                   RCC_APB2Periph_GPIOA
 
 
 #define SPI_FLASH_CS_LOW()      GPIO_ResetBits(macFLASH_CS_GPIO_PORT, macFLASH_CS_PIN)				//Êä³öµÍµçÆ½ GPIO_ResetBits(FLASH_CS_GPIO_PORT, FLASH_CS_PIN)

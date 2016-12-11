@@ -258,7 +258,7 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff_red, uint8_t * pdot_
 		EN(ON);
 		osDelay(2);
 		EN(OFF);
-		osDelay(3);
+		//osDelay(3);
 
 	}
 }

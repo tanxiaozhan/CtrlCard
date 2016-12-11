@@ -14,7 +14,7 @@
         <TargetCommonOption>
           <Device>STM32F103VE</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F1xx_DFP.2.0.0</PackID>
+          <PackID>Keil.STM32F1xx_DFP.2.1.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IROM(0x08000000,0x80000) IRAM(0x20000000,0x10000) CPUTYPE("Cortex-M3") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -611,26 +611,6 @@
               <FileName>scan.cgi</FileName>
               <FileType>9</FileType>
               <FilePath>.\Web\scan.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>areaEdit1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\areaEdit1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>areaSet1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\areaSet1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>auth1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\auth1.cgi</FilePath>
-            </File>
-            <File>
-              <FileName>chkScreen1.cgi</FileName>
-              <FileType>9</FileType>
-              <FilePath>.\Web\chkScreen1.cgi</FilePath>
             </File>
             <File>
               <FileName>content1.cgi</FileName>
