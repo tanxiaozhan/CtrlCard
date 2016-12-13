@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>LED屏显示控制系统</title>
+<style type="text/css">
+a:link {
+	text-decoration: none;
+	color: #FFF;
+}
+a:visited {
+	text-decoration: none;
+	color: #FFF;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+	color: #FFF;
+}
+
+.tbs {
+	 height:50px;
+	 font-size:35px;
+}
+
+.topBK{
+	background-color: #0080C0;
+}
+
+.buttonBK{
+	background-color:#09F
+}
+
+</style>
+</head>
+
+<body background="llblue.jpg" style="background-repeat:repeat-y;font-size:40px;">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr class="topBK">
+    <td width="15%" height="30" align="center" valign="middle" ><a href="javascript:history.back();">返回</a></td>
+    <td width="69%" align="center" valign="middle" >&nbsp;</td>
+    <td width="16%" align="center" valign="middle" ><a href="index.htm">主页</a></td>
+ </tr>
+</table>
+
+
+
+ <table width="100%" border="0" cellspacing="0" cellpadding="0">
+ <tr><td align="center" valign="top">
+ <form id="form1" name="form1" method="get" action="">
+ <table width="800" border="0" cellpadding="0" cellspacing="0">
+  <tr><td height="84" colspan="3" align="center" valign="middle"><h3>屏 幕 参 数 设 置</h3></td></tr>
+  <tr><td width="204" height="85" align="right" valign="middle"><img src=pabb.gif height="40px">屏宽：</td>
+   <td width="270" valign="middle"><input class="tbs" name="ScreenWidth" type="text" id="ScreenWidth" size="15" value="%s"/></td>
+   <td width="326">&nbsp;</td></tr>
+  <tr><td height="85" align="right" valign="middle"><img src=pabb.gif height="40px">屏高：</td>
+   <td><input class="tbs" name="ScreenHeight" type="text" id="ScreenHeight" size="15" value="%s"/></td>
+   <td>&nbsp;</td></tr>
+  <tr><td height="85" align="right" valign="middle"><img src=pabb.gif height="40px">亮度：</td>
+   <td><input class="tbs" name="ScreenLight" type="text" id="ScreenLight" size="15" value="%s"/></td>
+   <td align="left" valign="middle">1-100</td></tr>
+  <tr><td height="100" colspan="2" align="center">
+   <table width="90%" border="0" cellspacing="0" cellpadding="0">
+    <tr><td width="22%" height="30" align="center">&nbsp;</td>
+    <td width="28%" height="30" align="center" >
+    <button class="tbs" type="button" onclick="window.location='screenSet.html'" >刷 新</button></td>
+    <td width="10%" height="30" align="center">&nbsp;</td>
+    <td width="27%" height="30" align="center" ><button class="tbs" type="button" onclick="check();">提 交</button></td>
+    <td width="13%" height="30" align="center">&nbsp;</td></tr>
+   </table></td><td>&nbsp;</td></tr>
+  <tr><td height="50" colspan="3" align="center">&nbsp;</td></tr>
+  </table>
+  </form></td></tr></table>
+</body></html>
+<SCRIPT  LANGUAGE="JavaScript">
+function check(){
+	var num;
+	if(document.getElementById("Light").value=="" ||document.getElementById("Width").value==""
+	 || document.getElementById("Height").value==""){alert("输入不完整!");return;}
+	num=parseInt(document.getElementById("Light").value); 
+	if((num) >100 || (num) < 1){alert("屏幕亮度只能输入1-100之间的整数！");document.getElementById("Light").focus();return;}
+	document.getElementById("form1").submit();
+	}
+</Script>
