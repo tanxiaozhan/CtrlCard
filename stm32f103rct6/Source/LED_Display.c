@@ -353,6 +353,7 @@ void LED_display_init(void){
 
 	//从外部闪存读取显示屏参数
 	SPI_FLASH_BufferRead(pBuff,0,9);
+	printf("\r\nbuffer[0]=%02x,[1]=%02x",pBuff[0],pBuff[1]);
 	if(pBuff[0]==0xFF){
 		screen.width=64;
 		screen.height=32;

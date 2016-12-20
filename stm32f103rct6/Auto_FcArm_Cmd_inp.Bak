@@ -12,7 +12,6 @@ screenSet.cgi,
 setTime.cgi,
 index.htm,
 auth.gif,
-chkScreen.gif,
 content.gif,
 info.gif,
 pabb.gif,
@@ -26,5 +25,6 @@ footer.inc,
 header.inc,
 logo.png,
 home.png,
-back.png 
+back.png,
+chkScreen.jpg 
 TO Web.c RTE NOPRINT ROOT(Web)

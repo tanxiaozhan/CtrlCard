@@ -19,7 +19,7 @@ static uint16_t SPI_TIMEOUT_UserCallback(void);
 * Description    : Initializes the peripherals used by the SPI FLASH driver.
 * Input          : None
 * Output         : None
-* Return         : None
+* Return         : 
 *******************************************************************************/
 uint8_t FLASH_SPI_initialize(void)
 {

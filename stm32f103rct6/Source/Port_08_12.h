@@ -10,10 +10,6 @@
 
 #include "stm32f10x_gpio.h"
 
-#ifndef  __PORT_08_12_H
-#define	 __PORT_08_12_H
-
-
 //控制卡08、12接口公共管脚定义
 #define PORT_08_12_STB_GPIO_APBxClock_FUN  RCC_APB2PeriphClockCmd   // 开启GPIO的外设时钟
 #define PORT_08_12_STB_GPIO_PORT    	GPIOC			                     // GPIO端口 
@@ -272,5 +268,4 @@ void Port_12_2_GPIO_Config(void);
 void Port_12_3_GPIO_Config(void);
 void Port_12_4_GPIO_Config(void);
 
-#endif
 

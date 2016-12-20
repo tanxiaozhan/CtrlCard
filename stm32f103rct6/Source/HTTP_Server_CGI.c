@@ -56,6 +56,8 @@ void save_display_para_to_flash(void){
 	char i;
 	//擦除地址0开始的4K存储扇区
 	SPI_FLASH_SectorErase(0);
+
+
 	
 	//保存屏幕参数
 	buff[0]=screen.width/256;
@@ -70,7 +72,7 @@ void save_display_para_to_flash(void){
 	buff[8]=MAX_AREA_NUMBER;
   SPI_FLASH_BufferWrite(buff, 0, 9);
 
-	//保存网站认证数据
+//保存网站认证数据
   if (netHTTPs_LoginActive() == true) 
 		buff[0]=1;
 	else
@@ -104,6 +106,7 @@ void save_display_para_to_flash(void){
 	  SPI_FLASH_BufferWrite(buff, (i+1)*100, 16);
 		SPI_FLASH_BufferWrite(area[i].display_data, (i+1)*100+16, area[i].length);
 		
+	
 	}
 }
 
@@ -278,7 +281,6 @@ void netCGI_ProcessData (uint8_t code, const char *data, uint32_t len) {
 uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *pcgi) {
   uint32_t len = 0;
   uint8_t id;
-  static uint32_t adv;
 	//printf("Generate dynamic web. \n");
 	//printf("env=%s\n",env);
 	
@@ -451,19 +453,7 @@ uint32_t netCGI_Script (const char *env, char *buf, uint32_t buflen, uint32_t *p
       }
       break;
 
-    case 'x':
-      // AD Input from 'ad.cgx'
-//      adv = AD_in (0);
-      len = sprintf (buf, &env[1], adv);
-      break;
-
-    case 'y':
-      // Button state from 'button.cgx'
-//      len = sprintf (buf, "<checkbox><id>button%c</id><on>%s</on></checkbox>",
-//                     env[1], (get_button () & (1 << (env[1]-'0'))) ? "true" : "false");
-      break;
   }
-		//printf("CGI:%s\n",buf);
 
   return (len);
 }
