@@ -11,7 +11,7 @@
 
 const GPIO_PIN_ID Pin_LED[] = {
   { GPIOB,  0 },
-  { GPIOB,  2 },
+  { GPIOB,  1 },
   { GPIOB,  5 },
 };
 

@@ -26,15 +26,5 @@ home.png,
 footer.inc,
 chkScreen.cgi,
 info.cgi,
-scan.cgi,
-content1.cgi,
-edit1.cgi,
-info1.cgi,
-password1.cgi,
-power1.cgi,
-scan1.cgi,
-screenSet1.cgi,
-setTime1.cgi,
-index1.htm,
-header1.inc 
+scan.cgi 
 TO Web.c RTE NOPRINT ROOT(Web)

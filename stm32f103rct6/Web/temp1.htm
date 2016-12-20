@@ -1,0 +1,70 @@
+<html><head><title>LCD Control</title></head>
+<body bgColor=#ffffff leftMargin=0 topMargin=10 marginwidth="0" marginheight="0">
+<div align=center style="width: 833; height: 470">
+<table style="border: 1px solid #000080" height=384 cellSpacing=0 cellPadding=0 width="815">
+ <tbody>
+ <tr bgColor=#EEEEEE>
+  <td style="border-bottom: 1px solid #000080" vAlign=bottom noWrap height=70 margin=50 width="567">
+   <h2 align="center"><font face="verdana" color="#006699">Embedded Development Tools</font></h2>
+  </td>
+  <td style="border-bottom: 1px solid #000080" vAlign=center noWrap height=73 width="170">
+   <a href="http://www.keil.com"><img border="0" src="keil.gif" align="left" width="151" height="47"></a>
+  </td>
+  <td style="border-bottom: 1px solid #000080" align=center vAlign=center noWrap width="70"> 
+   <a href="index.htm"><img border="0" src="home.png" width="31" height="29"></a>
+  </td>
+ </tr>
+ <tr>
+  <td colSpan=5 height=380 width="815" vAlign=top background="llblue.jpg" style="background-repeat: repeat-y;">
+   <div align=center>
+    <center><font face="verdana">
+     <table width="90%" border=0 align=center>
+      <tbody><tr>
+       <td width="95%">
+
+
+
+
+
+
+
+ <h2 align=center><br>LCD Module Control</h2>
+ <p><font size="2">This page allows you to change a message displayed on <b>LCD Module</b>.
+  Simply enter the text which you want to display and click <b>Send</b>.<br><br>
+  This Form uses a <b>POST</b> method to send data to a Web server.</font></p>
+ <form action=lcd.cgi method=post name=cgi>
+ <input type=hidden value="lcd" name=pg>
+ <table border=0 width=99%><font size="3">
+ <tr bgcolor=#aaccff>
+  <th width=40%>Item</th>
+  <th width=60%>Setting</th></tr>
+ <tr><td><img src=pabb.gif>Line 1 Text</td>
+ <td><input type=text name=lcd1 size=20 maxlength=20 value="%s"></td></tr>
+ <tr><td><img src=pabb.gif>Line 2 Text</TD>
+ <td><input type=text name=lcd2 size=20 maxlength=20 value="%s"></td></tr>
+ </font></table>
+ <p align=center>
+ <input type=submit name=set value="Send" id="sbm">
+ <input type=reset value="Undo">
+ </p></form>
+
+
+
+
+
+
+
+       </td>
+      </tr></tbody></table>
+     </font></center>
+    </div>
+   </td>
+  </tr><tr>
+  <td colSpan=5 height=20 width="805" background="llblue.jpg" style="background-repeat: repeat-y;">
+   <p align=center><font face="Verdana" size="1"><a href="http://www.keil.com/company/copyright.asp">
+    Copyright</a> ?2004-2014 <a href="http://www.keil.com/company/">KEIL - An ARM Company</a> 
+    All rights reserved.</font></p>
+  </td>
+ </tr></tbody></table>
+</div></body>
+</html>
