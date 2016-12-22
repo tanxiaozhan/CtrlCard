@@ -1,0 +1,7 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=6118F601
+eax=00000000 ebx=0061CBF8 ecx=00000001 edx=00000010 esi=0061B83D edi=611CEE70
+ebp=00000000 esp=0061B670 program=E:\CtrlCard\codeblicks\printDotFromHZLib\bin\Release\printDot.exe, pid 6276, thread main
+cs=0023 ds=002B es=002B fs=0053 gs=002B ss=002B
+Stack trace:
+Frame     Function  Args
+End of stack trace

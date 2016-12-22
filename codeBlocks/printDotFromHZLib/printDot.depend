@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1482372884 source:e:\ctrlcard\codeblicks\printdotfromhzlib\main.c
+	<stdio.h>
+	<stdlib.h>
+
