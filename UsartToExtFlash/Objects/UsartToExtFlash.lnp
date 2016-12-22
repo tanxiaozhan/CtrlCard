@@ -1,0 +1,16 @@
+--cpu Cortex-M3
+".\objects\systick.o"
+".\objects\usartx.o"
+".\objects\main.o"
+".\objects\flash_spi.o"
+".\objects\misc.o"
+".\objects\stm32f10x_rcc.o"
+".\objects\stm32f10x_usart.o"
+".\objects\startup_stm32f10x_hd.o"
+".\objects\system_stm32f10x.o"
+".\objects\stm32f10x_gpio.o"
+".\objects\stm32f10x_spi.o"
+--library_type=microlib --strict --scatter ".\Objects\UsartToExtFlash.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\UsartToExtFlash.map" -o .\Objects\UsartToExtFlash.axf
