@@ -22,11 +22,12 @@
 
 char CK_flag;
 char RS232_RX_CNT;
-uint32_t addr_i;
+uint16_t addr_i;
 char RS232_RX_BUF[12];
-uint32_t addr;
+uint16_t addr;
 uint32_t addr_Stop;
 uint8_t pBuffer[256];
+
 int main(void)
 { 
 	uint16_t Erase_flag=0;
@@ -61,20 +62,21 @@ int main(void)
 //下面这个while循环，其目的是等待串口接收地址指令---指令需要16进制发送---比如2A 23 00 50 00 01 23 2A---为一个完整指令
 //2A 23 都为判断标识---第3,4表示起始地址--0x05*4096---第5,6数据表示从起始地址需要擦除多少个扇区来方便后面写数据--0x0002个
         
+printf("1¤×÷?￡ê?after Delay");
 		while(!(RS232_RX_BUF[0]==0x2A)||!(RS232_RX_BUF[1]==0x23)||!(RS232_RX_BUF[6]==0x23)||!(RS232_RX_BUF[7]==0x2A));
 	
         addr=RS232_RX_BUF[2]*256+RS232_RX_BUF[3];  //addr为接收到的起始地址所在扇区，也就是说是第几个扇区
         addr_Stop  = addr*4096;//第几个扇区对应的扇区地址
-        //Erase_adrr = addr;   //起始地址也就是要擦除的扇区是第几个
+        Erase_adrr = addr;   //起始地址也就是要擦除的扇区是第几个
         Erase_flag=RS232_RX_BUF[4]*256+RS232_RX_BUF[5];//要擦出的连续扇区个数
-printf("addr=%d\r\n",addr);
-printf("erase num=%d\r\n",Erase_flag);
+
         //GUI_SetFont(&GUI_Font32B_1);
         //GUI_SetColor(GUI_CYAN);  
         //GUI_DispHexAt(addr*4096,100,50,6);//显示起始地址
         //GUI_DispDecAt(Erase_flag,100,85,4); 
 //显示要擦出的扇区个数
         //GUI_DispStringAt("Start Erase",100,160);
+		
 		for(i=0;i<Erase_flag;i++)
         {
             Erase_adrr=addr+i;//扇区地址自增
@@ -83,8 +85,8 @@ printf("erase num=%d\r\n",Erase_flag);
 			isErase=true;  //外部flash是否已擦除
 			j=0;    
 			while(j<16 && isErase ){
-					SPI_FLASH_BufferRead(pBuffer, Erase_adrr*4096+j*256, 256);
-				k=0;
+					SPI_FLASH_BufferRead(pBuffer, Erase_adrr+j*256, 256);
+					k=0;
 					while(k<256 && isErase ){
 						if(pBuffer[k] != 0xFF){     //flash的值不等于0xFF，需先擦除，后面才能写入数据
 							isErase=false;
@@ -94,7 +96,7 @@ printf("erase num=%d\r\n",Erase_flag);
 						k++;
 					}
 					j++;
-				}
+			}
 				
  
 			//GUI_SetColor(GUI_WHITE);
@@ -105,40 +107,40 @@ printf("erase num=%d\r\n",Erase_flag);
         //GUI_DispStringAt("Finis Erase",100,160);
         //GUI_SetFont(&GUI_FontHZ16);
         //GUI_SetColor(GUI_DARKMAGENTA);
-        //GUI_DispStringAt("字库",100,210);//这里是用来测试前面的擦出是否完成---比如前面擦出了ASCII码的字库地址，其中的FLASH就不会显示
-				addr*=4096;
-				CK_flag=10; //串口接收数据是否是地址的的标识判断位 ---为10 表示后面接收的是数据
+        //GUI_DispStringAt("啊波次的乐我许与在 #*aA/字库",100,210);//这里是用来测试前面的擦出是否完成---比如前面擦出了ASCII码的字库地址，其中的FLASH就不会显示
+        CK_flag=10; //串口接收数据是否是地址的的标识判断位 ---为10 表示后面接收的是数据
+		
 				printf("请选择一个字库文件并发送。\r\n");
 		
         //GUI_SetFont(&GUI_Font32B_1);
         //GUI_SetColor(GUI_GREEN);
         //GUI_DispStringAtCEOL("Wait Send Data",50,10);
-while(1) ;
+
         while(GPIO_ReadInputDataBit(GPIOA,GPIO_Pin_1) == 0);   //这里等于是一个开关---用来等待串口传输完成，可以再串口上看到是否传输完成
     
         //GUI_SetColor(GUI_WHITE);
         //GUI_DispDecAt(addr_i,100,120,7);
         //GUI_SetFont(&GUI_FontHZ16);
         //GUI_SetColor(GUI_BLUE);
-        //GUI_DispStringAt("字库",100,210);//这里是用来测试前面的烧写是否完成---比如前面擦出了ASCII码的字库地址这里又重新烧录了ASCII码，其中的FLASH就会再次显示
+        //GUI_DispStringAt("啊波次的乐我许与在 #*aA/字库",100,210);//这里是用来测试前面的烧写是否完成---比如前面擦出了ASCII码的字库地址这里又重新烧录了ASCII码，其中的FLASH就会再次显示
         Delay_ms(100);
 
   }
 }
 
 //--------------串口中断函数------------
-void macUSART_INT_FUN(void)
+void USART1_IRQHandler(void)
 {        
   uint8_t res;
-  if(USART_GetITStatus(macUSARTx, USART_IT_RXNE) != RESET)  //接收到数据  
+  if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)  //接收到数据  
   {        
-        //USART_ClearITPendingBit(macUSARTx, USART_IT_RXNE); 
-        res=USART_ReceiveData(macUSARTx);  //读取接收到的数据 
+        USART_ClearITPendingBit(USART1, USART_IT_RXNE); 
+        res=USART_ReceiveData(USART1);  //读取接收到的数据 
         RS232_RX_BUF[RS232_RX_CNT++]=res;  //接收数据，主要保存地址指令
 		if(CK_flag==10)  //串口接收数据
         {  
                 addr_i++;  //烧写地址自增---主函数中将在烧写完成后显示
-                SPI_FLASH_PageWrite(&res,addr++,1);  //烧写接收到的数据到FLASH
+                SPI_FLASH_BufferWrite(&res,addr++,1);  //烧写接收到的数据到FLASH
         }
         if( RS232_RX_CNT==12)//无影响
                 RS232_RX_CNT=0;  

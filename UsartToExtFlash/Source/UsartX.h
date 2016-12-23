@@ -32,6 +32,4 @@ void NVIC_Configuration(void);
 void Usart_SendStr_length( USART_TypeDef * pUSARTx, uint8_t *str,uint32_t strlen );
 void Usart_SendString( USART_TypeDef * pUSARTx, uint8_t *str);
 
-
-
 #endif /* __USARTX_H */

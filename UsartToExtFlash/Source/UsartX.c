@@ -12,8 +12,7 @@
   
 #include "UsartX.h"
 
-
- /**
+/**
   * @brief  USARTx GPIO 配置,工作模式配置。115200 8-N-1
   * @param  无
   * @retval 无
@@ -50,6 +49,8 @@ void USARTx_Config(void)
 	USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 	USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
 	USART_Init(macUSARTx, &USART_InitStructure);
+	USART_ITConfig(macUSARTx, USART_IT_RXNE, ENABLE);	/* 使能接收中断 */
+	
 	
 	USART_Cmd(macUSARTx, ENABLE);
 	

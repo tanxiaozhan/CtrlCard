@@ -553,7 +553,7 @@ ARM Macro Assembler    Page 9
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\startup_stm32f10x_hd.d -o.\objects\startup_stm32f10x_hd.
-o -IE:\CtrlCard\UsartTOextFlash\RTE -IE:\CtrlCard\UsartTOextFlash\RTE\Device\ST
+o -IE:\CtrlCard\UsartToExtFlash\RTE -IE:\CtrlCard\UsartToExtFlash\RTE\Device\ST
 M32F103RC -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include -IC:\Keil_v5\ARM\
 PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F1
 xx_DFP\2.0.0\Device\StdPeriph_Driver\inc --predefine="__MICROLIB SETA 1" --pred
