@@ -440,6 +440,16 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Doc</GroupName>
+          <Files>
+            <File>
+              <FileName>Flash容量分配.xlsx</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Doc\Flash容量分配.xlsx</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
