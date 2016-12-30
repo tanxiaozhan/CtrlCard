@@ -19,7 +19,7 @@ static uint16_t SPI_TIMEOUT_UserCallback(void);
 * Description    : Initializes the peripherals used by the SPI FLASH driver.
 * Input          : None
 * Output         : None
-* Return         : 
+* Return         : None
 *******************************************************************************/
 uint8_t FLASH_SPI_initialize(void)
 {
@@ -594,9 +594,9 @@ int GetGBKCode_from_EXFlash( uint8_t * pBuffer, uint16_t c, uint8_t rowNo)
     High8bit= c >> 8;     /* 取高8位数据 */
     Low8bit= c & 0x00FF;  /* 取低8位数据 */	
 	  
-    pos = ((High8bit-0xa0-16)*94+Low8bit-0xa0-1)*2*16;
+    pos = ((High8bit-0xa1)*94+Low8bit-0xa1)*2*16;
 		//SPI_FLASH_BufferRead(pBuffer,4096+pos,32);
-		SPI_FLASH_BufferRead(pBuffer,4096+pos+rowNo*2,2);
+		SPI_FLASH_BufferRead(pBuffer,16*4096+pos+rowNo*2,2);
 	
 		return 0;  
 }

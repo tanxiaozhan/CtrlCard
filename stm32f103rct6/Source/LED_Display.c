@@ -53,6 +53,7 @@ static void LED_Display (void const *arg) {
 		startX[i] = 0;
 	}
 	
+	
 	while(1){
 		//清空显存，cve即用0xFF给显存数组赋值
 		for(row=0;row<32;row++){      
@@ -256,9 +257,8 @@ void dispay_scan_4_up_to_down_1for16row(uint8_t * pdot_buff_red, uint8_t * pdot_
 		STB(0);
 		STB(1);  //锁存
 		EN(ON);
-		osDelay(2);
-		EN(OFF);
-		//osDelay(3);
+		osDelay(4);
+		//osDelay(1);
 
 	}
 }
@@ -397,7 +397,7 @@ void LED_display_init(void){
 			area[i].ani_in=pBuff[11];
 			area[i].ani_out=pBuff[12];
 			area[i].speed=pBuff[13];
-			area[i].speed=i*2+4;
+			area[i].speed=i*2+20;
 			area[i].content_type=TEXT;
 			area[i].length=pBuff[15];
 			//area[i].length=strlen((char *)area[i].display_data);
@@ -409,8 +409,13 @@ void LED_display_init(void){
 		}
 		else
 			del_area(i);
+		
+		
+		printf("x=%d,y=%d,width=%d,height=%d\r\n",area[i].x,area[i].y,area[i].width,area[i].height);
 	}
-	
+	screen.width=64;
+	screen.height=32;
+	printf("Width=%d, Height=%d\r\n",screen.width,screen.height);
 }
 
 //删除显示分区

@@ -14,7 +14,7 @@
 .\objects\main.o: e:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Driver\Include\Driver_ETH.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Driver\Include\Driver_ETH_PHY.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\Keil\MDK-Middleware\7.1.0\Network\Include\net_modem.h
-.\objects\main.o: Source\flash_SPI.h
+.\objects\main.o: Source\usartX.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include\stm32f10x.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm3.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cmInstr.h
@@ -30,8 +30,8 @@
 .\objects\main.o: e:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\stm32f10x_spi.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\stm32f10x_usart.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\misc.h
-.\objects\main.o: Source\usartX.h
 .\objects\main.o: e:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc\stm32f10x_fsmc.h
 .\objects\main.o: Source\esp8266.h
 .\objects\main.o: Source\Board_LED.h
 .\objects\main.o: Source\LED_Display.h
+.\objects\main.o: Source\flash_SPI.h
