@@ -44,7 +44,7 @@ static void LED_Display (void const *arg) {
 
 	uint8_t * pStr;
 	unsigned int col;
-	uint8_t area_no,scan,row,dot;
+	uint8_t area_no,row,dot;
 	unsigned int startX[MAX_AREA_NUMBER],i,v_col;
 	uint8_t speed[MAX_AREA_NUMBER];                //显示特效中点阵的移动速度
 	bool fresh_screen_dot[MAX_AREA_NUMBER];				 //重新填充显存
@@ -57,75 +57,70 @@ static void LED_Display (void const *arg) {
 	
 	
 	while(1){
-		
-		//清空显存，cve即用0xFF给显存数组赋值
+	/*	
+		//清空显存，即用0xFF给显存数组赋值
 		for(row=0;row<32;row++){      
 			for(scan=0;scan<8;scan++){
 				screen_dot_red[row][scan]=0xFF;
 				screen_dot_green[row][scan]=0xFF;
 			}
 		}
-	
-	
+	*/
 		//按显示区获取一行点阵数据，保存到数组current_row_dot
 		for( area_no=0;area_no<screen.area_number;area_no++ ){
 			if( fresh_screen_dot[area_no] ){
-			for( row=area[area_no].y; row<(area[area_no].y+area[area_no].height);row++){
-				/////////////////////////////////////
-				//if(row-area[area_no].y>=16 ) continue;  //暂时使用
-				pStr = area[area_no].display_data;
+				for( row=area[area_no].y; row<(area[area_no].y+area[area_no].height);row++){
+					/////////////////////////////////////
+					pStr = area[area_no].display_data;
 
-				col=0;
-				//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
-				while( col<area[area_no].length ){
-					if( *pStr <= 126){      //英文字符
-						current_row_dot[col++] = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y ] ;    //获取点阵
-						pStr++ ;
+					col=0;
+					//获取当前显示行的点阵数据，将点阵数据保存到current_row_dot数组
+					while( col<area[area_no].length ){
+						if( *pStr <= 126){      //英文字符
+							current_row_dot[col++] = ascii_Dot[ *pStr - ' ' ][row - area[area_no].y ] ;    //获取点阵
+							pStr++ ;
+						}
+						else{    //汉字字符
+							uint16_t char_GBK_Code;                            //汉字的国标码
+							uint8_t GBK_dot[2];                                  //汉字的点阵数据
+							char_GBK_Code = * (uint16_t *)pStr;             //取一个汉字的国标码，二字节
+							char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
+							get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
+							current_row_dot[col++] = GBK_dot[0];
+							current_row_dot[col++] = GBK_dot[1];
+							pStr += 2 ;
+						}
 					}
-					else{    //汉字字符
-						uint16_t char_GBK_Code;                            //汉字的国标码
-						uint8_t GBK_dot[2];                                  //汉字的点阵数据
-						char_GBK_Code = * (uint16_t *)pStr;             //取一个汉字的国标码，二字节
-						char_GBK_Code = ( char_GBK_Code << 8 ) + ( char_GBK_Code >> 8 );    //国标码前后字节对调
-						get_GBK_Code( GBK_dot, char_GBK_Code,(row-area[area_no].y)%16 );   //读取汉字字模一行点阵数据2字节
-						current_row_dot[col++] = GBK_dot[0];
-						current_row_dot[col++] = GBK_dot[1];
-						pStr += 2 ;
-					}
-				}
 			
-				//刷新显存，即用点阵数据给显存数组赋值
-				col = area[area_no].x;
-				while( col < (area[area_no].x + area[area_no].width) ){
-					v_col = col - area[area_no].x;    //在虚拟显存中的X坐标
-					if( startX[area_no]+v_col >= area[area_no].width && startX[area_no]+v_col < area[area_no].width+area[area_no].length*8 ){
-						dot = startX[area_no]+v_col-area[area_no].width ;
-						dot = current_row_dot[dot/8] & ( 0x80 >> (dot%8)) ;
-						if(area[area_no].red) fill_point( (uint8_t *)screen_dot_red, screen.width/8, col, row ,dot ) ;
-						if(area[area_no].green) fill_point( (uint8_t *)screen_dot_green, screen.width/8, col, row ,dot ) ;
+					//刷新显存，即用点阵数据给显存数组赋值
+					col = area[area_no].x;
+					while( col < (area[area_no].x + area[area_no].width) ){
+						v_col = col - area[area_no].x;    //在虚拟显存中的X坐标
+						if( startX[area_no]+v_col >= area[area_no].width && startX[area_no]+v_col < area[area_no].width+area[area_no].length*8 ){
+							dot = startX[area_no]+v_col-area[area_no].width ;
+							dot = current_row_dot[dot/8] & ( 0x80 >> (dot%8)) ;
+							if(area[area_no].red) fill_point( (uint8_t *)screen_dot_red, screen.width/8, col, row ,dot ) ;
+							if(area[area_no].green) fill_point( (uint8_t *)screen_dot_green, screen.width/8, col, row ,dot ) ;
+						}
+						col++;
 					}
-					col++;
+					fresh_screen_dot[area_no] = false;   
 				}
-				fresh_screen_dot[area_no] = false;   
+			}
+			speed[area_no]--;
+			if( speed[area_no] < 1 ){
+				fresh_screen_dot[area_no] = true;    //重新填充显存
+				speed[area_no] = area[area_no].speed;
+				startX[area_no]++;
+				if( startX[area_no] >= area[area_no].width+area[area_no].length*8 )
+					startX[area_no] = 0;
 			}
 		}
-		speed[area_no]--;
-		if( speed[area_no] < 1 ){
-			fresh_screen_dot[area_no] = true;    //重新填充显存
-			speed[area_no] = area[area_no].speed;
-			startX[area_no]++;
-			if( startX[area_no] >= area[area_no].width+area[area_no].length*8 )
-				startX[area_no] = 0;
-		}
-		
+		//到此，显存点阵数据写入完成
+
+		//显示一屏，将显存中的数据显示在屏幕上
+		buffer_to_display();
 	}
-//到此，显存点阵数据写入完成
-
-	//显示一屏，将显存中的数据显示在屏幕上
-	buffer_to_display();
-
-	}
-
 }
 
 /*----------------------------------------------------------------------------
